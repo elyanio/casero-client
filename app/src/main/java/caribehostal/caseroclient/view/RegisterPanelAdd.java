@@ -20,21 +20,20 @@ import caribehostal.caseroclient.datamodel.Client;
 
 public class RegisterPanelAdd extends RelativeLayout implements RegisterPanel{
     private final ClientRecyclerAdapter adapter;
+    private final RegisterClient context;
     @BindView(R.id.list_client)
     RecyclerView recyclerView;
 
-    private List<Client> clients;
-
-    public RegisterPanelAdd(Context context, List<Client> clients) {
+    public RegisterPanelAdd(Context context) {
         super(context);
+        this.context = (RegisterClient)context;
         bindXML();
         ButterKnife.bind(this);
-        this.clients = clients;
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(context);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        adapter = new ClientRecyclerAdapter(this.clients, context);
+        adapter = new ClientRecyclerAdapter(this.context.getClient(), context);
         recyclerView.setAdapter(adapter);
     }
 
@@ -46,8 +45,7 @@ public class RegisterPanelAdd extends RelativeLayout implements RegisterPanel{
 
     @Override
     public void outPanel() {
-        RegisterClient registerClient = (RegisterClient) getContext();
-        registerClient.outClientPanelAction();
+        context.outClientPanelAction();
     }
 
     public void updateList(){

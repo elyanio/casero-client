@@ -6,7 +6,6 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
-import android.widget.TextView;
 
 import org.threeten.bp.LocalDate;
 
@@ -34,7 +33,6 @@ public class RegisterClient extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.navigation_checkin:
                     if (!(currentPanelSelect instanceof RegisterPanelCheckin)) {
-                        //                    mTextMessage.setText(R.string.title_home);
                         currentPanelSelect.outPanel();
                         showCheckinPanelAction();
                         currentItemSelect = item;
@@ -43,7 +41,6 @@ public class RegisterClient extends AppCompatActivity {
                     return true;
                 case R.id.navigation_checkout:
                     if (!(currentPanelSelect instanceof RegisterPanelCheckout)) {
-                        //                    mTextMessage.setText(R.string.title_dashboard);
                         currentPanelSelect.outPanel();
                         showCheckoutPanelAction();
                         currentItemSelect = item;
@@ -57,13 +54,18 @@ public class RegisterClient extends AppCompatActivity {
                         showClientPanelAction();
                         currentItemSelect = item;
                     } else {
-                        addClientAction();
+                        showAddClientDialogAction();
                     }
                     return true;
                 case R.id.navigation_ok:
-                    item.setTitle(R.string.title_send);
-                    sendAction();
-                    currentItemSelect = item;
+                    if (!(currentPanelSelect instanceof RegisterPanelSend)) {
+                        item.setTitle(R.string.title_send);
+                        currentPanelSelect.outPanel();
+                        showSendPanelAction();
+                        currentItemSelect = item;
+                    } else {
+                        sendAction();
+                    }
                     return true;
             }
             return false;
@@ -77,9 +79,11 @@ public class RegisterClient extends AppCompatActivity {
     private RegisterPanelCheckin registerCheckinPanel;
     private RegisterPanelCheckout registerCheckoutPanel;
     private RegisterPanelAdd registerAddPanel;
+    private RegisterPanelSend registerSendPanel;
+
     private LocalDate checkin;
     private LocalDate checkout;
-    private List<Client> clients ;
+    private List<Client> clients;
 
 
     @Override
@@ -95,30 +99,48 @@ public class RegisterClient extends AppCompatActivity {
     private void init() {
         checkin = LocalDate.now();
         checkout = LocalDate.now();
-        clients= new ArrayList<Client>(10);
+        clients = new ArrayList<Client>(10);
 
-        registerCheckinPanel = new RegisterPanelCheckin(this, checkin);
-        registerCheckoutPanel = new RegisterPanelCheckout(this, checkout);
-        registerAddPanel = new RegisterPanelAdd(this, clients);
+        registerCheckinPanel = new RegisterPanelCheckin(this);
+        registerCheckoutPanel = new RegisterPanelCheckout(this);
+        registerAddPanel = new RegisterPanelAdd(this);
+        registerSendPanel = new RegisterPanelSend(this);
 
         showCheckinPanelAction();
         currentPanelSelect = registerCheckinPanel;
     }
 
-    public RegisterPanelCheckin getRegisterCheckinPanel() {
-        return registerCheckinPanel;
+    public List<Client> getClient() {
+        return clients;
     }
 
-    public RegisterPanelCheckout getRegisterCheckoutPanel() {
-        return registerCheckoutPanel;
+    public LocalDate getCheckin() {
+        return checkin;
     }
 
-    public RegisterPanelAdd getRegisterAddPanel() {
-        return registerAddPanel;
+    public LocalDate getCheckout() {
+        return checkout;
+    }
+
+    public void setCheckin(LocalDate checkin) {
+        this.checkin = checkin;
+    }
+
+    public void setCheckout(LocalDate checkout) {
+        this.checkout = checkout;
+    }
+
+    public void setClients(List<Client> clients) {
+        this.clients = clients;
+    }
+
+    private void sendSms() {
+
     }
 
 
-    // action del controlador
+
+    // acciones del controlador
     private void showCheckinPanelAction() {
         content.addView(registerCheckinPanel);
         currentPanelSelect = registerCheckinPanel;
@@ -134,13 +156,17 @@ public class RegisterClient extends AppCompatActivity {
         currentPanelSelect = registerAddPanel;
     }
 
+    private void showSendPanelAction() {
+        registerSendPanel.updateText();
+        content.addView(registerSendPanel);
+        currentPanelSelect = registerSendPanel;
+    }
+
     public void outCheckinPanelAction() {
-        checkin = registerCheckinPanel.getLocalDate();
         content.removeAllViews();
     }
 
     public void outCheckoutPanelAction() {
-        checkout = registerCheckoutPanel.getLocalDate();
         content.removeAllViews();
     }
 
@@ -149,29 +175,37 @@ public class RegisterClient extends AppCompatActivity {
         currentItemSelect.setIcon(ic_notifications_black_24dp);
     }
 
-    public void addClientAction() {
+    public void outSendPanelAction() {
+        content.removeAllViews();
+        currentItemSelect.setIcon(ic_notifications_black_24dp);
+    }
+
+    public void showAddClientDialogAction() {
         AddPasspotDialog addPasspotDialog = new AddPasspotDialog(this);
         addPasspotDialog.show();
     }
 
-    public void saveClientAction(String passport) {
+    public void addClientListAction(String passport) {
         Client client = new Client().setPassport(passport);
-        DaoClient daoClient = new DaoClient();
-        daoClient.upsertClient(client);
         clients.add(client);
         registerAddPanel.updateList();
     }
 
-    public void sendAction(){
-        if(clients.isEmpty()){
+    public void sendAction() {
+        if (clients.isEmpty()) {
             //torta hacer algo
             return;
         }
-        if(checkin.isAfter(checkout)){
+        if (checkin.isAfter(checkout)) {
             // torta hacer algo
             return;
         }
-
-
+        DaoClient daoClient = new DaoClient();
+        for (Client client : clients) {
+            daoClient.upsertClient(client);
+        }
+        sendSms();
     }
+
+
 }

@@ -42,7 +42,7 @@ public class AddPasspotDialog {
     private void acept() {
         if(!isEmptyPassport()){
             RegisterClient context = (RegisterClient) this.context;
-            context.saveClientAction(getPassport());
+            context.addClientListAction(getPassport());
         }else{
             Toast.makeText(context,"Pasaporte vacio", Toast.LENGTH_SHORT).show();
         }

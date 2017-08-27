@@ -17,22 +17,20 @@ import caribehostal.caseroclient.R;
  */
 
 public class RegisterPanelCheckin extends RelativeLayout implements RegisterPanel{
-    private final Context context;
+    private final RegisterClient context;
     @BindView(R.id.text_register_check_panel)
     TextView text;
     @BindView(R.id.datePicker_check)
     DatePicker datePicker;
-    LocalDate localDate;
 
 
-    public RegisterPanelCheckin(Context context, LocalDate localDate) {
+    public RegisterPanelCheckin(Context context) {
         super(context);
-        this.context = context;
+        this.context = (RegisterClient)context;
         bindXML();
         ButterKnife.bind(this);
         this.text.setText("Fecha de llegada");
-        datePicker.init(localDate.getYear(),localDate.getMonthValue() - 1,localDate.getDayOfMonth(), new MyOnDateChangedListener());
-        this.localDate = localDate;
+        datePicker.init(this.context.getCheckin().getYear(),this.context.getCheckin().getMonthValue() - 1,this.context.getCheckin().getDayOfMonth(), new MyOnDateChangedListener());
     }
 
     private void bindXML() {
@@ -41,25 +39,8 @@ public class RegisterPanelCheckin extends RelativeLayout implements RegisterPane
         asioInflador.inflate(R.layout.register_panel_date, this, true);
     }
 
-    public LocalDate getLocalDate(){
-        return localDate;
-    }
-
-    public TextView getText() {
-        return text;
-    }
-
-    public void setText(TextView text) {
-        this.text = text;
-    }
-
-    public void setLocalDate(LocalDate localDate) {
-        this.localDate = localDate;
-    }
-
     @Override
     public void outPanel() {
-        RegisterClient context = (RegisterClient) this.context;
         context.outCheckinPanelAction();
     }
 
@@ -68,7 +49,7 @@ public class RegisterPanelCheckin extends RelativeLayout implements RegisterPane
 
         @Override
         public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-            localDate = LocalDate.of(year,monthOfYear + 1,dayOfMonth);
+            context.setCheckin(LocalDate.of(year,monthOfYear + 1,dayOfMonth));
         }
     }
 }
