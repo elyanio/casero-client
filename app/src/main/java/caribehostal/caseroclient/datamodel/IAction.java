@@ -1,5 +1,6 @@
 package caribehostal.caseroclient.datamodel;
 
+import org.threeten.bp.LocalDate;
 import org.threeten.bp.LocalDateTime;
 
 import io.requery.Column;
@@ -23,16 +24,16 @@ public interface IAction extends Persistable {
     int getId();
 
     @Column(nullable = true)
-    @Convert(LocalDateConverter.class)
-    LocalDateTime getDateAction();
+    @Convert(LocalDateTimeConverter.class)
+    LocalDateTime getDateTimeAction();
 
     @Column(nullable = false)
     @Convert(LocalDateConverter.class)
-    LocalDateTime getCheckIn();
+    LocalDate getCheckIn();
 
     @Column(nullable = false)
     @Convert(LocalDateConverter.class)
-    LocalDateTime getCheckOut();
+    LocalDate getCheckOut();
 
     @Column(nullable = false)
     @Convert(ActionTypeConverter.class)

@@ -21,11 +21,9 @@ import caribehostal.caseroclient.datamodel.Client;
 public class ClientRecyclerAdapter extends RecyclerView.Adapter<ClientRecyclerAdapter.MyViewHolder> {
 
     private List<Client> dataSet;
-    private Context context;
 
     public ClientRecyclerAdapter(List<Client> data, Context context) {
         this.dataSet = data;
-        this.context = context;
     }
 
     @Override
