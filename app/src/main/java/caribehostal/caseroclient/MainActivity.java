@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         startActivity(new Intent(this, RegisterClient.class));
-        DatabaseSetup databaseSetup = new DatabaseSetup();
-        databaseSetup.mockDatabase();
+//        DatabaseSetup databaseSetup = new DatabaseSetup();
+//        databaseSetup.mockDatabase();
     }
 }

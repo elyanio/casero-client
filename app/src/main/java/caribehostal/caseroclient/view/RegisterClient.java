@@ -1,13 +1,12 @@
 package caribehostal.caseroclient.view;
 
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 
 import org.threeten.bp.LocalDate;
 
@@ -52,7 +51,7 @@ public class RegisterClient extends AppCompatActivity {
                     return true;
                 case R.id.navigation_client:
                     if (!(currentPanelSelect instanceof RegisterPanelAdd)) {
-                        //                    mTextMessage.setText(R.string.title_notifications);
+                        item.setTitle(R.string.title_add_client);
                         item.setIcon(ic_home_black_24dp);
                         currentPanelSelect.outPanel();
                         showClientPanelAction();
@@ -62,8 +61,8 @@ public class RegisterClient extends AppCompatActivity {
                     }
                     return true;
                 case R.id.navigation_ok:
-//                    mTextMessage.setText(R.string.title_notifications);
-
+                    item.setTitle(R.string.title_send);
+                    sendAction();
                     currentItemSelect = item;
                     return true;
             }
@@ -80,7 +79,7 @@ public class RegisterClient extends AppCompatActivity {
     private RegisterPanelAdd registerAddPanel;
     private LocalDate checkin;
     private LocalDate checkout;
-    private List<Client> clients = new ArrayList<Client>(10);
+    private List<Client> clients ;
 
 
     @Override
@@ -88,19 +87,21 @@ public class RegisterClient extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register_client_activity);
         ButterKnife.bind(this);
-        init();
         navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-        showCheckinPanelAction();
+        init();
     }
 
     private void init() {
-        registerCheckinPanel = new RegisterPanelCheckin(this, LocalDate.now());
-        registerCheckoutPanel = new RegisterPanelCheckout(this, LocalDate.now());
-        DaoClient daoClient = new DaoClient();
-        daoClient.getAllClient().collect(this.clients);
+        checkin = LocalDate.now();
+        checkout = LocalDate.now();
+        clients= new ArrayList<Client>(10);
+
+        registerCheckinPanel = new RegisterPanelCheckin(this, checkin);
+        registerCheckoutPanel = new RegisterPanelCheckout(this, checkout);
         registerAddPanel = new RegisterPanelAdd(this, clients);
 
+        showCheckinPanelAction();
         currentPanelSelect = registerCheckinPanel;
     }
 
@@ -159,5 +160,18 @@ public class RegisterClient extends AppCompatActivity {
         daoClient.upsertClient(client);
         clients.add(client);
         registerAddPanel.updateList();
+    }
+
+    public void sendAction(){
+        if(clients.isEmpty()){
+            //torta hacer algo
+            return;
+        }
+        if(checkin.isAfter(checkout)){
+            // torta hacer algo
+            return;
+        }
+
+
     }
 }
