@@ -31,7 +31,7 @@ public class RegisterPanelAdd extends RelativeLayout implements RegisterPanel{
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        adapter = new ClientRecyclerAdapter(this.context.getClient(), context);
+        adapter = new ClientRecyclerAdapter(this.context.getClients(), context);
         recyclerView.setAdapter(adapter);
     }
 

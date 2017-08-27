@@ -116,7 +116,7 @@ public class RegisterClientController extends AppCompatActivity {
         currentPanelSelect = registerCheckinPanel;
     }
 
-    public List<Client> getClient() {
+    public List<Client> getClients() {
         return clients;
     }
 

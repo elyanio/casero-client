@@ -6,7 +6,7 @@ import android.widget.DatePicker;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import org.threeten.bp.LocalDateTime;
+import org.threeten.bp.LocalDate;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -50,7 +50,7 @@ public class RegisterPanelCheckin extends RelativeLayout implements RegisterPane
 
         @Override
         public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-            context.setCheckin(LocalDateTime.of(year,monthOfYear + 1,dayOfMonth));
+            context.setCheckin(LocalDate.of(year,monthOfYear + 1,dayOfMonth));
         }
     }
 }

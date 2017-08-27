@@ -1,7 +1,6 @@
 package caribehostal.caseroclient.view.registerclient;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -40,7 +39,7 @@ public class RegisterPanelSend extends LinearLayout implements RegisterPanel {
     }
 
     private String makeText() {
-        if (context.getClient().isEmpty()) {
+        if (context.getClients().isEmpty()) {
             text.setTextColor(getResources().getColor(R.color.colorerror));
             return "La petición no contiene pasaportes";
         }
@@ -56,9 +55,12 @@ public class RegisterPanelSend extends LinearLayout implements RegisterPanel {
         String text = "Usted enviará una petición con" +
                 "\n" + "Pasaportes:" +
                 "\n";
-        for (Client client : context.getClient()) {
-            text = text + client.getPassport();
-            Log.e("sd", "d");
+        for (int i = 0; i < context.getClients().size(); i++) {
+            if (i == context.getClients().size() - 1) {
+                text = text + context.getClients().get(i).getPassport();
+            } else {
+                text = text + context.getClients().get(i).getPassport() + "\n";
+            }
         }
         text = text +
                 "\n" + "fecha de entrada: " + context.getCheckin().format(formatter) +
