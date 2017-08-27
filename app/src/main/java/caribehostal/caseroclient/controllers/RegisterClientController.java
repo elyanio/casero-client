@@ -1,4 +1,4 @@
-package caribehostal.caseroclient.view;
+package caribehostal.caseroclient.controllers;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -17,11 +17,17 @@ import butterknife.ButterKnife;
 import caribehostal.caseroclient.R;
 import caribehostal.caseroclient.dataaccess.DaoClient;
 import caribehostal.caseroclient.datamodel.Client;
+import caribehostal.caseroclient.view.registerclient.AddPasspotDialog;
+import caribehostal.caseroclient.view.registerclient.RegisterPanel;
+import caribehostal.caseroclient.view.registerclient.RegisterPanelAdd;
+import caribehostal.caseroclient.view.registerclient.RegisterPanelCheckin;
+import caribehostal.caseroclient.view.registerclient.RegisterPanelCheckout;
+import caribehostal.caseroclient.view.registerclient.RegisterPanelSend;
 
 import static caribehostal.caseroclient.R.drawable.ic_home_black_24dp;
 import static caribehostal.caseroclient.R.drawable.ic_notifications_black_24dp;
 
-public class RegisterClient extends AppCompatActivity {
+public class RegisterClientController extends AppCompatActivity {
     @BindView(R.id.register_content)
     FrameLayout content;
 

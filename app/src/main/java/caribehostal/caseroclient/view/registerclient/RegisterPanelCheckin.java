@@ -1,4 +1,4 @@
-package caribehostal.caseroclient.view;
+package caribehostal.caseroclient.view.registerclient;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,13 +11,14 @@ import org.threeten.bp.LocalDate;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import caribehostal.caseroclient.R;
+import caribehostal.caseroclient.controllers.RegisterClientController;
 
 /**
  * Created by Fernando on 24/08/2017.
  */
 
 public class RegisterPanelCheckin extends RelativeLayout implements RegisterPanel{
-    private final RegisterClient context;
+    private final RegisterClientController context;
     @BindView(R.id.text_register_check_panel)
     TextView text;
     @BindView(R.id.datePicker_check)
@@ -26,7 +27,7 @@ public class RegisterPanelCheckin extends RelativeLayout implements RegisterPane
 
     public RegisterPanelCheckin(Context context) {
         super(context);
-        this.context = (RegisterClient)context;
+        this.context = (RegisterClientController)context;
         bindXML();
         ButterKnife.bind(this);
         this.text.setText("Fecha de llegada");

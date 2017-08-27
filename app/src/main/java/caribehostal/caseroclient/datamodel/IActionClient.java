@@ -1,7 +1,5 @@
 package caribehostal.caseroclient.datamodel;
 
-import caribehostal.caseroclient.datamodel.Action;
-import caribehostal.caseroclient.datamodel.Client;
 import io.requery.Column;
 import io.requery.Entity;
 import io.requery.Generated;

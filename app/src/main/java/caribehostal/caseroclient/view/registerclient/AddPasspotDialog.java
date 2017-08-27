@@ -1,4 +1,4 @@
-package caribehostal.caseroclient.view;
+package caribehostal.caseroclient.view.registerclient;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import caribehostal.caseroclient.R;
+import caribehostal.caseroclient.controllers.RegisterClientController;
 
 /**
  * Created by Fernando on 26/08/2017.
@@ -20,7 +21,7 @@ public class AddPasspotDialog {
     private final View item;
     private AlertDialog.Builder addPassportDialog;
 
-    protected AddPasspotDialog(@NonNull final Context context) {
+    public AddPasspotDialog(@NonNull final Context context) {
         this.context = context;
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         item = inflater.inflate(R.layout.item_add_client, null);
@@ -41,7 +42,7 @@ public class AddPasspotDialog {
 
     private void acept() {
         if(!isEmptyPassport()){
-            RegisterClient context = (RegisterClient) this.context;
+            RegisterClientController context = (RegisterClientController) this.context;
             context.addClientListAction(getPassport());
         }else{
             Toast.makeText(context,"Pasaporte vacio", Toast.LENGTH_SHORT).show();

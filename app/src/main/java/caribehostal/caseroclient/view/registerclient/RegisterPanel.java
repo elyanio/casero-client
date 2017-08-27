@@ -1,4 +1,4 @@
-package caribehostal.caseroclient.view;
+package caribehostal.caseroclient.view.registerclient;
 
 /**
  * Created by Fernando on 26/08/2017.

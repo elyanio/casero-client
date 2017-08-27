@@ -1,8 +1,7 @@
 package caribehostal.caseroclient.datamodel;
 
-import org.threeten.bp.LocalDate;
+import org.threeten.bp.LocalDateTime;
 
-import caribehostal.caseroclient.datamodel.LocalDateConverter;
 import io.requery.Column;
 import io.requery.Convert;
 import io.requery.Entity;
@@ -25,15 +24,15 @@ public interface IAction extends Persistable {
 
     @Column(nullable = true)
     @Convert(LocalDateConverter.class)
-    LocalDate getDateAction();
+    LocalDateTime getDateAction();
 
     @Column(nullable = false)
     @Convert(LocalDateConverter.class)
-    LocalDate getCheckIn();
+    LocalDateTime getCheckIn();
 
     @Column(nullable = false)
     @Convert(LocalDateConverter.class)
-    LocalDate getCheckOut();
+    LocalDateTime getCheckOut();
 
     @Column(nullable = false)
     @Convert(ActionTypeConverter.class)

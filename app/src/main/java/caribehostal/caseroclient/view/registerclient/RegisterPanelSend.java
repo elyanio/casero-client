@@ -1,4 +1,4 @@
-package caribehostal.caseroclient.view;
+package caribehostal.caseroclient.view.registerclient;
 
 import android.content.Context;
 import android.util.Log;
@@ -11,9 +11,8 @@ import org.threeten.bp.format.DateTimeFormatter;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import caribehostal.caseroclient.R;
+import caribehostal.caseroclient.controllers.RegisterClientController;
 import caribehostal.caseroclient.datamodel.Client;
-
-import static android.R.attr.colorFocusedHighlight;
 
 /**
  * Created by Fernando on 27/08/2017.
@@ -21,14 +20,14 @@ import static android.R.attr.colorFocusedHighlight;
 
 public class RegisterPanelSend extends LinearLayout implements RegisterPanel {
 
-    private final RegisterClient context;
+    private final RegisterClientController context;
     @BindView(R.id.text_message)
     TextView text;
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("y-MM-dd");
 
     public RegisterPanelSend(Context context) {
         super(context);
-        this.context = (RegisterClient) context;
+        this.context = (RegisterClientController) context;
         bindXML();
         ButterKnife.bind(this);
         updateText();
@@ -54,14 +53,14 @@ public class RegisterPanelSend extends LinearLayout implements RegisterPanel {
     }
 
     private String correctText() {
-        String text = "Usted desea enviar una petición con" +
+        String text = "Usted enviará una petición con" +
                 "\n" + "Pasaportes:" +
                 "\n";
         for (Client client : context.getClient()) {
-            text = text + client.getPassport() + "\n";
+            text = text + client.getPassport();
             Log.e("sd", "d");
         }
-        text = text + "y" +
+        text = text +
                 "\n" + "fecha de entrada: " + context.getCheckin().format(formatter) +
                 "\n" + "fecha de salida: " + context.getCheckout().format(formatter);
         return text;

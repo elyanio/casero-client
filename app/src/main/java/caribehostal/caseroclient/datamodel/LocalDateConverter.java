@@ -1,6 +1,6 @@
 package caribehostal.caseroclient.datamodel;
 
-import org.threeten.bp.LocalDate;
+import org.threeten.bp.LocalDateTime;
 import org.threeten.bp.format.DateTimeFormatter;
 
 import io.requery.Converter;
@@ -10,12 +10,12 @@ import io.requery.Nullable;
  * Created by rainermf on 11/2/2017.
  */
 
-public class LocalDateConverter implements Converter<LocalDate, String> {
-    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("y-MM-dd");
+public class LocalDateConverter implements Converter<LocalDateTime, String> {
+    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
     @Override
-    public Class<LocalDate> getMappedType() {
-        return LocalDate.class;
+    public Class<LocalDateTime> getMappedType() {
+        return LocalDateTime.class;
     }
 
     @Override
@@ -30,12 +30,12 @@ public class LocalDateConverter implements Converter<LocalDate, String> {
     }
 
     @Override
-    public String convertToPersisted(LocalDate value) {
+    public String convertToPersisted(LocalDateTime value) {
         return value.format(formatter);
     }
 
     @Override
-    public LocalDate convertToMapped(Class<? extends LocalDate> type, String value) {
-        return LocalDate.parse(value, formatter);
+    public LocalDateTime convertToMapped(Class<? extends LocalDateTime> type, String value) {
+        return LocalDateTime.parse(value, formatter);
     }
 }
