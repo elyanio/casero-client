@@ -1,7 +1,5 @@
 package caribehostal.caseroclient.dataaccess;
 
-import java.util.ArrayList;
-
 import caribehostal.caseroclient.datamodel.Client;
 import io.requery.Persistable;
 import io.requery.query.Result;

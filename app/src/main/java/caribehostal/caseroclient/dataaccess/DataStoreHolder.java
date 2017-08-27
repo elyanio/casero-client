@@ -5,7 +5,6 @@ import android.content.Context;
 import java.io.File;
 
 import caribehostal.caseroclient.CaseroClientApplication;
-import caribehostal.caseroclient.CaseroClientApplication;
 import caribehostal.caseroclient.datamodel.Models;
 import io.requery.Persistable;
 import io.requery.android.sqlite.DatabaseSource;
