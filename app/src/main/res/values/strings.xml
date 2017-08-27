@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Casero</string>
+    <string name="title_activity_client_register">Registrar cliente</string>
+    <string name="title_ok">Enviar</string>
+    <string name="title_checkin">Hora de llegada</string>
+    <string name="title_checkout">Hora de salida</string>
+    <string name="title_clientes_registrados">Clientes</string>
+    <string name="checkin_text">Hora de llegada</string>
+</resources>
