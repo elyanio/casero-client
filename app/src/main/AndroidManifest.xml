@@ -20,7 +20,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".controllers.RegisterClientController"></activity>
+        <activity android:name=".controllers.RegisterClientController" />
+        <activity
+            android:name=".controllers.DashboardController"
+            android:label="@string/title_activity_dashboard_controller"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
