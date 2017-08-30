@@ -144,6 +144,9 @@ public class RegisterClientController extends AppCompatActivity {
 
     }
 
+    private void createAction() {
+
+    }
 
 
     // acciones del controlador
@@ -206,12 +209,10 @@ public class RegisterClientController extends AppCompatActivity {
             // torta hacer algo
             return;
         }
-        DaoClient daoClient = new DaoClient();
-        for (Client client : clients) {
-            daoClient.upsertClient(client);
-        }
+        createAction();
         sendSms();
     }
+
 
 
 }

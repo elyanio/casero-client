@@ -31,11 +31,20 @@ public class LocalDateTimeConverter implements Converter<LocalDateTime, String> 
 
     @Override
     public String convertToPersisted(LocalDateTime value) {
-        return value.format(formatter);
+        if(value != null){
+            return value.format(formatter);
+        }else{
+            return "null";
+        }
+
     }
 
     @Override
     public LocalDateTime convertToMapped(Class<? extends LocalDateTime> type, String value) {
-        return LocalDateTime.parse(value, formatter);
+        if(!value.equals("null")){
+            return LocalDateTime.parse(value, formatter);
+        }else{
+            return null;
+        }
     }
 }

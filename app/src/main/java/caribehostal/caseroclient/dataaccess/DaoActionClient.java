@@ -1,7 +1,10 @@
 package caribehostal.caseroclient.dataaccess;
 
+import caribehostal.caseroclient.datamodel.Action;
 import caribehostal.caseroclient.datamodel.ActionClient;
+import caribehostal.caseroclient.datamodel.Client;
 import io.requery.Persistable;
+import io.requery.query.Result;
 import io.requery.sql.EntityDataStore;
 
 /**
@@ -18,5 +21,10 @@ public class DaoActionClient {
 
     public void upsertAction(ActionClient actionClient) {
         dataStore.upsert(actionClient);
+    }
+
+    public Result<Client> getClient(Action action){
+        return dataStore.select(Client.class).join(ActionClient.class).on(Client.PASSPORT.eq(ActionClient.CLIENT_ID))
+                .where(ActionClient.ACTION.eq(action)).get();
     }
 }

@@ -23,9 +23,13 @@ public interface IAction extends Persistable {
     @Column(nullable = false)
     int getId();
 
+    @Column(nullable = false)
+    @Convert(LocalDateTimeConverter.class)
+    LocalDateTime getTimeSendAction();
+
     @Column(nullable = true)
     @Convert(LocalDateTimeConverter.class)
-    LocalDateTime getDateTimeAction();
+    LocalDateTime getTimeResponseAction();
 
     @Column(nullable = false)
     @Convert(LocalDateConverter.class)
@@ -41,5 +45,5 @@ public interface IAction extends Persistable {
 
     @Column(nullable = false)
     @Convert(ActionStateConverter.class)
-    ActionState getActionState();
+    ActionState getActioState();
 }
