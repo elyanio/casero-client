@@ -24,6 +24,6 @@ public class DaoAction {
     }
 
     public Result<Action> getAllAction(){
-        return dataStore.select(Action.class).orderBy(Action.TIME_SEND_ACTION).get();
+        return dataStore.select(Action.class).orderBy(Action.SEND_TIME).get();
     }
 }

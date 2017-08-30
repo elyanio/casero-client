@@ -44,7 +44,7 @@ public class DashboardRecyclerAdapter extends RecyclerView.Adapter<DashboardRecy
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int listPosition) {
         holder.numberPetition.setText(dataSet.get(listPosition).getId() + "");
-        holder.hour.setText(dataSet.get(listPosition).getTimeSendAction().format(formatterHour));
+        holder.hour.setText(dataSet.get(listPosition).getSendTime().format(formatterHour));
         holder.checkin.setText(dataSet.get(listPosition).getCheckIn().format(formatterDate));
         holder.checkout.setText(dataSet.get(listPosition).getCheckOut().format(formatterDate));
         DaoActionClient daoActionClient = new DaoActionClient();

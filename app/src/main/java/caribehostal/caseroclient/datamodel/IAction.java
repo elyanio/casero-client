@@ -25,11 +25,11 @@ public interface IAction extends Persistable {
 
     @Column(nullable = false)
     @Convert(LocalDateTimeConverter.class)
-    LocalDateTime getTimeSendAction();
+    LocalDateTime getSendTime();
 
     @Column(nullable = true)
     @Convert(LocalDateTimeConverter.class)
-    LocalDateTime getTimeResponseAction();
+    LocalDateTime getResponseTime();
 
     @Column(nullable = false)
     @Convert(LocalDateConverter.class)

@@ -72,7 +72,8 @@ public class DatabaseSetup {
         for (int i = 1; i < 6; i++) {
             actions.add(new Action()
                     .setActioState(ActionState.PENDING).setActionType(ActionType.INSERT)
-                    .setCheckIn(LocalDate.of(2017,3,i)).setCheckOut(LocalDate.of(2017,3,i+3)).setTimeSendAction(LocalDateTime.now()));
+                    .setCheckIn(LocalDate.of(2017,3,i)).setCheckOut(LocalDate.of(2017,3,i+3)).setSendTime(
+                            LocalDateTime.now()));
         }
         return actions;
     }
