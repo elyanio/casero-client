@@ -1,16 +1,16 @@
 package caribehostal.caseroclient;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import caribehostal.caseroclient.controllers.DashboardController;
 import caribehostal.caseroclient.controllers.RegisterClientController;
 import caribehostal.caseroclient.dataaccess.DatabaseSetup;
+import caribehostal.caseroclient.view.tray.TrayActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -48,6 +48,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showMensaj() {
-        startActivity(new Intent(this, DashboardController.class));
+        startActivity(new Intent(this, TrayActivity.class));
     }
 }

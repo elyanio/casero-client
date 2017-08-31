@@ -2,6 +2,7 @@ package caribehostal.caseroclient;
 
 import android.app.Application;
 
+import com.facebook.soloader.SoLoader;
 import com.jakewharton.threetenabp.AndroidThreeTen;
 
 import java.util.Locale;
@@ -27,7 +28,7 @@ public class CaseroClientApplication extends Application {
         super.onCreate();
         instance = this;
         AndroidThreeTen.init(this);
-        Locale.setDefault(new Locale("es"));
+        SoLoader.init(this, false);
     }
 
     /**

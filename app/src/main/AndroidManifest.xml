@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="caribehostal.caseroclient">
+          package="caribehostal.caseroclient">
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
         android:name=".CaseroClientApplication"
@@ -15,16 +15,16 @@
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".controllers.RegisterClientController" />
+        <activity android:name=".controllers.RegisterClientController"/>
         <activity
-            android:name=".controllers.DashboardController"
-            android:label="@string/title_activity_dashboard_controller"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:name=".view.tray.TrayActivity"
+            android:label="@string/title_activity_tray">
+        </activity>
     </application>
 
 </manifest>
