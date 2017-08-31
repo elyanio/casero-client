@@ -15,13 +15,11 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import caribehostal.caseroclient.R;
-import caribehostal.caseroclient.dataaccess.DaoClient;
 import caribehostal.caseroclient.datamodel.Client;
 import caribehostal.caseroclient.view.registerclient.AddPasspotDialog;
 import caribehostal.caseroclient.view.registerclient.RegisterPanel;
 import caribehostal.caseroclient.view.registerclient.RegisterPanelAdd;
-import caribehostal.caseroclient.view.registerclient.RegisterPanelCheckin;
-import caribehostal.caseroclient.view.registerclient.RegisterPanelCheckout;
+import caribehostal.caseroclient.view.registerclient.RegisterPanelDate;
 import caribehostal.caseroclient.view.registerclient.RegisterPanelSend;
 
 import static caribehostal.caseroclient.R.drawable.ic_home_black_24dp;
@@ -37,20 +35,13 @@ public class RegisterClientController extends AppCompatActivity {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
-                case R.id.navigation_checkin:
-                    if (!(currentPanelSelect instanceof RegisterPanelCheckin)) {
+                case R.id.navigation_dates:
+                    if (!(currentPanelSelect instanceof RegisterPanelDate)) {
                         currentPanelSelect.outPanel();
                         showCheckinPanelAction();
                         currentItemSelect = item;
                     }
 
-                    return true;
-                case R.id.navigation_checkout:
-                    if (!(currentPanelSelect instanceof RegisterPanelCheckout)) {
-                        currentPanelSelect.outPanel();
-                        showCheckoutPanelAction();
-                        currentItemSelect = item;
-                    }
                     return true;
                 case R.id.navigation_client:
                     if (!(currentPanelSelect instanceof RegisterPanelAdd)) {
@@ -82,15 +73,23 @@ public class RegisterClientController extends AppCompatActivity {
     private MenuItem currentItemSelect;
     private RegisterPanel currentPanelSelect;
 
-    private RegisterPanelCheckin registerCheckinPanel;
-    private RegisterPanelCheckout registerCheckoutPanel;
+    private RegisterPanelDate registerPanelDate;
     private RegisterPanelAdd registerAddPanel;
     private RegisterPanelSend registerSendPanel;
 
-    private LocalDate checkin;
-    private LocalDate checkout;
     private List<Client> clients;
 
+    public RegisterPanelDate getRegisterPanelDate() {
+        return registerPanelDate;
+    }
+
+    public RegisterPanelAdd getRegisterAddPanel() {
+        return registerAddPanel;
+    }
+
+    public RegisterPanelSend getRegisterSendPanel() {
+        return registerSendPanel;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,37 +102,18 @@ public class RegisterClientController extends AppCompatActivity {
     }
 
     private void init() {
-        checkin = LocalDate.now();
-        checkout = LocalDate.now();
         clients = new ArrayList<Client>(10);
 
-        registerCheckinPanel = new RegisterPanelCheckin(this);
-        registerCheckoutPanel = new RegisterPanelCheckout(this);
+        registerPanelDate = new RegisterPanelDate(this);
         registerAddPanel = new RegisterPanelAdd(this);
         registerSendPanel = new RegisterPanelSend(this);
 
         showCheckinPanelAction();
-        currentPanelSelect = registerCheckinPanel;
+        currentPanelSelect = registerPanelDate;
     }
 
     public List<Client> getClients() {
         return clients;
-    }
-
-    public LocalDate getCheckin() {
-        return checkin;
-    }
-
-    public LocalDate getCheckout() {
-        return checkout;
-    }
-
-    public void setCheckin(LocalDate checkin) {
-        this.checkin = checkin;
-    }
-
-    public void setCheckout(LocalDate checkout) {
-        this.checkout = checkout;
     }
 
     public void setClients(List<Client> clients) {
@@ -151,13 +131,8 @@ public class RegisterClientController extends AppCompatActivity {
 
     // acciones del controlador
     private void showCheckinPanelAction() {
-        content.addView(registerCheckinPanel);
-        currentPanelSelect = registerCheckinPanel;
-    }
-
-    private void showCheckoutPanelAction() {
-        content.addView(registerCheckoutPanel);
-        currentPanelSelect = registerCheckoutPanel;
+        content.addView(registerPanelDate);
+        currentPanelSelect = registerPanelDate;
     }
 
     private void showClientPanelAction() {
@@ -205,7 +180,7 @@ public class RegisterClientController extends AppCompatActivity {
             //torta hacer algo
             return;
         }
-        if (checkin.isAfter(checkout)) {
+        if (registerPanelDate.getCheckin().isAfter(registerPanelDate.getCheckout())) {
             // torta hacer algo
             return;
         }

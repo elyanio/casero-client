@@ -43,7 +43,7 @@ public class RegisterPanelSend extends LinearLayout implements RegisterPanel {
             text.setTextColor(getResources().getColor(R.color.colorerror));
             return "La petición no contiene pasaportes";
         }
-        if (context.getCheckin().compareTo(context.getCheckout()) >= 0) {
+        if (context.getRegisterPanelDate().getCheckin().compareTo(context.getRegisterPanelDate().getCheckout()) >= 0) {
             text.setTextColor(getResources().getColor(R.color.colorerror));
             return "La fecha de llegada no puede ser superior o igual a la fecha de salida";
         }
@@ -63,8 +63,8 @@ public class RegisterPanelSend extends LinearLayout implements RegisterPanel {
             }
         }
         text = text +
-                "\n" + "fecha de entrada: " + context.getCheckin().format(formatter) +
-                "\n" + "fecha de salida: " + context.getCheckout().format(formatter);
+                "\n" + "fecha de entrada: " + context.getRegisterPanelDate().getCheckin().format(formatter) +
+                "\n" + "fecha de salida: " + context.getRegisterPanelDate().getCheckout().format(formatter);
         return text;
     }
 

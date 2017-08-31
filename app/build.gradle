@@ -21,6 +21,10 @@ android {
     }
 }
 
+kapt {
+    generateStubs = true
+}
+
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
@@ -44,8 +48,10 @@ dependencies {
     compile 'com.android.support:support-vector-drawable:25.2.0'
     compile 'com.code-troopers.betterpickers:library:2.5.5'
     testCompile 'junit:junit:4.12'
-    annotationProcessor 'io.requery:requery-processor:1.0.2'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
+    kapt 'io.requery:requery-processor:1.0.2'
+    kapt 'com.jakewharton:butterknife-compiler:8.4.0'
+
+    compile 'com.squareup:android-times-square:1.7.3'
 }
 repositories {
     mavenCentral()
