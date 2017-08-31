@@ -46,8 +46,7 @@ public class DatabaseSetup {
             daoAction.upsertAction(action);
         }
         DaoActionClient daoActionClient = new DaoActionClient();
-        for (ActionClient actionClient :
-                actionClients) {
+        for (ActionClient actionClient : actionClients) {
             daoActionClient.upsertAction(actionClient);
         }
     }
@@ -69,11 +68,11 @@ public class DatabaseSetup {
 
     private List<Action> getActions() {
         List<Action> actions = new ArrayList<>();
-        for (int i = 1; i < 6; i++) {
+        for (int i = 0; i < 5; i++) {
             actions.add(new Action()
                     .setActioState(ActionState.PENDING).setActionType(ActionType.INSERT)
-                    .setCheckIn(LocalDate.of(2017,3,i)).setCheckOut(LocalDate.of(2017,3,i+3)).setSendTime(
-                            LocalDateTime.now()));
+                    .setCheckIn(LocalDate.of(2017, 3, i + 1)).setCheckOut(LocalDate.of(2017, 3, i + 3)).setSendTime(
+                            LocalDateTime.now().plusDays(i % 3)));
         }
         return actions;
     }
@@ -81,27 +80,10 @@ public class DatabaseSetup {
     private List<ActionClient> getActionClients(List<Action> actions, List<Client> clients) {
         ArrayList<ActionClient> actionClients = new ArrayList<>();
         for (int i = 0; i < actions.size(); i++) {
-            for (int j = 0; j <= i; j ++) {
+            for (int j = 0; j <= i; j++) {
                 actionClients.add(new ActionClient().setAction(actions.get(i)).setClient(clients.get(j)));
             }
         }
         return actionClients;
     }
-
-//    public boolean testExistAction() {
-//
-////        Client client = new Client().setPassport("123456780");
-//        Owner owner = new Owner().setFullName("Asiel Alonso").setAddress("Boliñía")
-//                .setAddressDescription("Ciego").setCarnetId("90062538346")
-//                .setCell("545204265").setPassword("asio").setUser("S0100");
-//        Action action = new Action().setOwner(owner)
-//                .setActionState(ActionState.PENDING).setActionType(ActionType.INSERT)
-//                .setCheckIn(LocalDate.of(2017,8,22)).setCheckOut(LocalDate.of(2017,8,22)).setDateAction(LocalDate.of(2017,8,22))
-//                .setPetitionOwnerId("3");
-//        DaoAction daoAction = new DaoAction();
-//        boolean existAction = daoAction.existAction(action);
-//        Log.e("existAction", existAction + "");
-//        return existAction;
-//    }
-
 }
