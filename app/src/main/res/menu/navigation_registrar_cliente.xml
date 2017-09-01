@@ -4,7 +4,7 @@
     <item
         android:id="@+id/navigation_dates"
         android:icon="@drawable/ic_home_black_24dp"
-        android:title="@string/title_checkin" />
+        android:title="@string/title_date" />
 
     <item
         android:id="@+id/navigation_client"

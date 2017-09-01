@@ -20,7 +20,8 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".controllers.RegisterClientController"/>
+        <activity android:name=".controllers.RegisterClientController"
+            android:label="@string/title_activity_client_register"/>
         <activity
             android:name=".view.tray.TrayActivity"
             android:label="@string/title_activity_tray">

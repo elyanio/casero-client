@@ -47,8 +47,6 @@ public class ClientRecyclerAdapter extends RecyclerView.Adapter<ClientRecyclerAd
     }
 
     private void removeItem(int listPosition) {
-        DaoClient daoClient = new DaoClient();
-        daoClient.remove(dataSet.get(listPosition));
         dataSet.remove(listPosition);
         notifyDataSetChanged();
     }

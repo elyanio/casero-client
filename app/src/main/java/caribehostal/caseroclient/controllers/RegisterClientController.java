@@ -3,8 +3,10 @@ package caribehostal.caseroclient.controllers;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.FrameLayout;
 
 import org.threeten.bp.LocalDate;
@@ -28,7 +30,6 @@ import static caribehostal.caseroclient.R.drawable.ic_notifications_black_24dp;
 public class RegisterClientController extends AppCompatActivity {
     @BindView(R.id.register_content)
     FrameLayout content;
-
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -51,7 +52,7 @@ public class RegisterClientController extends AppCompatActivity {
                         showClientPanelAction();
                         currentItemSelect = item;
                     } else {
-                        showAddClientDialogAction();
+
                     }
                     return true;
                 case R.id.navigation_ok:
@@ -61,7 +62,7 @@ public class RegisterClientController extends AppCompatActivity {
                         showSendPanelAction();
                         currentItemSelect = item;
                     } else {
-                        sendAction();
+
                     }
                     return true;
             }
@@ -110,6 +111,8 @@ public class RegisterClientController extends AppCompatActivity {
 
         showCheckinPanelAction();
         currentPanelSelect = registerPanelDate;
+
+
     }
 
     public List<Client> getClients() {
