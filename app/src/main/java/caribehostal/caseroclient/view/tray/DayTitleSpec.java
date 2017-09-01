@@ -19,10 +19,10 @@ import static android.text.Layout.Alignment.ALIGN_CENTER;
  */
 
 @LayoutSpec
-public class DayTitleSpec {
+class DayTitleSpec {
 
     @OnCreateLayout
-    public static ComponentLayout onCreateLayout(
+    static ComponentLayout onCreateLayout(
             ComponentContext context,
             @Prop String title
     ) {

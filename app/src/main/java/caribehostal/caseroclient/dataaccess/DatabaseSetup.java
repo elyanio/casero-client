@@ -60,7 +60,6 @@ public class DatabaseSetup {
         clients.add(new Client().setPassport("123456782"));
         clients.add(new Client().setPassport("123456783"));
         clients.add(new Client().setPassport("123456784"));
-//        clients.add(new Client().setPassport("123456785"));
 
         return clients;
     }
@@ -71,8 +70,9 @@ public class DatabaseSetup {
         for (int i = 0; i < 5; i++) {
             actions.add(new Action()
                     .setActioState(ActionState.PENDING).setActionType(ActionType.INSERT)
-                    .setCheckIn(LocalDate.of(2017, 3, i + 1)).setCheckOut(LocalDate.of(2017, 3, i + 3)).setSendTime(
-                            LocalDateTime.now().plusDays(i % 3)));
+                    .setCheckIn(LocalDate.of(2017, 3, i + 1))
+                    .setCheckOut(LocalDate.of(2017, 3, i + 3))
+                    .setSendTime(LocalDateTime.now().plusHours(i).plusDays(i % 3)));
         }
         return actions;
     }
