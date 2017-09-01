@@ -18,4 +18,8 @@
     <string name="title_activity_tray">TrayActivity</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="client_passport">Pasaporte</string>
+    <string name="client_casero_code">Confirmación</string>
+    <string name="check_in_text">Entrada</string>
+    <string name="check_out_text">Salida</string>
 </resources>
