@@ -81,7 +81,10 @@ public class DatabaseSetup {
         ArrayList<ActionClient> actionClients = new ArrayList<>();
         for (int i = 0; i < actions.size(); i++) {
             for (int j = 0; j <= i; j++) {
-                actionClients.add(new ActionClient().setAction(actions.get(i)).setClient(clients.get(j)));
+                actionClients.add(new ActionClient()
+                        .setAction(actions.get(i))
+                        .setClient(clients.get(j))
+                        .setResponseCode(String.valueOf(i * 654)));
             }
         }
         return actionClients;

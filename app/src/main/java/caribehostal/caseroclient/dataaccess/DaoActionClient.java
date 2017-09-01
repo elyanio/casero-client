@@ -5,6 +5,7 @@ import java.util.List;
 import caribehostal.caseroclient.datamodel.Action;
 import caribehostal.caseroclient.datamodel.ActionClient;
 import caribehostal.caseroclient.datamodel.Client;
+import caribehostal.caseroclient.datamodel.ClientInfo;
 import io.requery.Persistable;
 import io.requery.query.Result;
 import io.requery.sql.EntityDataStore;
@@ -15,7 +16,7 @@ import io.requery.sql.EntityDataStore;
 
 public class DaoActionClient {
 
-    private EntityDataStore<Persistable> dataStore;
+    EntityDataStore<Persistable> dataStore;
 
     public DaoActionClient() {
         dataStore = DataStoreHolder.INSTANCE.getDataStore();

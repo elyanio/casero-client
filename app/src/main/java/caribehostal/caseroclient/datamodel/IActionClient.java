@@ -10,9 +10,8 @@ import io.requery.Persistable;
 import static io.requery.PropertyNameStyle.FLUENT_BEAN;
 
 /**
- * Created by Fernando on 22/08/2017.
+ * @author Fernando
  */
-
 @Entity(propertyNameStyle = FLUENT_BEAN)
 public interface IActionClient extends Persistable{
     @Key
@@ -27,4 +26,7 @@ public interface IActionClient extends Persistable{
     @Column(nullable = false)
     @ManyToOne
     Action getAction();
+
+    @Column(nullable = false)
+    String getResponseCode();
 }

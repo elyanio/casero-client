@@ -4,15 +4,19 @@ import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.OrientationHelper.VERTICAL
-import android.text.Layout.Alignment.ALIGN_CENTER
 import caribehostal.caseroclient.R
 import caribehostal.caseroclient.dataaccess.DaoAction
 import caribehostal.caseroclient.dataaccess.DaoActionClient
+import caribehostal.caseroclient.dataaccess.getClientInfo
 import caribehostal.caseroclient.datamodel.Action
 import com.facebook.litho.ComponentContext
 import com.facebook.litho.LithoView
-import com.facebook.litho.widget.*
+import com.facebook.litho.widget.ComponentRenderInfo
+import com.facebook.litho.widget.LinearLayoutInfo
+import com.facebook.litho.widget.Recycler
+import com.facebook.litho.widget.RecyclerBinder
 import kotlinx.android.synthetic.main.activity_tray.*
+import org.jetbrains.anko.toast
 import org.threeten.bp.LocalDate
 
 class TrayActivity : AppCompatActivity() {
@@ -64,11 +68,11 @@ class TrayActivity : AppCompatActivity() {
                             .build())
             i++
             actionsByDate[date]?.forEach { action ->
-                val passports = daoActionClient.getClients(action).map { it.passport }.toTypedArray()
+                val clientInfo = daoActionClient.getClientInfo(action).toTypedArray()
                 recyclerBinder.insertItemAt(i,
                         ComponentRenderInfo.create()
                                 .component(TrayCard.create(context)
-                                        .passports(passports)
+                                        .clientInfo(clientInfo)
                                         .arrivalTime(action.sendTime.toLocalTime())
                                         .checkInDate(action.checkIn)
                                         .checkOutDate(action.checkOut)
