@@ -38,30 +38,36 @@ class TrayPresenter(ctx: Context) {
         val actionsByDate: Map<LocalDate, List<Action>> = actionsToShow
                 .groupBy { it.sendTime.toLocalDate() }
         var i = 0
-        for (date in actionsByDate.keys.sortedDescending()) {
-            recyclerBinder.insertItemAt(i, ComponentRenderInfo.create()
-                    .component(DayTitle.create(context)
-                            .title(date.format(MEDIUM_DATE))
-                            .build())
-                    .build())
-            i++
-            val actions: List<Action>? = actionsByDate[date]
-            if (actions != null) {
 
-            }
+        for (date in actionsByDate.keys.sortedDescending()) {
+            i = insertTitle(i, date)
             actionsByDate[date]?.sortedByDescending { it.sendTime }?.forEach { action ->
-                val clientInfo = daoActionClient.getClientInfo(action).toTypedArray()
-                recyclerBinder.insertItemAt(i, ComponentRenderInfo.create()
-                        .component(TrayCard.create(context)
-                                .clientInfo(clientInfo)
-                                .arrivalTime(action.sendTime.toLocalTime())
-                                .checkInDate(action.checkIn)
-                                .checkOutDate(action.checkOut)
-                                .build())
-                        .build()
-                )
-                i++
+                i = insertCard(i, action)
             }
         }
     }
+
+    private fun insertCard(index: Int, action: Action): Int {
+        val clientInfo = daoActionClient.getClientInfo(action).toTypedArray()
+        recyclerBinder.insertItemAt(index, ComponentRenderInfo.create()
+                .component(TrayCard.create(context)
+                        .clientInfo(clientInfo)
+                        .arrivalTime(action.sendTime.toLocalTime())
+                        .checkInDate(action.checkIn)
+                        .checkOutDate(action.checkOut)
+                        .build())
+                .build()
+        )
+        return index + 1
+    }
+
+    private fun insertTitle(index: Int, date: LocalDate): Int {
+        recyclerBinder.insertItemAt(index, ComponentRenderInfo.create()
+                .component(DayTitle.create(context)
+                        .title(date.format(MEDIUM_DATE))
+                        .build())
+                .build())
+        return index + 1
+    }
+
 }

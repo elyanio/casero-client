@@ -6,7 +6,7 @@
     <string name="title_checkout">Fecha de salida</string>
     <string name="title_clientes_registrados">Clientes</string>
     <string name="checkin_text">Fecha de llegada</string>
-    <string name="title_home">Home</string>
+    <string name="title_action_all">Todas</string>
     <string name="title_send">Enviar</string>
     <string name="title_add_client">Añadir pasaporte</string>
     <string name="title_activity_dashboard_controller">DashboardController</string>
@@ -16,8 +16,8 @@
 
     <string name="action_settings">Settings</string>
     <string name="title_activity_tray">TrayActivity</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_action_pending">Pendientes</string>
+    <string name="title_action_confirmed">Confirmadas</string>
     <string name="client_passport">Pasaporte</string>
     <string name="client_casero_code">Confirmación</string>
     <string name="check_in_text">Entrada</string>
