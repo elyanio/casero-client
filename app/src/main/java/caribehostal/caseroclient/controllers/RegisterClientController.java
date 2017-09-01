@@ -3,13 +3,11 @@ package caribehostal.caseroclient.controllers;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.FrameLayout;
 
-import org.threeten.bp.LocalDate;
+import org.threeten.bp.LocalDateTime;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,12 +15,20 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import caribehostal.caseroclient.R;
+import caribehostal.caseroclient.dataaccess.DaoAction;
+import caribehostal.caseroclient.dataaccess.DaoActionClient;
+import caribehostal.caseroclient.dataaccess.DaoClient;
+import caribehostal.caseroclient.datamodel.Action;
+import caribehostal.caseroclient.datamodel.ActionClient;
+import caribehostal.caseroclient.datamodel.ActionState;
+import caribehostal.caseroclient.datamodel.ActionType;
 import caribehostal.caseroclient.datamodel.Client;
 import caribehostal.caseroclient.view.registerclient.AddPasspotDialog;
 import caribehostal.caseroclient.view.registerclient.RegisterPanel;
 import caribehostal.caseroclient.view.registerclient.RegisterPanelAdd;
 import caribehostal.caseroclient.view.registerclient.RegisterPanelDate;
 import caribehostal.caseroclient.view.registerclient.RegisterPanelSend;
+import caribehostal.caseroserver.comunication.SmsSender;
 
 import static caribehostal.caseroclient.R.drawable.ic_home_black_24dp;
 import static caribehostal.caseroclient.R.drawable.ic_notifications_black_24dp;
@@ -124,11 +130,26 @@ public class RegisterClientController extends AppCompatActivity {
     }
 
     private void sendSms() {
-
+        SmsSender smsSender = new SmsSender();
+//        smsSender.enviarMensaje("54520426", ActionExtKt.toSmsString(action));
     }
 
-    private void createAction() {
+    private Action saveDates() {
+        DaoAction daoAction = new DaoAction();
+        Action action = daoAction.upsertAction(new Action().setActionType(ActionType.INSERT).setActioState(ActionState.PENDING)
+                .setSendTime(LocalDateTime.now()).setCheckIn(registerPanelDate.getCheckin())
+                .setCheckOut(registerPanelDate.getCheckout()));
 
+        DaoClient daoClient = new DaoClient();
+        daoClient.upsertClients(clients);
+
+        DaoActionClient daoActionClient = new DaoActionClient();
+        for (Client client : clients) {
+            ActionClient actionClient = new ActionClient().setAction(action).setClient(client);
+            daoActionClient.upsertAction(actionClient);
+        }
+
+        return action;
     }
 
 
@@ -187,10 +208,10 @@ public class RegisterClientController extends AppCompatActivity {
             // torta hacer algo
             return;
         }
-        createAction();
+        saveDates();
         sendSms();
+        finish();
     }
-
 
 
 }

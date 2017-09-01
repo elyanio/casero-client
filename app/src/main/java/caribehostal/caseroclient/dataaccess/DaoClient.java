@@ -1,5 +1,7 @@
 package caribehostal.caseroclient.dataaccess;
 
+import java.util.List;
+
 import caribehostal.caseroclient.datamodel.Client;
 import io.requery.Persistable;
 import io.requery.query.Result;
@@ -17,7 +19,13 @@ public class DaoClient {
     }
 
     public void upsertClient(Client client) {
-       dataStore.upsert(client);
+        dataStore.upsert(client);
+    }
+
+    public void upsertClients(List<Client> clients) {
+        for (Client client : clients) {
+            upsertClient(client);
+        }
     }
 
     public Result<Client> getAllClient() {

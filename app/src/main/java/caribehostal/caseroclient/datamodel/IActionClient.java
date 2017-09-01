@@ -27,6 +27,6 @@ public interface IActionClient extends Persistable{
     @ManyToOne
     Action getAction();
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     String getResponseCode();
 }
