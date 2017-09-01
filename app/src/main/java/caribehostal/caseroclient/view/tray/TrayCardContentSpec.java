@@ -11,17 +11,23 @@ import com.facebook.litho.widget.Text;
 
 import org.threeten.bp.LocalDate;
 import org.threeten.bp.LocalTime;
+import org.threeten.bp.format.DateTimeFormatter;
+import org.threeten.bp.format.DateTimeFormatterBuilder;
+import org.threeten.bp.format.FormatStyle;
+
+import java.util.Date;
 
 import static com.facebook.yoga.YogaEdge.ALL;
+import static org.threeten.bp.format.DateTimeFormatter.ISO_LOCAL_DATE;
 
 /**
  * @author rainermf
  */
 @LayoutSpec
-public class TrayCardContentSpec {
+class TrayCardContentSpec {
 
     @OnCreateLayout
-    public static ComponentLayout onCreateLayout(
+    static ComponentLayout onCreateLayout(
             ComponentContext context,
             @Prop String[] passports,
             @Prop LocalTime arrivalTime,
@@ -29,9 +35,12 @@ public class TrayCardContentSpec {
             @Prop LocalDate checkOutDate
     ) {
         ContainerBuilder builder = Column.create(context)
-                .paddingDip(ALL, 16)
                 .child(Text.create(context)
-                        .text(checkInDate + " / " + checkOutDate))
+                        .text("Entrada: " + checkInDate.format(LONG_DATE))
+                        .textSizeSp(14))
+                .child(Text.create(context)
+                        .text("Salida: " + checkOutDate.format(LONG_DATE))
+                        .textSizeSp(14))
                 .child(Text.create(context)
                         .text("Pasaportes"));
         for (String passport : passports) {
@@ -42,4 +51,7 @@ public class TrayCardContentSpec {
                 .text(arrivalTime.toString()));
         return builder.build();
     }
+
+    private static final DateTimeFormatter LONG_DATE =
+            DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG);
 }
