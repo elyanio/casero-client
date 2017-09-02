@@ -59,14 +59,20 @@ public class DaoAction {
         return dataStore.select(Action.class).where(Action.ID.eq(id)).get().firstOrNull();
     }
 
-    public Action update(int id, LocalDateTime responseTime){
+    public Action updateResponseTime(int id, LocalDateTime responseTime){
         dataStore.update(Action.class).set(Action.RESPONSE_TIME, responseTime)
                 .where(Action.ID.eq(id));
         return getAction(id);
     }
 
-    public Action finishAction(int id){
-        dataStore.update(Action.class).set(Action.ACTIO_STATE, ActionState.FINISH)
+    public Action updateState(int id, ActionState actionState){
+        dataStore.update(Action.class).set(Action.ACTIO_STATE, actionState)
+                .where(Action.ID.eq(id));
+        return getAction(id);
+    }
+
+    public Action updateUnread(int id, Boolean unread){
+        dataStore.update(Action.class).set(Action.UNREAD, unread)
                 .where(Action.ID.eq(id));
         return getAction(id);
     }

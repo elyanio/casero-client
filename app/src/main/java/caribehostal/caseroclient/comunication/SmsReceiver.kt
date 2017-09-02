@@ -10,7 +10,9 @@ import caribehostal.caseroclient.dataaccess.DaoAction
 import caribehostal.caseroclient.dataaccess.DaoActionClient
 import caribehostal.caseroclient.datamodel.Action
 import caribehostal.caseroclient.datamodel.ActionClient
+import caribehostal.caseroclient.datamodel.ActionState
 import caribehostal.caseroclient.datamodel.LocalDateTimeConverter
+import caribehostal.caseroserver.comunication.SmsSender
 import org.threeten.bp.LocalDateTime
 
 class SmsReceiver : BroadcastReceiver() {
@@ -30,8 +32,10 @@ class SmsReceiver : BroadcastReceiver() {
                     messageBody += msg.messageBody
                 }
             }
-            processResponse(messageBody)
-
+            val smsSender = SmsSender()
+            if(smsSender.numberServer == numberSender){
+                processResponse(messageBody)
+            }
         }
     }
 
@@ -55,7 +59,7 @@ class SmsReceiver : BroadcastReceiver() {
     private fun getConfirmCodes(fields: List<String>): List<String> {
         var index = 1
         val confirmCodes = ArrayList<String>()
-        while (index < fields.size - 2) {
+        while (index < fields.size - 1) {
             confirmCodes.add(fields.get(index))
             index++
         }
@@ -65,15 +69,22 @@ class SmsReceiver : BroadcastReceiver() {
     private fun getUpdateAction(fields: List<String>): Action {
         val id = fields.get(0).toInt()
         val dateProceced = LocalDateTimeConverter()
-                .convertToMapped(LocalDateTime::class.java, fields.get(fields.size - 2))
+                .convertToMapped(LocalDateTime::class.java, fields.get(fields.size - 1))
         val daoAction = DaoAction()
-        daoAction.update(id, dateProceced)
-        return daoAction.finishAction(id)
+        daoAction.updateResponseTime(id, dateProceced)
+        daoAction.updateState(id, ActionState.FINISH)
+        daoAction.updateUnread(id, true)
+        return daoAction.getAction(id)
     }
 
     private fun getAction(fields: List<String>): Action? {
-        val id = fields.get(0).toInt()
-        val daoAction = DaoAction()
-        return daoAction.getAction(id)
+        try {
+            val id = fields.get(0).toInt()
+            val daoAction = DaoAction()
+            return daoAction.getAction(id)
+        }catch (e: NumberFormatException){
+            return null
+        }
+
     }
 }
