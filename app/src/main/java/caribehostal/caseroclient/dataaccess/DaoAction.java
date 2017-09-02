@@ -21,6 +21,14 @@ public class DaoAction {
         dataStore = DataStoreHolder.INSTANCE.getDataStore();
     }
 
+    public void deleteAction(Action action) {
+        dataStore.delete(action);
+    }
+
+    public void deleteAction(int id) {
+        dataStore.delete(Action.class).where(Action.ID.eq(id)).get();
+    }
+
     public Action upsertAction(Action action) {
         return dataStore.upsert(action);
     }

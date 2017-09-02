@@ -27,71 +27,71 @@ object TrayCardContentSpec {
 
     @OnCreateLayout
     @JvmStatic fun onCreateLayout(
-            context: ComponentContext,
+            c: ComponentContext,
             @Prop action: Action,
             @Prop clientInfo: Array<ClientInfo>
-    ): ComponentLayout = Column.create(context)
+    ): ComponentLayout = Column.create(c)
             .marginRes(ALL, R.dimen.normal_margin)
-            .child(Row.create(context)
-                    .child(Text.create(context)
+            .child(Row.create(c)
+                    .child(Text.create(c)
                             .textRes(R.string.check_in_text)
                             .textStyle(BOLD)
                             .textSizeRes(normal_text_size))
-                    .child(Text.create(context)
+                    .child(Text.create(c)
                             .text(": ${action.checkIn.format(LONG_DATE)}")
                             .textSizeRes(normal_text_size)))
-            .child(Row.create(context)
-                    .child(Text.create(context)
+            .child(Row.create(c)
+                    .child(Text.create(c)
                             .textRes(R.string.check_out_text)
                             .textStyle(BOLD)
                             .textSizeRes(normal_text_size))
-                    .child(Text.create(context)
+                    .child(Text.create(c)
                             .text(": ${action.checkOut.format(LONG_DATE)}")
                             .textSizeRes(normal_text_size)))
-            .child(clientInfoTable(context, clientInfo, action.actioState == FINISH))
-            .child(Text.create(context)
+            .child(clientInfoTable(c, clientInfo, action.actioState == FINISH))
+            .child(Text.create(c)
                     .text(action.sendTime.toLocalTime().format(SHORT_TIME)))
             .build()
 
     @JvmStatic private fun clientInfoTable(
-            context: ComponentContext,
+            c: ComponentContext,
             clientInfo: Array<ClientInfo>,
             showCodeColumn: Boolean
-    ): ComponentLayout = Row.create(context)
+    ): ComponentLayout = Row.create(c)
             .paddingDip(VERTICAL, 8)
-            .child(passportColumn(context, clientInfo))
-            .child(if(showCodeColumn) codeColumn(context, clientInfo) else null)
+            .child(passportColumn(c, clientInfo))
+            .child(if(showCodeColumn) codeColumn(c, clientInfo) else null)
             .build()
 
     @JvmStatic private fun codeColumn(
-            context: ComponentContext,
+            c: ComponentContext,
             clientInfo: Array<ClientInfo>
-    ): ComponentLayout.ContainerBuilder? = Column.create(context)
+    ): ComponentLayout.ContainerBuilder? = Column.create(c)
             .flexGrow(1f)
-            .child(Text.create(context)
+            .child(Text.create(c)
                     .textRes(R.string.client_casero_code)
                     .textStyle(BOLD)
                     .textSizeRes(normal_text_size))
             .apply {
                 for ((_, caseroCode) in clientInfo) {
-                    child(Text.create(context)
+                    child(Text.create(c)
                             .text(caseroCode)
                             .textSizeRes(normal_text_size))
                 }
             }
 
     private fun passportColumn(
-            context: ComponentContext,
+            c: ComponentContext,
             clientInfo: Array<ClientInfo>
-    ): ComponentLayout.ContainerBuilder? = Column.create(context)
+    ): ComponentLayout.ContainerBuilder? = Column.create(c)
             .flexGrow(1f)
-            .child(Text.create(context)
+            .child(Text.create(c)
                     .textRes(R.string.client_passport)
                     .textSizeRes(normal_text_size)
                     .textStyle(BOLD))
             .apply {
                 for ((passport, _) in clientInfo) {
-                    child(Text.create(context)
+                    child(Text.create(c)
                             .text(passport)
                             .textSizeRes(normal_text_size))
                 }

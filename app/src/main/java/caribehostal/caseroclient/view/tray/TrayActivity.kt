@@ -10,23 +10,24 @@ import org.jetbrains.anko.ctx
 
 class TrayActivity : AppCompatActivity() {
 
-    val presenters: List<TrayPresenter> by lazy {
-        List(3) { TrayPresenter(ctx) }
+    val trayPresenter: TrayPresenter by lazy {
+        TrayPresenter(ctx)
     }
 
+    val dao = DaoAction()
+
     private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
-        content.removeAllViews()
         when (item.itemId) {
             R.id.nav_tray_all -> {
-                content.addView(presenters[0].view)
+                trayPresenter.fill(dao.allActions)
                 true
             }
             R.id.nav_tray_pending -> {
-                content.addView(presenters[1].view)
+                trayPresenter.fill(dao.pendingActions)
                 true
             }
             R.id.nav_tray_processed -> {
-                content.addView(presenters[2].view)
+                trayPresenter.fill(dao.confirmedActions)
                 true
             }
             else -> {
@@ -39,13 +40,9 @@ class TrayActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tray)
 
-        content.addView(presenters[0].view)
+        content.addView(trayPresenter.view)
 
-        val dao = DaoAction()
-
-        presenters[0].fill(dao.allActions)
-        presenters[1].fill(dao.pendingActions)
-        presenters[2].fill(dao.confirmedActions)
+        trayPresenter.fill(dao.allActions)
 
         navigation.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
     }
