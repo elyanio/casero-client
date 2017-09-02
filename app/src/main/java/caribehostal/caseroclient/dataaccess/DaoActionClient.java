@@ -1,5 +1,7 @@
 package caribehostal.caseroclient.dataaccess;
 
+import java.util.List;
+
 import caribehostal.caseroclient.datamodel.Action;
 import caribehostal.caseroclient.datamodel.ActionClient;
 import caribehostal.caseroclient.datamodel.Client;
@@ -33,5 +35,10 @@ public class DaoActionClient {
                 .join(ActionClient.class).on(Client.PASSPORT.eq(ActionClient.CLIENT_ID))
                 .where(ActionClient.ACTION.eq(action)).orderBy(ActionClient.ID)
                 .get();
+    }
+
+    public List<ActionClient> getActionClient(Action action) {
+        return dataStore.select(ActionClient.class).where(ActionClient.ACTION_ID.eq(action.getId()))
+                .orderBy(ActionClient.ID).get().toList();
     }
 }
