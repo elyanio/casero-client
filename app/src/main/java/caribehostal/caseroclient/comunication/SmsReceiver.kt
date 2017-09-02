@@ -45,12 +45,16 @@ class SmsReceiver : BroadcastReceiver() {
         var action = getAction(fields)
         action?.let {
             action = getUpdateAction(fields)
+            val confirmCodes = getConfirmCodes(fields)
             val actionClient = daoActionClient.getActionClient(action)
-            var index = 0
-            for (code in getConfirmCodes(fields)) {
-                daoActionClient.updateConfirmationCode(actionClient.get(index),code)
-                index++
+            if(confirmCodes.size == actionClient.size){
+                var index = 0
+                for (code in confirmCodes) {
+                    daoActionClient.updateConfirmationCode(actionClient.get(index),code)
+                    index++
+                }
             }
+
         }
     }
 
