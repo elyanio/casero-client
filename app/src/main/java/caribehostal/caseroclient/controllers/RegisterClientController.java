@@ -20,6 +20,7 @@ import caribehostal.caseroclient.dataaccess.DaoActionClient;
 import caribehostal.caseroclient.dataaccess.DaoClient;
 import caribehostal.caseroclient.datamodel.Action;
 import caribehostal.caseroclient.datamodel.ActionClient;
+import caribehostal.caseroclient.datamodel.ActionExtKt;
 import caribehostal.caseroclient.datamodel.ActionState;
 import caribehostal.caseroclient.datamodel.ActionType;
 import caribehostal.caseroclient.datamodel.Client;
@@ -129,11 +130,6 @@ public class RegisterClientController extends AppCompatActivity {
         this.clients = clients;
     }
 
-    private void sendSms() {
-        SmsSender smsSender = new SmsSender();
-//        smsSender.enviarMensaje("54520426", ActionExtKt.toSmsString(action));
-    }
-
     private Action saveDates() {
         DaoAction daoAction = new DaoAction();
         Action action = daoAction.upsertAction(new Action().setActionType(ActionType.INSERT).setActioState(ActionState.PENDING)
@@ -208,8 +204,9 @@ public class RegisterClientController extends AppCompatActivity {
             // torta hacer algo
             return;
         }
-        saveDates();
-        sendSms();
+        Action action = saveDates();
+        SmsSender smsSender = new SmsSender();
+        smsSender.sendSms(action);
         finish();
     }
 
