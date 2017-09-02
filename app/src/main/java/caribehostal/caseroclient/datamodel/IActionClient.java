@@ -1,5 +1,7 @@
 package caribehostal.caseroclient.datamodel;
 
+import javax.annotation.Nullable;
+
 import io.requery.Column;
 import io.requery.Entity;
 import io.requery.Generated;
@@ -28,5 +30,6 @@ public interface IActionClient extends Persistable{
     Action getAction();
 
     @Column(nullable = true)
+    @Nullable
     String getResponseCode();
 }

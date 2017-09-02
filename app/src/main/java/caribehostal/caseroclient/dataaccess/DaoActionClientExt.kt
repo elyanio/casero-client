@@ -11,4 +11,4 @@ fun DaoActionClient.getClientInfo(action: Action) = dataStore.select(ActionClien
         .where(ActionClient.ACTION.eq(action))
         .get()
         .toList()
-        .map { ClientInfo(passport = it.client.passport, caseroCode = it.responseCode) }
+        .map { ClientInfo(passport = it.client.passport, caseroCode = it.responseCode ?: "") }
