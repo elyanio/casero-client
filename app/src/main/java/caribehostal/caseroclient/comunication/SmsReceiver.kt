@@ -40,20 +40,18 @@ class SmsReceiver : BroadcastReceiver() {
     }
 
     private fun processResponse(messageBody: String) {
-        val fields = messageBody.split("#")
-        var action = getAction(fields)
-        action?.let {
-            action = getUpdateAction(fields)
-            val confirmCodes = getConfirmCodes(fields)
-            val daoActionClient = DaoActionClient()
-            var index = 0
-            for (client in daoActionClient.getClients(action)) {
-                daoActionClient.upsertAction(ActionClient().setClient(client)
-                        .setResponseCode(confirmCodes.get(index))
-                        .setAction(action))
-                index++
-            }
-        }
+//        val fields = messageBody.split("#")
+//        var action = getAction(fields)
+//        action?.let {
+//            action = getUpdateAction(fields)
+//            val confirmCodes = getConfirmCodes(fields)
+//            val daoActionClient = DaoActionClient()
+//            var index = 0
+//            for (client in daoActionClient.getClients(action)) {
+//                daoActionClient.updateConfirmationCode(ac))
+//                index++
+//            }
+//        }
     }
 
     private fun getConfirmCodes(fields: List<String>): List<String> {

@@ -23,7 +23,12 @@ public class DaoActionClient {
         dataStore.upsert(actionClient);
     }
 
-    public Result<Client> getClients(Action action){
+    public void updateConfirmationCode(ActionClient actionClient, String code) {
+        dataStore.update(ActionClient.class).set(ActionClient.RESPONSE_CODE, code)
+                .where(ActionClient.ID.eq(actionClient.getId())).get().value();
+    }
+
+    public Result<Client> getClients(Action action) {
         return dataStore.select(Client.class)
                 .join(ActionClient.class).on(Client.PASSPORT.eq(ActionClient.CLIENT_ID))
                 .where(ActionClient.ACTION.eq(action)).orderBy(ActionClient.ID)
