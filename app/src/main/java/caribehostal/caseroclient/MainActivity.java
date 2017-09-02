@@ -24,8 +24,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        DatabaseSetup databaseSetup = new DatabaseSetup();
-        databaseSetup.mockDatabase();
+//        DatabaseSetup databaseSetup = new DatabaseSetup();
+//        databaseSetup.mockDatabase();
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
