@@ -64,12 +64,12 @@ public class DatabaseSetup {
         return clients;
     }
 
-
     private List<Action> getActions() {
         List<Action> actions = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
             actions.add(new Action()
-                    .setActioState(ActionState.PENDING).setActionType(ActionType.INSERT)
+                    .setActioState(ActionState.values()[i % 2])
+                    .setActionType(ActionType.INSERT)
                     .setCheckIn(LocalDate.of(2017, 3, i + 1))
                     .setCheckOut(LocalDate.of(2017, 3, i + 3))
                     .setSendTime(LocalDateTime.now().plusHours(i).plusDays(i % 3)));

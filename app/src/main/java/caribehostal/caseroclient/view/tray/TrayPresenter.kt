@@ -14,6 +14,7 @@ import com.facebook.litho.widget.LinearLayoutInfo
 import com.facebook.litho.widget.Recycler
 import com.facebook.litho.widget.RecyclerBinder
 import org.threeten.bp.LocalDate
+import java.util.Collections.reverseOrder
 
 /**
  * @author rainermf
@@ -39,6 +40,12 @@ class TrayPresenter(ctx: Context) {
                 .groupBy { it.sendTime.toLocalDate() }
         var i = 0
 
+        for((date, actions) in actionsByDate.toSortedMap(reverseOrder(LocalDate.timeLineOrder()))) {
+            i = insertTitle(i, date)
+            for(action in actions.sortedByDescending { it.sendTime }) {
+                i = insertCard(i, action)
+            }
+        }
         for (date in actionsByDate.keys.sortedDescending()) {
             i = insertTitle(i, date)
             actionsByDate[date]?.sortedByDescending { it.sendTime }?.forEach { action ->
@@ -51,10 +58,8 @@ class TrayPresenter(ctx: Context) {
         val clientInfo = daoActionClient.getClientInfo(action).toTypedArray()
         recyclerBinder.insertItemAt(index, ComponentRenderInfo.create()
                 .component(TrayCard.create(context)
+                        .action(action)
                         .clientInfo(clientInfo)
-                        .arrivalTime(action.sendTime.toLocalTime())
-                        .checkInDate(action.checkIn)
-                        .checkOutDate(action.checkOut)
                         .build())
                 .build()
         )
