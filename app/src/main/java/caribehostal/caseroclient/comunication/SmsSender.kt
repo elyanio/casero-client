@@ -1,6 +1,7 @@
 package caribehostal.caseroserver.comunication
 
 import android.telephony.SmsManager
+import caribehostal.caseroclient.NUMBER_CELL
 import caribehostal.caseroclient.datamodel.Action
 import caribehostal.caseroclient.datamodel.toSmsString
 
@@ -8,7 +9,6 @@ import caribehostal.caseroclient.datamodel.toSmsString
 * @author asio
 */
 class SmsSender {
-    var numberServer = "54520426"
 
     val smsManager = SmsManager.getDefault()
 
@@ -17,6 +17,6 @@ class SmsSender {
     }
 
     fun sendSms(action: Action) {
-        enviarMensaje(numberServer, action.toSmsString())
+        enviarMensaje(NUMBER_CELL, action.toSmsString())
     }
 }

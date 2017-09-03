@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import caribehostal.caseroclient.ConstantKt;
 import caribehostal.caseroclient.R;
 import caribehostal.caseroclient.controllers.RegisterClientController;
 
@@ -43,7 +44,7 @@ public class AddPasspotDialog {
     private void acept() {
         if(!isEmptyPassport()){
             TextView textpassport = (TextView)item.findViewById(R.id.item_text_passport);
-            if(!textpassport.getText().toString().contains("#")){
+            if(!textpassport.getText().toString().contains(ConstantKt.SPLIT_SYMBOL)){
                 RegisterClientController context = (RegisterClientController) this.context;
                 context.addClientListAction(getPassport());
             }else{

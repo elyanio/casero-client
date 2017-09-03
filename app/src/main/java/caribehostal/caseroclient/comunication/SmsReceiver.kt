@@ -6,6 +6,8 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.provider.Telephony.Sms.Intents.getMessagesFromIntent
+import caribehostal.caseroclient.NUMBER_CELL
+import caribehostal.caseroclient.SPLIT_SYMBOL
 import caribehostal.caseroclient.dataaccess.DaoAction
 import caribehostal.caseroclient.dataaccess.DaoActionClient
 import caribehostal.caseroclient.datamodel.Action
@@ -35,7 +37,7 @@ class SmsReceiver : BroadcastReceiver() {
                 }
             }
             val smsSender = SmsSender()
-            if(smsSender.numberServer == numberSender.substring(numberSender.length - 8)){
+            if(NUMBER_CELL == numberSender.substring(numberSender.length - 8)){
                 processResponse(messageBody.trim(), context)
             }
         }
@@ -43,7 +45,7 @@ class SmsReceiver : BroadcastReceiver() {
 
     private fun processResponse(messageBody: String, context: Context?) {
         val daoActionClient = DaoActionClient()
-        val fields = messageBody.split("#")
+        val fields = messageBody.split(SPLIT_SYMBOL)
         var action = getAction(fields)
         action?.let {
             action = getUpdateAction(fields)
