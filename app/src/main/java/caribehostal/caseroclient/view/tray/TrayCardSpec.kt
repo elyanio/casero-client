@@ -1,6 +1,7 @@
 package caribehostal.caseroclient.view.tray
 
 import android.support.annotation.ColorRes
+import android.util.Log
 import android.view.MotionEvent
 import android.view.MotionEvent.*
 import android.view.View
@@ -40,8 +41,8 @@ object TrayCardSpec {
             .build()
 
     @OnUpdateState
-    @JvmStatic fun updateSelectionState(isSelected: StateValue<Boolean>) {
-        isSelected.set(!isSelected.get())
+    @JvmStatic fun updateSelectionState(isSelected: StateValue<Boolean>, @Param selection: Boolean) {
+        isSelected.set(selection)
     }
 
     @OnUpdateState
@@ -56,7 +57,9 @@ object TrayCardSpec {
             @FromEvent motionEvent: MotionEvent): Boolean {
 
         when (motionEvent.actionMasked) {
-            ACTION_DOWN, ACTION_UP, ACTION_CANCEL -> TrayCard.updateSelectionState(c)
+            ACTION_MOVE -> TrayCard.updateSelectionState(c, true)
+            ACTION_UP -> TrayCard.updateSelectionState(c, false)
+            ACTION_CANCEL -> TrayCard.updateSelectionState(c, false)
         }
 
         return false
