@@ -46,4 +46,7 @@ public interface IAction extends Persistable {
     @Column(nullable = false)
     @Convert(ActionStateConverter.class)
     ActionState getActioState();
+
+    @Column(nullable = false)
+    boolean isUnread();
 }
