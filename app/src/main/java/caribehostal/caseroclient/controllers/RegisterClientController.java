@@ -6,6 +6,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import org.threeten.bp.LocalDateTime;
 
@@ -186,8 +187,13 @@ public class RegisterClientController extends AppCompatActivity {
 
     public void addClientListAction(String passport) {
         Client client = new Client().setPassport(passport);
-        clients.add(client);
-        registerAddPanel.updateList();
+        if(!clients.contains(client)){
+            clients.add(client);
+            registerAddPanel.updateList();
+        }else{
+            Toast.makeText(this,"Ya existe el pasaporte", Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     public void sendAction() {
