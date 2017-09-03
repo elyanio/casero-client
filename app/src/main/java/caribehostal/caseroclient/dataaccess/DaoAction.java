@@ -53,7 +53,7 @@ public class DaoAction {
                 .toList();
     }
 
-    public Action getAction(int id) {
+    public Action getAction(Integer id) {
         return dataStore.select(Action.class).where(Action.ID.eq(id)).get().firstOrNull();
     }
 

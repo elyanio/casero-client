@@ -17,7 +17,12 @@ class Message(
 ) : TrayData {
 
     override fun createComponent(c: ComponentContext): Component<*> = TrayCard.create(c)
-            .action(action)
+            .actionId(action.id)
+            .checkIn(action.checkIn)
+            .checkOut(action.checkOut)
+            .sendTime(action.sendTime)
+            .isUnread(action.isUnread)
+            .actionState(action.actioState)
             .clientInfo(clientInfo)
             .onActionRemoved(onActionRemoved)
             .onActionRead(onActionRead)

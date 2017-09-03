@@ -6,7 +6,7 @@ import android.view.MotionEvent
 import android.view.MotionEvent.*
 import android.view.View
 import caribehostal.caseroclient.R
-import caribehostal.caseroclient.datamodel.Action
+import caribehostal.caseroclient.dataaccess.DaoAction
 import caribehostal.caseroclient.datamodel.ActionState
 import caribehostal.caseroclient.datamodel.ClientInfo
 import caribehostal.caseroserver.comunication.SmsSender
@@ -15,6 +15,8 @@ import com.facebook.litho.annotations.*
 import com.facebook.litho.widget.Card
 import org.jetbrains.anko.alert
 import org.jetbrains.anko.toast
+import org.threeten.bp.LocalDate
+import org.threeten.bp.LocalDateTime
 
 /**
  * @author rainermf
@@ -25,17 +27,23 @@ object TrayCardSpec {
     @OnCreateLayout
     @JvmStatic fun onCreateLayout(
             c: ComponentContext,
-            @Prop action: Action,
+            @Prop checkIn: LocalDate,
+            @Prop checkOut: LocalDate,
+            @Prop actionState: ActionState,
+            @Prop sendTime: LocalDateTime,
             @Prop clientInfo: Array<ClientInfo>,
             @State isSelected: Boolean,
-            @State isUnread: Boolean
+            @State isUnreadState: Boolean
     ): ComponentLayout = Card.create(c)
             .content(TrayCardContent.create(c)
-                    .action(action)
+                    .checkIn(checkIn)
+                    .checkOut(checkOut)
+                    .sendTime(sendTime)
+                    .actionState(actionState)
                     .clientInfo(clientInfo))
             .cornerRadiusRes(R.dimen.card_radius)
             .elevationRes(R.dimen.card_elevation)
-            .cardBackgroundColorRes(if (isSelected) R.color.colorAccent else colorByState(action.actioState, isUnread))
+            .cardBackgroundColorRes(if (isSelected) R.color.colorAccent else colorByState(actionState, isUnreadState))
             .withLayout()
             .touchHandler(TrayCard.onTouch(c))
             .clickHandler(TrayCard.onClick(c))
@@ -48,8 +56,8 @@ object TrayCardSpec {
     }
 
     @OnUpdateState
-    @JvmStatic fun updateUnreadState(isUnread: StateValue<Boolean>) {
-        isUnread.set(!isUnread.get())
+    @JvmStatic fun updateUnreadState(isUnreadState: StateValue<Boolean>) {
+        isUnreadState.set(!isUnreadState.get())
     }
 
     @OnEvent(TouchEvent::class)
@@ -70,10 +78,10 @@ object TrayCardSpec {
     @OnCreateInitialState
     @JvmStatic fun createInitialState(
             c: ComponentContext,
-            isUnread: StateValue<Boolean>,
-            @Prop action: Action) {
+            isUnreadState: StateValue<Boolean>,
+            @Prop isUnread: Boolean) {
 
-        isUnread.set(action.isUnread)
+        isUnreadState.set(isUnread)
     }
 
     @OnEvent(ClickEvent::class)
@@ -81,8 +89,8 @@ object TrayCardSpec {
             c: ComponentContext,
             @FromEvent view: View,
             @Prop onActionRead: () -> Unit,
-            @State isUnread: Boolean) {
-        if (isUnread) {
+            @State isUnreadState: Boolean) {
+        if (isUnreadState) {
             onActionRead.invoke()
             TrayCard.updateUnreadState(c)
         }
@@ -94,17 +102,18 @@ object TrayCardSpec {
     @JvmStatic fun onLongClick(
             context: ComponentContext,
             @FromEvent view: View,
-            @Prop action: Action,
+            @Prop actionState: ActionState,
+            @Prop actionId: Int,
             @Prop onActionRemoved: (Int) -> Unit
     ): Boolean {
 
-        if (action.actioState == ActionState.PENDING) {
+        if (actionState == ActionState.PENDING) {
             with(context) {
                 alert {
                     items(listOf("Eliminar", "Reenviar"), {
                         when (it) {
-                            0 -> onActionRemoved.invoke(action.id)
-                            1 -> resendAction(context, action)
+                            0 -> onActionRemoved.invoke(actionId)
+                            1 -> resendAction(context, actionId)
                         }
                         dismiss()
                     })
@@ -114,8 +123,8 @@ object TrayCardSpec {
         return true
     }
 
-    @JvmStatic private fun resendAction(context: Context, action: Action) {
-        smsSender.sendSms(action)
+    private fun resendAction(context: Context, actionId: Int) {
+        smsSender.sendSms(DaoAction().getAction(actionId))
         context.toast(R.string.message_action_resent)
     }
 

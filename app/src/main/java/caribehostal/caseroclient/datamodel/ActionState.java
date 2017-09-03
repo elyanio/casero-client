@@ -1,8 +1,9 @@
 package caribehostal.caseroclient.datamodel;
 
 /**
- * Created by Fernando on 21/08/2017.
+ * @author rainermf
  */
-enum class ActionState {
+
+public enum ActionState {
     PENDING, FINISH
 }
