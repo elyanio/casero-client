@@ -22,7 +22,7 @@ public enum DataStoreHolder {
 
     private EntityDataStore<Persistable> entityDataStore;
     private File directory = new File(getExternalStorageDirectory().getAbsolutePath() + "/Casero");
-    private File dbFile = new File(directory.getAbsolutePath() + "/caseroServer.db");
+    private File dbFile = new File(directory.getAbsolutePath() + "/caseroCliente.db");
     private int DB_VERSION = 1;
 
     public EntityDataStore<Persistable> getEntityDataStore() {
