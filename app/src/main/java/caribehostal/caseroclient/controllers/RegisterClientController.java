@@ -54,7 +54,6 @@ public class RegisterClientController extends AppCompatActivity {
                 case R.id.navigation_client:
                     if (!(currentPanelSelect instanceof RegisterPanelAdd)) {
                         item.setTitle(R.string.title_add_client);
-                        item.setIcon(ic_home_black_24dp);
                         currentPanelSelect.outPanel();
                         showClientPanelAction();
                         currentItemSelect = item;
@@ -176,12 +175,10 @@ public class RegisterClientController extends AppCompatActivity {
 
     public void outClientPanelAction() {
         content.removeAllViews();
-        currentItemSelect.setIcon(ic_notifications_black_24dp);
     }
 
     public void outSendPanelAction() {
         content.removeAllViews();
-        currentItemSelect.setIcon(ic_notifications_black_24dp);
     }
 
     public void showAddClientDialogAction() {
