@@ -17,7 +17,6 @@ import com.facebook.litho.widget.LinearLayoutInfo
 import com.facebook.litho.widget.RecyclerBinder
 import com.facebook.litho.widget.RecyclerBinderUpdateCallback
 import com.facebook.litho.widget.RecyclerBinderUpdateCallback.ComponentRenderer
-import org.jetbrains.anko.toast
 import org.threeten.bp.LocalDate
 import java.util.*
 
@@ -71,9 +70,7 @@ class TrayPresenter(ctx: Context) {
                             reload()
                         },
                         onActionRead = {
-                            val newAction = dao.updateUnread(action.id, false)
-                            context.toast("${newAction.isUnread}")
-                            reload()
+                            dao.updateUnread(action.id, false)
                         }
                 )
             }

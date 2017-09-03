@@ -12,7 +12,6 @@ import com.facebook.litho.*
 import com.facebook.litho.annotations.*
 import com.facebook.litho.widget.Card
 import org.jetbrains.anko.alert
-import org.jetbrains.anko.toast
 
 /**
  * @author rainermf
@@ -25,14 +24,15 @@ object TrayCardSpec {
             c: ComponentContext,
             @Prop action: Action,
             @Prop clientInfo: Array<ClientInfo>,
-            @State isSelected: Boolean
+            @State isSelected: Boolean,
+            @State isUnread: Boolean
     ): ComponentLayout = Card.create(c)
             .content(TrayCardContent.create(c)
                     .action(action)
                     .clientInfo(clientInfo))
             .cornerRadiusRes(R.dimen.card_radius)
             .elevationRes(R.dimen.card_elevation)
-            .cardBackgroundColorRes(if (isSelected) R.color.colorAccent else colorByState(action.actioState))
+            .cardBackgroundColorRes(if (isSelected) R.color.colorAccent else colorByState(action.actioState, isUnread))
             .withLayout()
             .touchHandler(TrayCard.onTouch(c))
             .clickHandler(TrayCard.onClick(c))
@@ -42,6 +42,11 @@ object TrayCardSpec {
     @OnUpdateState
     @JvmStatic fun updateSelectionState(isSelected: StateValue<Boolean>) {
         isSelected.set(!isSelected.get())
+    }
+
+    @OnUpdateState
+    @JvmStatic fun updateUnreadState(isUnread: StateValue<Boolean>) {
+        isUnread.set(!isUnread.get())
     }
 
     @OnEvent(TouchEvent::class)
@@ -57,16 +62,24 @@ object TrayCardSpec {
         return false
     }
 
+    @OnCreateInitialState
+    @JvmStatic fun createInitialState(
+            c: ComponentContext,
+            isUnread: StateValue<Boolean>,
+            @Prop action: Action) {
+
+        isUnread.set(action.isUnread)
+    }
+
     @OnEvent(ClickEvent::class)
     @JvmStatic fun onClick(
             c: ComponentContext,
             @FromEvent view: View,
-            @Prop action: Action,
-            @Prop onActionRead: () -> Unit) {
-        if(action.isUnread) {
+            @Prop onActionRead: () -> Unit,
+            @State isUnread: Boolean) {
+        if (isUnread) {
             onActionRead.invoke()
-        } else {
-            c.toast("Click")
+            TrayCard.updateUnreadState(c)
         }
     }
 
@@ -94,8 +107,8 @@ object TrayCardSpec {
     }
 
     @JvmStatic @ColorRes
-    private fun colorByState(state: ActionState): Int = when (state) {
-        ActionState.FINISH -> R.color.colorBgSuccess
+    private fun colorByState(state: ActionState, isUnread: Boolean): Int = when (state) {
+        ActionState.FINISH -> if (isUnread) R.color.colorBgSuccessUnread else R.color.colorBgSuccess
         ActionState.PENDING -> R.color.colorBgPending
     }
 }

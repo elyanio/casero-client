@@ -6,5 +6,6 @@
     <color name="colorerror">#ce0107</color>
     <color name="correcttext">#00383a</color>
     <color name="colorBgSuccess">#dcedc8</color>
+    <color name="colorBgSuccessUnread">#b2ff59</color>
     <color name="colorBgPending">#ffccbc</color>
 </resources>

@@ -19,6 +19,7 @@ import com.facebook.litho.widget.Text
 import com.facebook.yoga.YogaEdge.ALL
 import com.facebook.yoga.YogaEdge.VERTICAL
 
+
 /**
  * @author rainermf
  */
@@ -32,7 +33,6 @@ object TrayCardContentSpec {
             @Prop clientInfo: Array<ClientInfo>
     ): ComponentLayout = Column.create(c)
             .marginRes(ALL, R.dimen.normal_margin)
-            .child(if(action.isUnread) Text.create(c).text("Nuevo") else null)
             .child(Row.create(c)
                     .child(Text.create(c)
                             .textRes(R.string.check_in_text)
@@ -61,7 +61,7 @@ object TrayCardContentSpec {
     ): ComponentLayout = Row.create(c)
             .paddingDip(VERTICAL, 8)
             .child(passportColumn(c, clientInfo))
-            .child(if(showCodeColumn) codeColumn(c, clientInfo) else null)
+            .child(if (showCodeColumn) codeColumn(c, clientInfo) else null)
             .build()
 
     @JvmStatic private fun codeColumn(
