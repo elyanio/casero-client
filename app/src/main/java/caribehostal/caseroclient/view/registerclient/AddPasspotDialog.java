@@ -42,8 +42,14 @@ public class AddPasspotDialog {
 
     private void acept() {
         if(!isEmptyPassport()){
-            RegisterClientController context = (RegisterClientController) this.context;
-            context.addClientListAction(getPassport());
+            TextView textpassport = (TextView)item.findViewById(R.id.item_text_passport);
+            if(!textpassport.getText().toString().contains("#")){
+                RegisterClientController context = (RegisterClientController) this.context;
+                context.addClientListAction(getPassport());
+            }else{
+                Toast.makeText(context,"El pasaporte no puede contener #", Toast.LENGTH_SHORT).show();
+            }
+
         }else{
             Toast.makeText(context,"Pasaporte vacio", Toast.LENGTH_SHORT).show();
         }
