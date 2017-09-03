@@ -13,7 +13,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import caribehostal.caseroclient.R;
 import caribehostal.caseroclient.controllers.RegisterClientController;
-import caribehostal.caseroclient.datamodel.Client;
 
 /**
  * Created by Fernando on 27/08/2017.
@@ -37,13 +36,13 @@ public class RegisterPanelSend extends LinearLayout implements RegisterPanel {
         btSendAction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showAddDialog();
+                sendAction();
             }
         });
         updateText();
     }
 
-    private void showAddDialog() {
+    private void sendAction() {
         context.sendAction();
     }
 
