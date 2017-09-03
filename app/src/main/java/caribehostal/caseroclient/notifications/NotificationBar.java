@@ -8,10 +8,8 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.support.v4.app.TaskStackBuilder;
 import android.support.v7.app.NotificationCompat;
-import android.util.Log;
 
 import caribehostal.caseroclient.view.tray.TrayActivity;
-import caribehostal.caseroserver.view.action.ActionShow;
 
 /**
  * Created by asio on 2/24/2017.
