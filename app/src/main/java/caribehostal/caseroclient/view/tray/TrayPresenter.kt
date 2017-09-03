@@ -68,6 +68,10 @@ class TrayPresenter(ctx: Context) {
                         onActionRemoved = {
                             dao.deleteAction(action)
                             reload()
+                        },
+                        onActionRead = {
+//                            dao.updateRead(action.id, false)
+                            reload()
                         }
                 )
             }

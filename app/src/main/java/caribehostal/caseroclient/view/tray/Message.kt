@@ -12,13 +12,15 @@ import java.util.*
 class Message(
         val action: Action,
         val clientInfo: Array<ClientInfo>,
-        val onActionRemoved: (Int) -> Unit
+        val onActionRemoved: (Int) -> Unit,
+        val onActionRead: () -> Unit
 ) : TrayData {
 
     override fun createComponent(c: ComponentContext): Component<*> = TrayCard.create(c)
             .action(action)
             .clientInfo(clientInfo)
             .onActionRemoved(onActionRemoved)
+            .onActionRead(onActionRead)
             .build()
 
     override fun equals(other: Any?): Boolean {

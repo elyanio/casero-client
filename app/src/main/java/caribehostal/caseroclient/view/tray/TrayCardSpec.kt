@@ -25,7 +25,6 @@ object TrayCardSpec {
             c: ComponentContext,
             @Prop action: Action,
             @Prop clientInfo: Array<ClientInfo>,
-//            @Prop onActionRemoved: (Int) -> Unit,
             @State isSelected: Boolean
     ): ComponentLayout = Card.create(c)
             .content(TrayCardContent.create(c)
@@ -59,8 +58,16 @@ object TrayCardSpec {
     }
 
     @OnEvent(ClickEvent::class)
-    @JvmStatic fun onClick(c: ComponentContext, @FromEvent view: View) {
-        c.toast("Click")
+    @JvmStatic fun onClick(
+            c: ComponentContext,
+            @FromEvent view: View,
+            @Prop action: Action,
+            @Prop onActionRead: () -> Unit) {
+        if(action.isUnread) {
+            onActionRead.invoke()
+        } else {
+            c.toast("Click")
+        }
     }
 
     @OnEvent(LongClickEvent::class)

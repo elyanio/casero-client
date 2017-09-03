@@ -32,6 +32,7 @@ object TrayCardContentSpec {
             @Prop clientInfo: Array<ClientInfo>
     ): ComponentLayout = Column.create(c)
             .marginRes(ALL, R.dimen.normal_margin)
+            .child(if(action.isUnread) Text.create(c).text("Nuevo") else null)
             .child(Row.create(c)
                     .child(Text.create(c)
                             .textRes(R.string.check_in_text)
@@ -97,3 +98,4 @@ object TrayCardContentSpec {
                 }
             }
 }
+

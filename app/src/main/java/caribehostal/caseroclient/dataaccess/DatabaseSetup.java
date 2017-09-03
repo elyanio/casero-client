@@ -69,6 +69,7 @@ public class DatabaseSetup {
         for (int i = 0; i < 5; i++) {
             actions.add(new Action()
                     .setActioState(ActionState.values()[i % 2])
+                    .setUnread(ActionState.values()[i % 2] == ActionState.FINISH)
                     .setActionType(ActionType.INSERT)
                     .setCheckIn(LocalDate.of(2017, 3, i + 1))
                     .setCheckOut(LocalDate.of(2017, 3, i + 3))
