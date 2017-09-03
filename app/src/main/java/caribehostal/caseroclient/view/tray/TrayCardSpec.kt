@@ -1,7 +1,7 @@
 package caribehostal.caseroclient.view.tray
 
+import android.content.Context
 import android.support.annotation.ColorRes
-import android.util.Log
 import android.view.MotionEvent
 import android.view.MotionEvent.*
 import android.view.View
@@ -9,10 +9,12 @@ import caribehostal.caseroclient.R
 import caribehostal.caseroclient.datamodel.Action
 import caribehostal.caseroclient.datamodel.ActionState
 import caribehostal.caseroclient.datamodel.ClientInfo
+import caribehostal.caseroserver.comunication.SmsSender
 import com.facebook.litho.*
 import com.facebook.litho.annotations.*
 import com.facebook.litho.widget.Card
 import org.jetbrains.anko.alert
+import org.jetbrains.anko.toast
 
 /**
  * @author rainermf
@@ -86,6 +88,8 @@ object TrayCardSpec {
         }
     }
 
+    @JvmStatic private val smsSender = SmsSender()
+
     @OnEvent(LongClickEvent::class)
     @JvmStatic fun onLongClick(
             context: ComponentContext,
@@ -100,6 +104,7 @@ object TrayCardSpec {
                     items(listOf("Eliminar", "Reenviar"), {
                         when (it) {
                             0 -> onActionRemoved.invoke(action.id)
+                            1 -> resendAction(context, action)
                         }
                         dismiss()
                     })
@@ -107,6 +112,11 @@ object TrayCardSpec {
             }
         }
         return true
+    }
+
+    @JvmStatic private fun resendAction(context: Context, action: Action) {
+        smsSender.sendSms(action)
+        context.toast(R.string.message_action_resent)
     }
 
     @JvmStatic @ColorRes
