@@ -36,7 +36,7 @@ class SmsReceiver : BroadcastReceiver() {
             }
             val smsSender = SmsSender()
             if(smsSender.numberServer == numberSender.substring(numberSender.length - 8)){
-                processResponse(messageBody, context)
+                processResponse(messageBody.trim(), context)
             }
         }
     }
