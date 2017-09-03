@@ -1,0 +1,33 @@
+package caribehostal.caseroclient.view.tray
+
+import android.graphics.Color
+import android.text.Layout.Alignment.ALIGN_CENTER
+import com.facebook.litho.Column
+import com.facebook.litho.ComponentContext
+import com.facebook.litho.ComponentLayout
+import com.facebook.litho.annotations.LayoutSpec
+import com.facebook.litho.annotations.OnCreateLayout
+import com.facebook.litho.annotations.Prop
+import com.facebook.litho.widget.Text
+import com.facebook.yoga.YogaEdge
+
+/**
+ * @author rainermf
+ */
+
+@LayoutSpec
+object DayTitleSpec {
+
+    @OnCreateLayout
+    @JvmStatic fun onCreateLayout(
+            context: ComponentContext,
+            @Prop title: String
+    ): ComponentLayout = Column.create(context)
+            .paddingDip(YogaEdge.ALL, 16)
+            .child(Text.create(context)
+                    .text(title)
+                    .textAlignment(ALIGN_CENTER)
+                    .textColor(Color.DKGRAY)
+                    .build())
+            .build()
+}
