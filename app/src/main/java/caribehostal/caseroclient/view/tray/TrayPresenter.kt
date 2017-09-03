@@ -17,6 +17,7 @@ import com.facebook.litho.widget.RecyclerBinder
 import com.facebook.litho.widget.RecyclerBinderUpdateCallback
 import com.facebook.litho.widget.RecyclerBinderUpdateCallback.ComponentRenderer
 import org.threeten.bp.LocalDate
+import java.util.*
 
 /**
  * @author rainermf
@@ -38,8 +39,16 @@ class TrayPresenter(ctx: Context) {
     val daoActionClient = DaoActionClient()
 
     var currentData: List<TrayData> = emptyList()
+    var dataGenerator: () -> List<Action> = { emptyList() }
 
-    fun fill(actionsToShow: List<Action>) {
+    fun reload() = fill(dataGenerator)
+
+    fun fill(actionsToShow: () -> List<Action>) {
+        dataGenerator = actionsToShow
+        fill(actionsToShow.invoke())
+    }
+
+    private fun fill(actionsToShow: List<Action>) {
         val newData = createData(actionsToShow)
         onNewData(newData)
     }
@@ -47,6 +56,7 @@ class TrayPresenter(ctx: Context) {
     fun createData(actionsToShow: List<Action>): List<TrayData> {
         val actionsByDate: Map<LocalDate, List<Action>> = actionsToShow
                 .groupBy { it.sendTime.toLocalDate() }
+                .toSortedMap(Collections.reverseOrder(LocalDate.timeLineOrder()))
 
         return actionsByDate.flatMap { (date, actions) ->
             listOf<TrayData>(DateHeader(date.format(MEDIUM_DATE))) + actions.map { action ->
