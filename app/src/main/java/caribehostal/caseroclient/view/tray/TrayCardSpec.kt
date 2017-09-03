@@ -67,17 +67,17 @@ object TrayCardSpec {
     @JvmStatic fun onLongClick(
             context: ComponentContext,
             @FromEvent view: View,
-            @Prop action: Action
-//            @Prop onActionRemoved: (Int) -> Unit
+            @Prop action: Action,
+            @Prop onActionRemoved: (Int) -> Unit
     ): Boolean {
 
         if (action.actioState == ActionState.PENDING) {
             with(context) {
                 alert {
                     items(listOf("Eliminar", "Reenviar"), {
-//                        when (it) {
-//                            0 -> onActionRemoved.invoke(action.id)
-//                        }
+                        when (it) {
+                            0 -> onActionRemoved.invoke(action.id)
+                        }
                         dismiss()
                     })
                 }.show()

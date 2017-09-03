@@ -4,6 +4,7 @@ import android.content.Context
 import android.support.v7.util.DiffUtil
 import android.support.v7.util.DiffUtil.Callback
 import android.support.v7.widget.OrientationHelper
+import caribehostal.caseroclient.dataaccess.DaoAction
 import caribehostal.caseroclient.dataaccess.DaoActionClient
 import caribehostal.caseroclient.dataaccess.getClientInfo
 import caribehostal.caseroclient.datamodel.Action
@@ -40,6 +41,7 @@ class TrayPresenter(ctx: Context) {
 
     var currentData: List<TrayData> = emptyList()
     var dataGenerator: () -> List<Action> = { emptyList() }
+    val dao = DaoAction()
 
     fun reload() = fill(dataGenerator)
 
@@ -62,7 +64,11 @@ class TrayPresenter(ctx: Context) {
             listOf<TrayData>(DateHeader(date.format(MEDIUM_DATE))) + actions.map { action ->
                 Message(
                         action = action,
-                        clientInfo = daoActionClient.getClientInfo(action).toTypedArray()
+                        clientInfo = daoActionClient.getClientInfo(action).toTypedArray(),
+                        onActionRemoved = {
+                            dao.deleteAction(action)
+                            reload()
+                        }
                 )
             }
         }

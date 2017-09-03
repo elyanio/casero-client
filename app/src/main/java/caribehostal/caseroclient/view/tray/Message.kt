@@ -11,14 +11,14 @@ import java.util.*
  */
 class Message(
         val action: Action,
-        val clientInfo: Array<ClientInfo>
-//        val onActionRemoved: (Int) -> Unit
+        val clientInfo: Array<ClientInfo>,
+        val onActionRemoved: (Int) -> Unit
 ) : TrayData {
 
     override fun createComponent(c: ComponentContext): Component<*> = TrayCard.create(c)
             .action(action)
             .clientInfo(clientInfo)
-//            .onActionRemoved(onActionRemoved)
+            .onActionRemoved(onActionRemoved)
             .build()
 
     override fun equals(other: Any?): Boolean {
