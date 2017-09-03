@@ -53,7 +53,6 @@ public class RegisterClientController extends AppCompatActivity {
                     return true;
                 case R.id.navigation_client:
                     if (!(currentPanelSelect instanceof RegisterPanelAdd)) {
-                        item.setTitle(R.string.title_add_client);
                         currentPanelSelect.outPanel();
                         showClientPanelAction();
                         currentItemSelect = item;
@@ -63,7 +62,6 @@ public class RegisterClientController extends AppCompatActivity {
                     return true;
                 case R.id.navigation_ok:
                     if (!(currentPanelSelect instanceof RegisterPanelSend)) {
-                        item.setTitle(R.string.title_send);
                         currentPanelSelect.outPanel();
                         showSendPanelAction();
                         currentItemSelect = item;
