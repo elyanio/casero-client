@@ -33,7 +33,6 @@ object TrayCardSpec {
             @Prop actionState: ActionState,
             @Prop sendTime: LocalDateTime,
             @Prop clientInfo: Array<ClientInfo>,
-            @State isSelected: Boolean,
             @State isUnreadState: Boolean
     ): ComponentLayout = Card.create(c)
             .content(TrayCardContent.create(c)
@@ -44,7 +43,7 @@ object TrayCardSpec {
                     .clientInfo(clientInfo))
             .cornerRadiusRes(R.dimen.card_radius)
             .elevationRes(R.dimen.card_elevation)
-            .cardBackgroundColorRes(if (isSelected) R.color.colorAccent else colorByState(actionState, isUnreadState))
+            .cardBackgroundColorRes(colorByState(actionState, isUnreadState))
             .withLayout()
             .touchHandler(TrayCard.onTouch(c))
             .clickHandler(TrayCard.onClick(c))
@@ -52,28 +51,8 @@ object TrayCardSpec {
             .build()
 
     @OnUpdateState
-    @JvmStatic fun updateSelectionState(isSelected: StateValue<Boolean>, @Param selection: Boolean) {
-        isSelected.set(selection)
-    }
-
-    @OnUpdateState
     @JvmStatic fun updateUnreadState(isUnreadState: StateValue<Boolean>) {
         isUnreadState.set(!isUnreadState.get())
-    }
-
-    @OnEvent(TouchEvent::class)
-    @JvmStatic fun onTouch(
-            c: ComponentContext,
-            @FromEvent view: View,
-            @FromEvent motionEvent: MotionEvent): Boolean {
-
-        when (motionEvent.actionMasked) {
-            ACTION_MOVE -> TrayCard.updateSelectionState(c, true)
-            ACTION_UP -> TrayCard.updateSelectionState(c, false)
-            ACTION_CANCEL -> TrayCard.updateSelectionState(c, false)
-        }
-
-        return false
     }
 
     @OnCreateInitialState
