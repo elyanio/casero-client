@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:background="#2c2324">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="@string/app_name"
+
+        android:src="@drawable/splash" />
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/text_margin"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/text_activation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:id="@+id/layout_phone1_activar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/description_vertical_margin"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/text_phone1_activar"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:text="54150751"
+                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textColor="@android:color/white" />
+
+                <ImageButton
+                    android:id="@+id/call_phone1_activar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:backgroundTint="?android:colorBackground"
+                    app:srcCompat="@drawable/ic_call_black_24dp" />
+
+                <ImageButton
+                    android:id="@+id/send_sms_phone1_activar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:backgroundTint="?android:colorBackground"
+                    app:srcCompat="@drawable/ic_textsms_black_24dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_phone2_activar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/description_vertical_margin"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/text_phone2_activar"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:text="54520426"
+                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textColor="@android:color/white" />
+
+                <ImageButton
+                    android:id="@+id/call_phone2_activar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:backgroundTint="?android:colorBackground"
+                    app:srcCompat="@drawable/ic_call_black_24dp" />
+
+                <ImageButton
+                    android:id="@+id/send_sms_phone2_activar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:backgroundTint="?android:colorBackground"
+                    app:srcCompat="@drawable/ic_textsms_black_24dp" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+</RelativeLayout>

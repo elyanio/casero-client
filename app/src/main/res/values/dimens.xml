@@ -9,4 +9,6 @@
     <dimen name="card_radius">6dp</dimen>
     <dimen name="card_elevation">2dp</dimen>
     <dimen name="normal_margin">8dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
+    <dimen name="description_vertical_margin">10dp</dimen>
 </resources>

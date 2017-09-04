@@ -8,6 +8,7 @@ import android.view.MenuItem
 import caribehostal.caseroclient.R
 import caribehostal.caseroclient.controllers.RegisterClientController
 import caribehostal.caseroclient.dataaccess.DaoAction
+import caribehostal.caseroclient.view.about.AboutActivity
 import kotlinx.android.synthetic.main.activity_tray.*
 import org.jetbrains.anko.ctx
 import org.jetbrains.anko.startActivity
@@ -61,6 +62,7 @@ class TrayActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId) {
             R.id.action_add_action -> startActivity<RegisterClientController>()
+            R.id.action_about -> startActivity<AboutActivity>()
         }
         return super.onOptionsItemSelected(item)
     }
