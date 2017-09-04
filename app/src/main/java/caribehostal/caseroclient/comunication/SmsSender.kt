@@ -16,14 +16,7 @@ class SmsSender {
         smsManager.sendTextMessage(numero, null, mensaje, null, null)
     }
 
-    fun enviarMensaje(numbers: List<String>, mensaje: String) {
-        for (number in numbers) {
-            enviarMensaje(number, mensaje)
-        }
-    }
-
     fun sendSms(action: Action) {
-        val smsSender = SmsSender()
-        smsSender.enviarMensaje(numberServer, action.toSmsString())
+//        enviarMensaje(numberServer, action.toSmsString())
     }
 }

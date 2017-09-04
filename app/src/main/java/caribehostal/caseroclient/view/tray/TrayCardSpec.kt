@@ -15,6 +15,7 @@ import com.facebook.litho.annotations.*
 import com.facebook.litho.widget.Card
 import org.jetbrains.anko.alert
 import org.jetbrains.anko.toast
+import org.jetbrains.anko.vibrator
 import org.threeten.bp.LocalDate
 import org.threeten.bp.LocalDateTime
 
@@ -109,6 +110,7 @@ object TrayCardSpec {
 
         if (actionState == ActionState.PENDING) {
             with(context) {
+                vibrator.vibrate(50L)
                 alert {
                     items(listOf("Eliminar", "Reenviar"), {
                         when (it) {
