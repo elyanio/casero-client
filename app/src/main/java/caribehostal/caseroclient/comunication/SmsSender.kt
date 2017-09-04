@@ -17,6 +17,6 @@ class SmsSender {
     }
 
     fun sendSms(action: Action) {
-//        enviarMensaje(numberServer, action.toSmsString())
+        enviarMensaje(numberServer, action.toSmsString())
     }
 }
