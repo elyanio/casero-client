@@ -9,15 +9,17 @@ import android.provider.Telephony.Sms.Intents.getMessagesFromIntent
 import caribehostal.caseroclient.dataaccess.DaoAction
 import caribehostal.caseroclient.dataaccess.DaoActionClient
 import caribehostal.caseroclient.datamodel.Action
-import caribehostal.caseroclient.datamodel.ActionClient
 import caribehostal.caseroclient.datamodel.ActionState
 import caribehostal.caseroclient.datamodel.LocalDateTimeConverter
+import caribehostal.caseroclient.notifications.NotificationBar
 import caribehostal.caseroserver.comunication.SmsSender
 import org.threeten.bp.LocalDateTime
+import org.threeten.bp.format.DateTimeFormatter
 
 class SmsReceiver : BroadcastReceiver() {
+    private val formatter = DateTimeFormatter.ofPattern("y-MM-dd")
     private val ACTION_SMS_RECEIVED = "android.provider.Telephony.SMS_RECEIVED"
-
+    private  val TITLE_ACTION_NOTIFICATION = "Petición completada"
     @TargetApi(Build.VERSION_CODES.KITKAT)
     override fun onReceive(context: Context?, intent: Intent?) {
 
@@ -34,12 +36,12 @@ class SmsReceiver : BroadcastReceiver() {
             }
             val smsSender = SmsSender()
             if(smsSender.numberServer == numberSender.substring(numberSender.length - 8)){
-                processResponse(messageBody)
+                processResponse(messageBody, context)
             }
         }
     }
 
-    private fun processResponse(messageBody: String) {
+    private fun processResponse(messageBody: String, context: Context?) {
         val daoActionClient = DaoActionClient()
         val fields = messageBody.split("#")
         var action = getAction(fields)
@@ -53,9 +55,15 @@ class SmsReceiver : BroadcastReceiver() {
                     daoActionClient.updateConfirmationCode(actionClient.get(index),code)
                     index++
                 }
+                notifyAction(action!!,context)
             }
 
         }
+    }
+
+    private fun notifyAction(action: Action, context: Context?) {
+        val notificationBar = NotificationBar()
+        notificationBar.createNotification(context,action.id,TITLE_ACTION_NOTIFICATION,"" ,makeBigTextNotification(action))
     }
 
     private fun getConfirmCodes(fields: List<String>): List<String> {
@@ -88,5 +96,24 @@ class SmsReceiver : BroadcastReceiver() {
             return null
         }
 
+    }
+
+    private fun makeBigTextNotification(action: Action): String{
+        val daoActionClient = DaoActionClient()
+        val clients = daoActionClient.getClients(action).toList()
+        var text = "Petición con" +
+                "\n" + "Pasaportes:" +
+                "\n"
+        for (i in 0..clients.size - 1) {
+            if (i == clients.size - 1) {
+                text = text + clients.get(i).getPassport()
+            } else {
+                text = text + clients.get(i).getPassport() + "\n"
+            }
+        }
+        text = text +
+                "\n" + "fecha de entrada: " + action.checkIn.format(formatter) +
+                "\n" + "fecha de salida: " + action.checkOut.format(formatter)
+        return text
     }
 }

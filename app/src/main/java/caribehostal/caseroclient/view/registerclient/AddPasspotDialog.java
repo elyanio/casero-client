@@ -25,7 +25,7 @@ public class AddPasspotDialog {
         this.context = context;
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         item = inflater.inflate(R.layout.item_add_client, null);
-        addPassportDialog = new AlertDialog.Builder(context).setTitle("Insertar passaporte")
+        addPassportDialog = new AlertDialog.Builder(context).setTitle("Insertar pasaporte")
                 .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

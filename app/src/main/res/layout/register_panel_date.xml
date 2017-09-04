@@ -13,11 +13,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         />
-    <!--<DatePicker-->
-        <!--android:id="@+id/datePicker_check"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:layout_below="@+id/text_register_check_panel"-->
-        <!--android:layout_alignParentEnd="true" />-->
+
 
 </RelativeLayout>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimary">#164c4e</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="colorerror">#ce0107</color>
@@ -8,4 +8,5 @@
     <color name="colorBgSuccess">#dcedc8</color>
     <color name="colorBgSuccessUnread">#b2ff59</color>
     <color name="colorBgPending">#ffccbc</color>
+    <color name="floatbutton">#23b561</color>
 </resources>

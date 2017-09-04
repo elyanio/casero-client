@@ -16,7 +16,7 @@ import caribehostal.caseroclient.view.tray.TrayActivity;
  */
 public class NotificationBar {
 
-    public void createNotification(Context context_emisor, int id_notification, String title, String text, String code, String bigText) {
+    public void createNotification(Context context_emisor, int id_notification, String title, String text, String bigText) {
 
         long[] pattern = new long[]{0, 2000, 0};
         Uri defaultSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
@@ -24,7 +24,7 @@ public class NotificationBar {
                 .setSmallIcon(android.R.drawable.ic_dialog_email)
                 .setContentTitle(title)
                 .setContentText(text)
-                .setTicker(code)
+//                .setTicker(code)
                 .setAutoCancel(true)
                 .setSound(defaultSound)
                 .setStyle(new NotificationCompat.BigTextStyle().bigText(bigText))

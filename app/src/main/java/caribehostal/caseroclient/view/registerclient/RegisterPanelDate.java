@@ -8,7 +8,9 @@ import android.widget.TextView;
 import com.squareup.timessquare.CalendarPickerView;
 
 import org.threeten.bp.LocalDate;
+import org.threeten.bp.LocalDateTime;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -51,8 +53,11 @@ public class RegisterPanelDate extends RelativeLayout implements RegisterPanel {
     private void initDatePicker() {
         Date dateInit = toDate(LocalDate.now().minusMonths(1));
         Date dateFin = toDate(LocalDate.now().plusYears(1));
+        ArrayList<Date> range = new ArrayList<>();
+        range.add(toDate(LocalDate.now()));
+        range.add(toDate(LocalDate.now()));
         datePicker.init(dateInit, dateFin).inMode(RANGE)
-                .withSelectedDate(toDate(LocalDate.now()));
+                .withSelectedDates(range);
     }
 
     public LocalDate getCheckin() {
