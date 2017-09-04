@@ -5,9 +5,9 @@
     <color name="colorAccent">#FF4081</color>
     <color name="colorerror">#ce0107</color>
     <color name="correcttext">#00383a</color>
-    <color name="colorBgSuccess">#dcedc8</color>
-    <color name="colorBgSuccessUnread">#b2ff59</color>
-    <color name="colorBgPending">#ffccbc</color>
+    <color name="colorBgSuccess">#afd9d7</color>
+    <color name="colorBgSuccessUnread">#01a89e</color>
+    <color name="colorBgPending">#e1cccc</color>
     <color name="floatbutton">#23b561</color>
     <color name="calendar_selected_day_bg">#0eb8ae</color>
     <color name="calendar_selected_range_bg">#7aded8</color>

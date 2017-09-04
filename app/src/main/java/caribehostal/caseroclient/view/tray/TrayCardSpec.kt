@@ -45,7 +45,6 @@ object TrayCardSpec {
             .elevationRes(R.dimen.card_elevation)
             .cardBackgroundColorRes(colorByState(actionState, isUnreadState))
             .withLayout()
-            .touchHandler(TrayCard.onTouch(c))
             .clickHandler(TrayCard.onClick(c))
             .longClickHandler(TrayCard.onLongClick(c))
             .build()
