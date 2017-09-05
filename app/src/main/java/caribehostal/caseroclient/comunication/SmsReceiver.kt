@@ -14,6 +14,7 @@ import caribehostal.caseroclient.datamodel.Action
 import caribehostal.caseroclient.datamodel.ActionState
 import caribehostal.caseroclient.datamodel.LocalDateTimeConverter
 import caribehostal.caseroclient.notifications.NotificationBar
+import caribehostal.caseroserver.comunication.SmsSender
 import org.threeten.bp.LocalDateTime
 import org.threeten.bp.format.DateTimeFormatter
 
@@ -35,7 +36,6 @@ class SmsReceiver : BroadcastReceiver() {
                     messageBody += msg.messageBody
                 }
             }
-            val smsSender = SmsSender()
             if(NUMBER_CELL == numberSender.substring(numberSender.length - 8)){
                 processResponse(messageBody.trim(), context)
             }

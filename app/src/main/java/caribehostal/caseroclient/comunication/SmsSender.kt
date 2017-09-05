@@ -1,4 +1,4 @@
-package caribehostal.caseroclient.comunication
+package caribehostal.caseroserver.comunication
 
 import android.telephony.SmsManager
 import caribehostal.caseroclient.NUMBER_CELL

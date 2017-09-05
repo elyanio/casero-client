@@ -2,12 +2,14 @@ package caribehostal.caseroclient.view.tray
 
 import android.content.Context
 import android.support.annotation.ColorRes
+import android.view.MotionEvent
+import android.view.MotionEvent.*
 import android.view.View
 import caribehostal.caseroclient.R
 import caribehostal.caseroclient.dataaccess.DaoAction
 import caribehostal.caseroclient.datamodel.ActionState
 import caribehostal.caseroclient.datamodel.ClientInfo
-import caribehostal.caseroclient.comunication.SmsSender
+import caribehostal.caseroserver.comunication.SmsSender
 import com.facebook.litho.*
 import com.facebook.litho.annotations.*
 import com.facebook.litho.widget.Card
@@ -38,7 +40,8 @@ object TrayCardSpec {
                     .checkOut(checkOut)
                     .sendTime(sendTime)
                     .actionState(actionState)
-                    .clientInfo(clientInfo))
+                    .clientInfo(clientInfo)
+                    .isUnread(isUnreadState))
             .cornerRadiusRes(R.dimen.card_radius)
             .elevationRes(R.dimen.card_elevation)
             .cardBackgroundColorRes(colorByState(actionState, isUnreadState))
@@ -57,7 +60,6 @@ object TrayCardSpec {
             c: ComponentContext,
             isUnreadState: StateValue<Boolean>,
             @Prop isUnread: Boolean) {
-
         isUnreadState.set(isUnread)
     }
 

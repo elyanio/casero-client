@@ -77,7 +77,7 @@ class TrayPresenter(ctx: Context) {
         }
     }
 
-    private val componentRenderer: ComponentRenderer<TrayData> = ComponentRenderer { data, idx ->
+    private val componentRenderer: ComponentRenderer<TrayData> = ComponentRenderer { data, _ ->
         ComponentRenderInfo.create()
                 .component(data.createComponent(context))
                 .build()
