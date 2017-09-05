@@ -1,24 +1,19 @@
 package caribehostal.caseroclient.view.splash
 
 
+import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
 import android.app.Activity
-import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.ActivityInfo
+import android.content.pm.PackageManager.PERMISSION_GRANTED
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AlertDialog
 import android.view.Window
-
-import java.util.Timer
-import java.util.TimerTask
-
 import caribehostal.caseroclient.R
 import caribehostal.caseroclient.view.tray.TrayActivity
-
-import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
-import android.content.pm.PackageManager.PERMISSION_GRANTED
+import java.util.*
 
 class SplashActivity : Activity() {
 
@@ -54,7 +49,9 @@ class SplashActivity : Activity() {
                 AlertDialog.Builder(this)
                         .setMessage("La aplicación deberá cerrarse por no contar con los permisos necesarios para funcionar correctamente.")
                         .setPositiveButton("Aceptar", { _, _ -> })
-                        .setOnDismissListener({ finishAffinity() })
+                        .setOnDismissListener({
+                            ActivityCompat.finishAffinity(this@SplashActivity)
+                        })
                         .show()
             }
         }

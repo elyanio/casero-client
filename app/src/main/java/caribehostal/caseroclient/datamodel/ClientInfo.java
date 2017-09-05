@@ -33,8 +33,7 @@ public class ClientInfo {
 
         ClientInfo that = (ClientInfo) o;
 
-        if (!passport.equals(that.passport)) return false;
-        return caseroCode.equals(that.caseroCode);
+        return passport.equals(that.passport) && caseroCode.equals(that.caseroCode);
 
     }
 

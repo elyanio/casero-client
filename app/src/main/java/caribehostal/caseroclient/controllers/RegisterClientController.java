@@ -21,7 +21,6 @@ import caribehostal.caseroclient.dataaccess.DaoActionClient;
 import caribehostal.caseroclient.dataaccess.DaoClient;
 import caribehostal.caseroclient.datamodel.Action;
 import caribehostal.caseroclient.datamodel.ActionClient;
-import caribehostal.caseroclient.datamodel.ActionExtKt;
 import caribehostal.caseroclient.datamodel.ActionState;
 import caribehostal.caseroclient.datamodel.ActionType;
 import caribehostal.caseroclient.datamodel.Client;
@@ -30,10 +29,7 @@ import caribehostal.caseroclient.view.registerclient.RegisterPanel;
 import caribehostal.caseroclient.view.registerclient.RegisterPanelAdd;
 import caribehostal.caseroclient.view.registerclient.RegisterPanelDate;
 import caribehostal.caseroclient.view.registerclient.RegisterPanelSend;
-import caribehostal.caseroserver.comunication.SmsSender;
-
-import static caribehostal.caseroclient.R.drawable.ic_home_black_24dp;
-import static caribehostal.caseroclient.R.drawable.ic_notifications_black_24dp;
+import caribehostal.caseroclient.comunication.SmsSender;
 
 public class RegisterClientController extends AppCompatActivity {
     @BindView(R.id.register_content)

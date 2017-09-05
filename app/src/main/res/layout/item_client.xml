@@ -24,7 +24,8 @@
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_toStartOf="@+id/item_owner_imageButton"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:layout_toLeftOf="@+id/item_owner_imageButton"/>
 
             <ImageView
                 android:id="@+id/item_owner_imageButton"
@@ -33,7 +34,8 @@
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="10dp"
-                app:srcCompat="@drawable/ic_highlight_off_black_24dp" />
+                app:srcCompat="@drawable/ic_highlight_off_black_24dp"
+                android:layout_alignParentRight="true"/>
 
         </RelativeLayout>
 

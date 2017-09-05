@@ -1,4 +1,4 @@
-package caribehostal.appcasero.comunication
+package caribehostal.caseroclient.comunication
 
 import android.annotation.TargetApi
 import android.content.BroadcastReceiver
@@ -14,7 +14,6 @@ import caribehostal.caseroclient.datamodel.Action
 import caribehostal.caseroclient.datamodel.ActionState
 import caribehostal.caseroclient.datamodel.LocalDateTimeConverter
 import caribehostal.caseroclient.notifications.NotificationBar
-import caribehostal.caseroserver.comunication.SmsSender
 import org.threeten.bp.LocalDateTime
 import org.threeten.bp.format.DateTimeFormatter
 
