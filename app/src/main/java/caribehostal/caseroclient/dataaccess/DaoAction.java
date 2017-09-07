@@ -24,7 +24,7 @@ public class DaoAction {
     }
 
     public void deleteAction(int id) {
-        dataStore.delete(Action.class).where(Action.ID.eq(id)).get();
+        dataStore.delete(Action.class).where(Action.ID.eq(id)).get().value();
     }
 
     public Action upsertAction(Action action) {
@@ -54,7 +54,7 @@ public class DaoAction {
     }
 
     public Action getAction(Integer id) {
-        return dataStore.select(Action.class).where(Action.ID.eq(id)).get().firstOrNull();
+        return dataStore.select(Action.class).where(Action.ID.eq(id)).get().first();
     }
 
     public Action updateResponseTime(int id, LocalDateTime responseTime) {

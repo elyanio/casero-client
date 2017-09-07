@@ -2,7 +2,6 @@ package caribehostal.caseroclient;
 
 import android.app.Application;
 
-import com.facebook.soloader.SoLoader;
 import com.jakewharton.threetenabp.AndroidThreeTen;
 
 /**
@@ -22,6 +21,5 @@ public class CaseroClientApplication extends Application {
         super.onCreate();
         instance = this;
         AndroidThreeTen.init(this);
-        SoLoader.init(this, false);
     }
 }

@@ -5,6 +5,7 @@ buildscript {
     ext.litho_version = '0.6.0'
     ext.support_lib_version = '25.3.1'
     ext.requery_version = '1.0.2'
+    ext.epoxy_version = '2.4.0'
     repositories {
         mavenLocal()
         mavenCentral()

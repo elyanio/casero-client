@@ -66,14 +66,15 @@ public class DatabaseSetup {
 
     private List<Action> getActions() {
         List<Action> actions = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 30; i++) {
             actions.add(new Action()
                     .setActioState(ActionState.values()[i % 2])
                     .setUnread(ActionState.values()[i % 2] == ActionState.FINISH)
                     .setActionType(ActionType.INSERT)
-                    .setCheckIn(LocalDate.of(2017, 3, i + 1))
-                    .setCheckOut(LocalDate.of(2017, 3, i + 3))
-                    .setSendTime(LocalDateTime.now().plusHours(i).plusDays(i % 3)));
+                    .setCheckIn(LocalDate.of(2017, 3, i % 28 + 1))
+                    .setCheckOut(LocalDate.of(2017, 3, i % 28 + 3))
+                    .setSendTime(LocalDateTime.now().plusHours(i).plusDays(i % 3))
+                    .setResponseTime(LocalDateTime.now().plusHours(i).plusDays(i % 3).plusMinutes(15)));
         }
         return actions;
     }
@@ -84,7 +85,7 @@ public class DatabaseSetup {
             for (int j = 0; j <= i; j++) {
                 actionClients.add(new ActionClient()
                         .setAction(actions.get(i))
-                        .setClient(clients.get(j))
+                        .setClient(clients.get(j % clients.size()))
                         .setResponseCode(String.valueOf(i * 654)));
             }
         }
