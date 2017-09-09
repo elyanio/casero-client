@@ -1,7 +1,7 @@
 package caribehostal.caseroclient.view.tray
 
 import android.os.Bundle
-import android.support.design.widget.BottomNavigationView
+import android.support.design.widget.BottomNavigationView.OnNavigationItemSelectedListener
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
@@ -10,8 +10,8 @@ import caribehostal.caseroclient.R
 import caribehostal.caseroclient.controllers.RegisterClientController
 import caribehostal.caseroclient.dataaccess.DaoAction
 import caribehostal.caseroclient.dataaccess.loadAllActions
-import caribehostal.caseroclient.dataaccess.loadConfirmedActions
-import caribehostal.caseroclient.dataaccess.loadPendingActions
+import caribehostal.caseroclient.datamodel.ActionState.FINISH
+import caribehostal.caseroclient.datamodel.ActionState.PENDING
 import caribehostal.caseroclient.datamodel.FullAction
 import caribehostal.caseroclient.view.about.AboutActivity
 import kotlinx.android.synthetic.main.activity_tray.*
@@ -21,20 +21,21 @@ class TrayActivity : AppCompatActivity(), AdapterCallbacks {
 
     val controller = TrayController(this)
     val dao = DaoAction()
-    var updateAction: () -> List<FullAction> = { dao.loadAllActions() }
+    val allActions by lazy { dao.loadAllActions() }
+    var updateAction: () -> List<FullAction> = { allActions }
 
-    private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
+    private val onNavigationItemSelectedListener = OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.nav_tray_all -> {
-                updateController({ dao.loadAllActions() })
+                updateController({ allActions })
                 true
             }
             R.id.nav_tray_pending -> {
-                updateController({ dao.loadPendingActions() })
+                updateController({ allActions.filter { it.state == PENDING } })
                 true
             }
             R.id.nav_tray_processed -> {
-                updateController({ dao.loadConfirmedActions() })
+                updateController({ allActions.filter { it.state == FINISH } })
                 true
             }
             else -> {
