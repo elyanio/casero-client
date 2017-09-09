@@ -21,7 +21,7 @@ class TrayActivity : AppCompatActivity(), AdapterCallbacks {
 
     val controller = TrayController(this)
     val dao = DaoAction()
-    val allActions by lazy { dao.loadAllActions() }
+    var allActions = dao.loadAllActions()
     var updateAction: () -> List<FullAction> = { allActions }
 
     private val onNavigationItemSelectedListener = OnNavigationItemSelectedListener { item ->
@@ -83,11 +83,15 @@ class TrayActivity : AppCompatActivity(), AdapterCallbacks {
 
     override fun onDeleteAction(actionId: Int) {
         dao.deleteAction(actionId)
+        allActions = allActions.filterNot { it.id == actionId }
         updateController()
     }
 
     override fun onActionRead(actionId: Int) {
         dao.updateUnread(actionId, false)
+        allActions = allActions.map {
+            if(it.id == actionId) it.copy(unread = false) else it
+        }
         updateController()
     }
 }

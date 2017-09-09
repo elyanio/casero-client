@@ -25,7 +25,6 @@ class TrayCardLongClickListener(val callbacks: AdapterCallbacks) : OnModelLongCl
                     items(kotlin.collections.listOf("Eliminar", "Reenviar"), {
                         when (it) {
                             0 -> {
-                                toast("${model.actionId()}")
                                 callbacks.onDeleteAction(model.actionId())
                             }
                             1 -> resendAction(context, model.actionId())
