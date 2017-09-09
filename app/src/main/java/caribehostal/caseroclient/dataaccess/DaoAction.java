@@ -13,7 +13,7 @@ import io.requery.sql.EntityDataStore;
  * @author asio
  */
 public class DaoAction {
-    private EntityDataStore<Persistable> dataStore;
+    EntityDataStore<Persistable> dataStore;
 
     public DaoAction() {
         dataStore = DataStoreHolder.INSTANCE.getDataStore();
@@ -31,18 +31,17 @@ public class DaoAction {
         return dataStore.upsert(action);
     }
 
-    public List<Action> getAllActions() {
+    List<Action> _getAllActions() {
         return dataStore.select(Action.class)
-                .orderBy(Action.SEND_TIME)
                 .get()
                 .toList();
     }
 
-    public List<Action> getPendingActions() {
+    List<Action> _getPendingActions() {
         return getActionsByState(ActionState.PENDING);
     }
 
-    public List<Action> getConfirmedActions() {
+    List<Action> _getConfirmedActions() {
         return getActionsByState(ActionState.FINISH);
     }
 

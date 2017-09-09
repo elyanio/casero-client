@@ -9,7 +9,10 @@ import android.view.MenuItem
 import caribehostal.caseroclient.R
 import caribehostal.caseroclient.controllers.RegisterClientController
 import caribehostal.caseroclient.dataaccess.DaoAction
-import caribehostal.caseroclient.datamodel.Action
+import caribehostal.caseroclient.dataaccess.loadAllActions
+import caribehostal.caseroclient.dataaccess.loadConfirmedActions
+import caribehostal.caseroclient.dataaccess.loadPendingActions
+import caribehostal.caseroclient.datamodel.FullAction
 import caribehostal.caseroclient.view.about.AboutActivity
 import kotlinx.android.synthetic.main.activity_tray.*
 import org.jetbrains.anko.startActivity
@@ -18,20 +21,20 @@ class TrayActivity : AppCompatActivity(), AdapterCallbacks {
 
     val controller = TrayController(this)
     val dao = DaoAction()
-    var updateAction: () -> List<Action> = { dao.allActions }
+    var updateAction: () -> List<FullAction> = { dao.loadAllActions() }
 
     private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.nav_tray_all -> {
-                updateController({ dao.allActions })
+                updateController({ dao.loadAllActions() })
                 true
             }
             R.id.nav_tray_pending -> {
-                updateController({ dao.pendingActions })
+                updateController({ dao.loadPendingActions() })
                 true
             }
             R.id.nav_tray_processed -> {
-                updateController({ dao.confirmedActions })
+                updateController({ dao.loadConfirmedActions() })
                 true
             }
             else -> {
@@ -50,7 +53,7 @@ class TrayActivity : AppCompatActivity(), AdapterCallbacks {
         updateController()
     }
 
-    private fun updateController(updateActionParam: () -> List<Action>) {
+    private fun updateController(updateActionParam: () -> List<FullAction>) {
         updateAction = updateActionParam
         updateController()
     }

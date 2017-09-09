@@ -47,7 +47,7 @@ abstract class MessageModel extends EpoxyModelWithHolder<MessageHolder> {
         holder.checkOutText.setText(checkOutDate.format(DateTimeFormatters.LONG_DATE));
         holder.passportList.setText(CollectionsKt.joinToString(passports, "\n"));
         holder.confirmationCodesList.setText(CollectionsKt.joinToString(confirmationCodes, "\n"));
-        holder.timeText.setText(time.format(DateTimeFormatters.SHORT_TIME));
+        holder.timeText.setText(time.format(DateTimeFormatters.MEDIUM_DATE_SHORT_TIME));
         holder.stateText.setText(state.toLocalizedString());
         Context context = holder.actionCard.getContext();
         holder.actionCard.setCardBackgroundColor(getColor(context, colorByState(state, isUnread)));
