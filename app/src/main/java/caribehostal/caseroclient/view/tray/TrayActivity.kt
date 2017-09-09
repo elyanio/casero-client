@@ -51,7 +51,6 @@ class TrayActivity : AppCompatActivity(), AdapterCallbacks {
         content.layoutManager = LinearLayoutManager(this)
         content.adapter = controller.adapter
         navigation.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
-        updateController()
     }
 
     private fun updateController(updateActionParam: () -> List<FullAction>) {
