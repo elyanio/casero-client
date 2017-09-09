@@ -1,5 +1,6 @@
 package caribehostal.caseroclient.controllers;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -34,6 +35,7 @@ import caribehostal.caseroserver.comunication.SmsSender;
 
 import static caribehostal.caseroclient.R.drawable.ic_home_black_24dp;
 import static caribehostal.caseroclient.R.drawable.ic_notifications_black_24dp;
+import static caribehostal.caseroclient.view.tray.TrayActivityKt.NEW_ACTION_ID;
 
 public class RegisterClientController extends AppCompatActivity {
     @BindView(R.id.register_content)
@@ -208,6 +210,10 @@ public class RegisterClientController extends AppCompatActivity {
         Action action = saveDates();
         SmsSender smsSender = new SmsSender();
         smsSender.sendSms(action);
+
+        Intent result = new Intent();
+        result.putExtra(NEW_ACTION_ID, action.getId());
+        setResult(RESULT_OK, result);
         finish();
     }
 

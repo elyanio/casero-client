@@ -1,5 +1,6 @@
 package caribehostal.caseroclient.view.tray
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView.OnNavigationItemSelectedListener
 import android.support.v7.app.AppCompatActivity
@@ -9,6 +10,7 @@ import android.view.MenuItem
 import caribehostal.caseroclient.R
 import caribehostal.caseroclient.controllers.RegisterClientController
 import caribehostal.caseroclient.dataaccess.DaoAction
+import caribehostal.caseroclient.dataaccess.getFullAction
 import caribehostal.caseroclient.dataaccess.loadAllActions
 import caribehostal.caseroclient.datamodel.ActionState.FINISH
 import caribehostal.caseroclient.datamodel.ActionState.PENDING
@@ -16,6 +18,11 @@ import caribehostal.caseroclient.datamodel.FullAction
 import caribehostal.caseroclient.view.about.AboutActivity
 import kotlinx.android.synthetic.main.activity_tray.*
 import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.startActivityForResult
+
+const val CREATE_ACTION_REQUEST = 1
+const val NEW_ACTION_ID = "newActionId"
+const val NIL = -1
 
 class TrayActivity : AppCompatActivity(), AdapterCallbacks {
 
@@ -64,7 +71,18 @@ class TrayActivity : AppCompatActivity(), AdapterCallbacks {
 
     override fun onResume() {
         updateController()
+        // TODO Scroll to start
         super.onResume()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
+        if (requestCode == CREATE_ACTION_REQUEST && resultCode == RESULT_OK) {
+            val actionId = data.getIntExtra(NEW_ACTION_ID, NIL)
+            if (actionId != NIL) {
+                val action = dao.getFullAction(actionId)
+                allActions = listOf(action) + allActions
+            }
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -74,7 +92,7 @@ class TrayActivity : AppCompatActivity(), AdapterCallbacks {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.action_add_action -> startActivity<RegisterClientController>()
+            R.id.action_add_action -> startActivityForResult<RegisterClientController>(CREATE_ACTION_REQUEST)
             R.id.action_about -> startActivity<AboutActivity>()
         }
         return super.onOptionsItemSelected(item)
@@ -89,7 +107,7 @@ class TrayActivity : AppCompatActivity(), AdapterCallbacks {
     override fun onActionRead(actionId: Int) {
         dao.updateUnread(actionId, false)
         allActions = allActions.map {
-            if(it.id == actionId) it.copy(unread = false) else it
+            if (it.id == actionId) it.copy(unread = false) else it
         }
         updateController()
     }

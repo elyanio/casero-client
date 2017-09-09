@@ -28,6 +28,7 @@ fun DaoAction.getResponseCodes(action: Action): List<String> = dataStore.select(
         .toList()
         .map { it.responseCode ?: "" }
 
+fun DaoAction.getFullAction(actionId: Int) = fullAction(getAction(actionId))
 fun DaoAction.loadAllActions() = _getAllActions().map { fullAction(it) }
 fun DaoAction.loadPendingActions() = _getPendingActions().map { fullAction(it) }
 fun DaoAction.loadConfirmedActions() = _getConfirmedActions().map { fullAction(it) }
