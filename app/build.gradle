@@ -57,7 +57,5 @@ dependencies {
     compile 'com.squareup:android-times-square:1.7.3'
     testCompile 'junit:junit:4.12'
     kapt 'com.jakewharton:butterknife-compiler:8.4.0'
-}
-repositories {
-    mavenCentral()
+    compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha7'
 }
