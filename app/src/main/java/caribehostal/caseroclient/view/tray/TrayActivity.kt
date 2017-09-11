@@ -28,7 +28,7 @@ class TrayActivity : AppCompatActivity(), AdapterCallbacks {
 
     val controller = TrayController(this)
     val dao = DaoAction()
-    var allActions = dao.loadAllActions().sortedByDescending { it.updateTime }
+    lateinit var allActions: List<FullAction>
     val pendingActions = { allActions.filter { it.state == PENDING } }
     val checkedActions = { allActions.filter { it.state == FINISH } }
 
@@ -47,6 +47,13 @@ class TrayActivity : AppCompatActivity(), AdapterCallbacks {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tray)
+
+        val restore = lastCustomNonConfigurationInstance
+        if(restore != null && restore is TrayRestore) {
+            allActions = restore.actions
+        } else {
+            allActions = dao.loadAllActions().sortedByDescending { it.updateTime }
+        }
 
         content.layoutManager = LinearLayoutManager(this)
         content.adapter = controller.adapter
@@ -119,4 +126,10 @@ class TrayActivity : AppCompatActivity(), AdapterCallbacks {
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         Permissions.onRequestPermissionsResult(ctx, requestCode, permissions, grantResults)
     }
+
+    override fun onRetainCustomNonConfigurationInstance(): Any  {
+        return TrayRestore(actions = allActions)
+    }
 }
+
+class TrayRestore(val actions: List<FullAction>)
