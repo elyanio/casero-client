@@ -12,8 +12,11 @@ import android.support.v4.content.ContextCompat
 import android.support.v7.app.AlertDialog
 import android.view.Window
 import caribehostal.caseroclient.R
+import caribehostal.caseroclient.view.tray.REQUEST_WRITE_ES
 import caribehostal.caseroclient.view.tray.TrayActivity
 import java.util.*
+
+const val SPLASH_SCREEN_DELAY: Long = 800
 
 class SplashActivity : Activity() {
 
@@ -47,7 +50,7 @@ class SplashActivity : Activity() {
                 init()
             } else {
                 AlertDialog.Builder(this)
-                        .setMessage("La aplicación deberá cerrarse por no contar con los permisos necesarios para funcionar correctamente.")
+                        .setMessage(getString(R.string.msg_close_app_due_permissions))
                         .setPositiveButton("Aceptar", { _, _ -> })
                         .setOnDismissListener({
                             ActivityCompat.finishAffinity(this@SplashActivity)
@@ -55,12 +58,6 @@ class SplashActivity : Activity() {
                         .show()
             }
         }
-    }
-
-    companion object {
-        // Set the duration of the splash screen
-        const val SPLASH_SCREEN_DELAY: Long = 800
-        const val REQUEST_WRITE_ES = 123
     }
 
 }

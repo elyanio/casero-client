@@ -1,6 +1,9 @@
 package caribehostal.caseroclient.view.tray
 
+import android.Manifest.permission.SEND_SMS
 import android.content.Context
+import android.content.pm.PackageManager
+import android.support.v4.content.ContextCompat.checkSelfPermission
 import android.view.View
 import caribehostal.caseroclient.R
 import caribehostal.caseroclient.dataaccess.DaoAction
@@ -44,7 +47,9 @@ class TrayCardLongClickListener(val callbacks: AdapterCallbacks) : OnModelLongCl
     private val smsSender = SmsSender()
 
     private fun resendAction(context: Context, actionId: Int) {
-        smsSender.sendSms(DaoAction().getAction(actionId))
-        context.toast(R.string.message_action_resent)
+        if (checkSelfPermission(context, SEND_SMS) == PackageManager.PERMISSION_GRANTED) {
+            smsSender.sendSms(DaoAction().getAction(actionId))
+            context.toast(R.string.message_action_resent)
+        }
     }
 }

@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
@@ -22,7 +24,6 @@ import caribehostal.caseroclient.dataaccess.DaoActionClient;
 import caribehostal.caseroclient.dataaccess.DaoClient;
 import caribehostal.caseroclient.datamodel.Action;
 import caribehostal.caseroclient.datamodel.ActionClient;
-import caribehostal.caseroclient.datamodel.ActionExtKt;
 import caribehostal.caseroclient.datamodel.ActionState;
 import caribehostal.caseroclient.datamodel.ActionType;
 import caribehostal.caseroclient.datamodel.Client;
@@ -31,10 +32,12 @@ import caribehostal.caseroclient.view.registerclient.RegisterPanel;
 import caribehostal.caseroclient.view.registerclient.RegisterPanelAdd;
 import caribehostal.caseroclient.view.registerclient.RegisterPanelDate;
 import caribehostal.caseroclient.view.registerclient.RegisterPanelSend;
+import caribehostal.caseroclient.view.tray.Permissions;
 import caribehostal.caseroserver.comunication.SmsSender;
 
-import static caribehostal.caseroclient.R.drawable.ic_home_black_24dp;
-import static caribehostal.caseroclient.R.drawable.ic_notifications_black_24dp;
+import static android.Manifest.permission.SEND_SMS;
+import static android.content.pm.PackageManager.PERMISSION_GRANTED;
+import static caribehostal.caseroclient.view.tray.PermissionsKt.REQUEST_RESEND_ACTION_SMS;
 import static caribehostal.caseroclient.view.tray.TrayActivityKt.NEW_ACTION_ID;
 
 public class RegisterClientController extends AppCompatActivity {
@@ -50,26 +53,18 @@ public class RegisterClientController extends AppCompatActivity {
                     if (!(currentPanelSelect instanceof RegisterPanelDate)) {
                         currentPanelSelect.outPanel();
                         showCheckinPanelAction();
-                        currentItemSelect = item;
                     }
-
                     return true;
                 case R.id.navigation_client:
                     if (!(currentPanelSelect instanceof RegisterPanelAdd)) {
                         currentPanelSelect.outPanel();
                         showClientPanelAction();
-                        currentItemSelect = item;
-                    } else {
-
                     }
                     return true;
                 case R.id.navigation_ok:
                     if (!(currentPanelSelect instanceof RegisterPanelSend)) {
                         currentPanelSelect.outPanel();
                         showSendPanelAction();
-                        currentItemSelect = item;
-                    } else {
-
                     }
                     return true;
             }
@@ -77,8 +72,6 @@ public class RegisterClientController extends AppCompatActivity {
         }
 
     };
-    private BottomNavigationView navigation;
-    private MenuItem currentItemSelect;
     private RegisterPanel currentPanelSelect;
 
     private RegisterPanelDate registerPanelDate;
@@ -91,26 +84,18 @@ public class RegisterClientController extends AppCompatActivity {
         return registerPanelDate;
     }
 
-    public RegisterPanelAdd getRegisterAddPanel() {
-        return registerAddPanel;
-    }
-
-    public RegisterPanelSend getRegisterSendPanel() {
-        return registerSendPanel;
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register_client_activity);
         ButterKnife.bind(this);
-        navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         init();
     }
 
     private void init() {
-        clients = new ArrayList<Client>(10);
+        clients = new ArrayList<>(10);
 
         registerPanelDate = new RegisterPanelDate(this);
         registerAddPanel = new RegisterPanelAdd(this);
@@ -118,16 +103,10 @@ public class RegisterClientController extends AppCompatActivity {
 
         showCheckinPanelAction();
         currentPanelSelect = registerPanelDate;
-
-
     }
 
     public List<Client> getClients() {
         return clients;
-    }
-
-    public void setClients(List<Client> clients) {
-        this.clients = clients;
     }
 
     private Action saveDates() {
@@ -170,10 +149,6 @@ public class RegisterClientController extends AppCompatActivity {
         content.removeAllViews();
     }
 
-    public void outCheckoutPanelAction() {
-        content.removeAllViews();
-    }
-
     public void outClientPanelAction() {
         content.removeAllViews();
     }
@@ -189,33 +164,38 @@ public class RegisterClientController extends AppCompatActivity {
 
     public void addClientListAction(String passport) {
         Client client = new Client().setPassport(passport);
-        if(!clients.contains(client)){
+        if (!clients.contains(client)) {
             clients.add(client);
             registerAddPanel.updateList();
-        }else{
-            Toast.makeText(this,"Ya existe el pasaporte", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "Ya existe el pasaporte", Toast.LENGTH_SHORT).show();
         }
 
     }
 
     public void sendAction() {
         if (clients.isEmpty()) {
-            //torta hacer algo
             return;
         }
         if (registerPanelDate.getCheckin().isAfter(registerPanelDate.getCheckout())) {
-            // torta hacer algo
             return;
         }
-        Action action = saveDates();
-        SmsSender smsSender = new SmsSender();
-        smsSender.sendSms(action);
 
-        Intent result = new Intent();
-        result.putExtra(NEW_ACTION_ID, action.getId());
-        setResult(RESULT_OK, result);
-        finish();
+        if (ContextCompat.checkSelfPermission(this, SEND_SMS) == PERMISSION_GRANTED) {
+            Action action = saveDates();
+            new SmsSender().sendSms(action);
+
+            Intent result = new Intent();
+            result.putExtra(NEW_ACTION_ID, action.getId());
+            setResult(RESULT_OK, result);
+            finish();
+        } else {
+            ActivityCompat.requestPermissions(this, new String[]{SEND_SMS}, REQUEST_RESEND_ACTION_SMS);
+        }
     }
 
-
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        Permissions.INSTANCE.onRequestPermissionsResult(this, requestCode, permissions, grantResults);
+    }
 }

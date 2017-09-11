@@ -16,6 +16,7 @@ import caribehostal.caseroclient.datamodel.ActionState.PENDING
 import caribehostal.caseroclient.datamodel.FullAction
 import caribehostal.caseroclient.view.about.AboutActivity
 import kotlinx.android.synthetic.main.activity_tray.*
+import org.jetbrains.anko.ctx
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.startActivityForResult
 
@@ -69,7 +70,7 @@ class TrayActivity : AppCompatActivity(), AdapterCallbacks {
     }
 
     override fun onResume() {
-        if(SHOULD_UPDATE.compareAndSet(true, false)) {
+        if (SHOULD_UPDATE.compareAndSet(true, false)) {
             allActions = dao.loadAllActions()
         }
         updateController()
@@ -112,5 +113,9 @@ class TrayActivity : AppCompatActivity(), AdapterCallbacks {
             if (it.id == actionId) it.copy(unread = false) else it
         }
         updateController()
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        Permissions.onRequestPermissionsResult(ctx, requestCode, permissions, grantResults)
     }
 }
