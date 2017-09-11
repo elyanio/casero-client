@@ -17,24 +17,28 @@ import org.jetbrains.anko.vibrator
 class TrayCardLongClickListener(val callbacks: AdapterCallbacks) : OnModelLongClickListener<MessageModel_, MessageHolder> {
 
     override fun onLongClick(model: MessageModel_, parentView: MessageHolder, clickedView: View, position: Int): Boolean {
-        if (model.state() == ActionState.PENDING) {
-            val context = clickedView.context
-            with(context) {
-                vibrator.vibrate(50L)
-                alert {
-                    items(kotlin.collections.listOf("Eliminar", "Reenviar"), {
-                        when (it) {
-                            0 -> {
-                                callbacks.onDeleteAction(model.actionId())
-                            }
-                            1 -> resendAction(context, model.actionId())
-                        }
-                        dismiss()
-                    })
-                }.show()
-            }
+        val context = clickedView.context
+        val actions = actions(context, model)
+        val actionNames = actions.keys.toList()
+        with(context) {
+            vibrator.vibrate(50L)
+            alert {
+                items(actionNames, {
+                    actions[actionNames[it]]?.invoke()
+                    dismiss()
+                })
+            }.show()
         }
+
         return true
+    }
+
+    private fun actions(context: Context, model: MessageModel_): Map<String, () -> Unit> {
+        var actions = mapOf("Eliminar" to { callbacks.onDeleteAction(model.actionId()) })
+        if (model.state() == ActionState.PENDING) {
+            actions += mapOf("Reenviar" to { resendAction(context, model.actionId()) })
+        }
+        return actions
     }
 
     private val smsSender = SmsSender()
