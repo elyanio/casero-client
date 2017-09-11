@@ -2,18 +2,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/nav_tray_all"
-        android:icon="@drawable/ic_all_black_24dp"
-        android:title="@string/title_action_all"/>
+        android:id="@+id/nav_tray_checked"
+        android:icon="@drawable/ic_confirmation_black_24_dp"
+        android:title="@string/title_action_confirmed"/>
 
     <item
         android:id="@+id/nav_tray_pending"
         android:icon="@drawable/ic_access_time_black_24dp"
         android:title="@string/title_action_pending"/>
-
-    <item
-        android:id="@+id/nav_tray_processed"
-        android:icon="@drawable/ic_confirmation_black_24_dp"
-        android:title="@string/title_action_confirmed"/>
 
 </menu>

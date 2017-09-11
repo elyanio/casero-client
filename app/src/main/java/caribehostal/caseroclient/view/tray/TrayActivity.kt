@@ -29,20 +29,13 @@ class TrayActivity : AppCompatActivity(), AdapterCallbacks {
     val controller = TrayController(this)
     val dao = DaoAction()
     var allActions = dao.loadAllActions()
-    var updateAction: () -> List<FullAction> = { allActions }
+    val pendingActions = { allActions.filter { it.state == PENDING } }
+    val checkedActions = { allActions.filter { it.state == FINISH } }
 
     private val onNavigationItemSelectedListener = OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
-            R.id.nav_tray_all -> {
-                updateController({ allActions })
-                true
-            }
-            R.id.nav_tray_pending -> {
-                updateController({ allActions.filter { it.state == PENDING } })
-                true
-            }
-            R.id.nav_tray_processed -> {
-                updateController({ allActions.filter { it.state == FINISH } })
+            R.id.nav_tray_pending, R.id.nav_tray_checked -> {
+                updateController(item.itemId)
                 true
             }
             else -> {
@@ -60,13 +53,20 @@ class TrayActivity : AppCompatActivity(), AdapterCallbacks {
         navigation.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
     }
 
-    private fun updateController(updateActionParam: () -> List<FullAction>) {
-        updateAction = updateActionParam
-        updateController()
+    fun getActions(itemId: Int): () -> List<FullAction> = when (itemId) {
+        R.id.nav_tray_pending -> pendingActions
+        R.id.nav_tray_checked -> checkedActions
+        else -> {
+            { emptyList() }
+        }
     }
 
     private fun updateController() {
-        controller.setData(updateAction.invoke())
+        updateController(navigation.selectedItemId)
+    }
+
+    private fun updateController(itemId: Int) {
+        controller.setData(getActions(itemId).invoke())
     }
 
     override fun onResume() {
@@ -74,7 +74,6 @@ class TrayActivity : AppCompatActivity(), AdapterCallbacks {
             allActions = dao.loadAllActions()
         }
         updateController()
-        // TODO Scroll to start
         super.onResume()
     }
 
@@ -85,6 +84,8 @@ class TrayActivity : AppCompatActivity(), AdapterCallbacks {
                 val action = dao.getFullAction(actionId)
                 allActions = listOf(action) + allActions
             }
+            navigation.selectedItemId = R.id.nav_tray_pending
+            content.scrollToPosition(0)
         }
     }
 
