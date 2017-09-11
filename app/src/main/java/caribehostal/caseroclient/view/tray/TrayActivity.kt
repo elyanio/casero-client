@@ -28,7 +28,7 @@ class TrayActivity : AppCompatActivity(), AdapterCallbacks {
 
     val controller = TrayController(this)
     val dao = DaoAction()
-    var allActions = dao.loadAllActions()
+    var allActions = dao.loadAllActions().sortedByDescending { it.updateTime }
     val pendingActions = { allActions.filter { it.state == PENDING } }
     val checkedActions = { allActions.filter { it.state == FINISH } }
 

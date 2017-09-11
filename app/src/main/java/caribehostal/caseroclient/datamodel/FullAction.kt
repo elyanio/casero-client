@@ -1,5 +1,7 @@
 package caribehostal.caseroclient.datamodel
 
+import caribehostal.caseroclient.datamodel.ActionState.FINISH
+import caribehostal.caseroclient.datamodel.ActionState.PENDING
 import org.threeten.bp.LocalDate
 import org.threeten.bp.LocalDateTime
 
@@ -17,4 +19,6 @@ data class FullAction(
         val unread: Boolean,
         val passports: List<String>,
         val responseCodes: List<String>
-)
+) {
+    val updateTime = if(state == FINISH && responseTime != null) responseTime else sendTime
+}
