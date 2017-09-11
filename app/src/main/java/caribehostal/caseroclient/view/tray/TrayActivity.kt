@@ -8,10 +8,9 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.MenuItem
 import caribehostal.caseroclient.R
+import caribehostal.caseroclient.SHOULD_UPDATE
 import caribehostal.caseroclient.controllers.RegisterClientController
 import caribehostal.caseroclient.dataaccess.DaoAction
-import caribehostal.caseroclient.dataaccess.getFullAction
-import caribehostal.caseroclient.dataaccess.loadAllActions
 import caribehostal.caseroclient.datamodel.ActionState.FINISH
 import caribehostal.caseroclient.datamodel.ActionState.PENDING
 import caribehostal.caseroclient.datamodel.FullAction
@@ -70,6 +69,9 @@ class TrayActivity : AppCompatActivity(), AdapterCallbacks {
     }
 
     override fun onResume() {
+        if(SHOULD_UPDATE.compareAndSet(true, false)) {
+            allActions = dao.loadAllActions()
+        }
         updateController()
         // TODO Scroll to start
         super.onResume()

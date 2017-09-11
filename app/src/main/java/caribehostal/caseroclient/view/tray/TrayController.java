@@ -11,7 +11,6 @@ import static caribehostal.caseroclient.datamodel.ActionState.PENDING;
 /**
  * @author rainermf
  */
-
 public class TrayController extends TypedEpoxyController<List<FullAction>> {
 
     AdapterCallbacks callbacks;
