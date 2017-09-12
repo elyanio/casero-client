@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                 xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                 android:layout_width="match_parent"
+                                                 android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_nombre"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Nombre y apellidos">
+
+                <EditText
+                    android:id="@+id/owner_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:inputType="textPersonName"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_carnet"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Carné de identidad">
+
+                <EditText
+                    android:id="@+id/owner_carnet"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:inputType="number"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_cell"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Celular">
+
+                <EditText
+                    android:id="@+id/owner_cell"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:inputType="phone"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_user"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Usuario de Casero">
+
+                <EditText
+                    android:id="@+id/owner_user"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:inputType="text"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_password"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Contraseña">
+
+                <EditText
+                    android:id="@+id/owner_pass"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:inputType="textWebPassword"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_address"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Dirección particular">
+
+                <EditText
+                    android:id="@+id/owner_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:inputType="textPostalAddress"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_address_description"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Referencia">
+
+                <EditText
+                    android:id="@+id/owner_address_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:inputType="text"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/owner_save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        app:srcCompat="@drawable/ic_done_black_24dp"/>
+
+</android.support.design.widget.CoordinatorLayout>
