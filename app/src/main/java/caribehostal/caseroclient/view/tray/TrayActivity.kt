@@ -92,8 +92,8 @@ class TrayActivity : AppCompatActivity(), AdapterCallbacks {
         super.onResume()
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
-        if (requestCode == CREATE_ACTION_REQUEST && resultCode == RESULT_OK) {
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == CREATE_ACTION_REQUEST && resultCode == RESULT_OK && data != null) {
             val actionId = data.getIntExtra(NEW_ACTION_ID, NIL)
             if (actionId != NIL) {
                 val action = dao.getFullAction(actionId)
