@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.design.widget.BottomNavigationView.OnNavigationItemSelectedListener
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.Menu
 import android.view.MenuItem
 import caribehostal.caseroclient.R
@@ -58,6 +59,13 @@ class TrayActivity : AppCompatActivity(), AdapterCallbacks {
         content.layoutManager = LinearLayoutManager(this)
         content.adapter = controller.adapter
         navigation.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
+        controller.adapter.registerAdapterDataObserver(object : RecyclerView.AdapterDataObserver() {
+            override fun onItemRangeInserted(positionStart: Int, itemCount: Int) {
+                if (positionStart == 0) {
+                    content.layoutManager.scrollToPosition(0)
+                }
+            }
+        })
     }
 
     fun getActions(itemId: Int): () -> List<FullAction> = when (itemId) {
@@ -92,7 +100,6 @@ class TrayActivity : AppCompatActivity(), AdapterCallbacks {
                 allActions = listOf(action) + allActions
             }
             navigation.selectedItemId = R.id.nav_tray_pending
-            content.scrollToPosition(0)
         }
     }
 
