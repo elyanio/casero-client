@@ -41,7 +41,7 @@
                     android:layout_below="@+id/image_view_action"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="2dp"
-                    android:text="@string/title_message"/>
+                    android:text="@string/title_peticiones"/>
 
             </RelativeLayout>
 
