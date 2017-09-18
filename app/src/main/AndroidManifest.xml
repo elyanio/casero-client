@@ -25,8 +25,11 @@
             android:name=".controllers.RegisterClientController"
             android:label="@string/title_activity_client_register"/>
         <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name"/>
+        <activity
             android:name=".view.tray.TrayActivity"
-            android:label="@string/app_name">
+            android:label="@string/title_message">
         </activity>
         <activity
             android:name=".view.splash.SplashActivity"

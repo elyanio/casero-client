@@ -11,9 +11,9 @@ import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AlertDialog
 import android.view.Window
+import caribehostal.caseroclient.MainActivity
 import caribehostal.caseroclient.R
 import caribehostal.caseroclient.view.tray.REQUEST_WRITE_ES
-import caribehostal.caseroclient.view.tray.TrayActivity
 import java.util.*
 
 const val SPLASH_SCREEN_DELAY: Long = 800
@@ -39,7 +39,7 @@ class SplashActivity : Activity() {
     }
 
     private fun init() {
-        val mainIntent = Intent().setClass(this, TrayActivity::class.java)
+        val mainIntent = Intent().setClass(this, MainActivity::class.java)
         startActivity(mainIntent)
         finish()
     }

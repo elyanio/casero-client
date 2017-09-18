@@ -29,4 +29,5 @@
     <string name="text_action_pending">Pendiente</string>
     <string name="text_action_finished">Confirmada</string>
     <string name="msg_close_app_due_permissions">La aplicación deberá cerrarse por no contar con los permisos necesarios para funcionar correctamente.</string>
+    <string name="title_message">Historial de peticiones</string>
 </resources>
