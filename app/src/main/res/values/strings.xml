@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Casero Móvil</string>
+    <string name="app_name">Casero Móvil 1.0</string>
     <string name="title_activity_client_register">Registrar clientes</string>
     <string name="title_ok">Enviar</string>
     <string name="title_date">Fechas</string>
@@ -30,4 +30,6 @@
     <string name="text_action_finished">Confirmada</string>
     <string name="msg_close_app_due_permissions">La aplicación deberá cerrarse por no contar con los permisos necesarios para funcionar correctamente.</string>
     <string name="title_message">Historial de peticiones</string>
+    <string name="main_text_scene1">Bienvenido a Casero Móvil</string>
+    <string name="nueva_peticion">Nueva petición</string>
 </resources>

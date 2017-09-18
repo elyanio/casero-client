@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import caribehostal.caseroclient.controllers.RegisterClientController;
-import caribehostal.caseroclient.dataaccess.DatabaseSetup;
 import caribehostal.caseroclient.view.about.AboutActivity;
 import caribehostal.caseroclient.view.tray.TrayActivity;
 

@@ -41,7 +41,7 @@
                     android:layout_below="@+id/image_view_action"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="2dp"
-                    android:text="Ver peticiones"/>
+                    android:text="@string/title_message"/>
 
             </RelativeLayout>
 
@@ -77,7 +77,7 @@
                     android:layout_below="@+id/image_view_owner"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="2dp"
-                    android:text="nueva Petición"/>
+                    android:text="@string/nueva_peticion"/>
             </RelativeLayout>
         </android.support.v7.widget.CardView>
 
