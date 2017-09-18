@@ -9,3 +9,4 @@ import java.util.concurrent.atomic.AtomicBoolean
 //@JvmField val NUMBER_CELL: String = "54520426"
 @JvmField val SPLIT_SYMBOL: String = "#"
 @JvmField val SHOULD_UPDATE: AtomicBoolean = AtomicBoolean()
+@JvmField val PREFE_ACTIVATED: String = "activated"
