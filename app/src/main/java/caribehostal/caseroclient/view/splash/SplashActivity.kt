@@ -13,6 +13,8 @@ import android.support.v7.app.AlertDialog
 import android.view.Window
 import caribehostal.caseroclient.MainActivity
 import caribehostal.caseroclient.R
+import caribehostal.caseroclient.view.registerserver.RegisterServerScene1
+import caribehostal.caseroclient.view.registerserver.StageRegisterServer
 import caribehostal.caseroclient.view.tray.REQUEST_WRITE_ES
 import java.util.*
 
@@ -39,7 +41,7 @@ class SplashActivity : Activity() {
     }
 
     private fun init() {
-        val mainIntent = Intent().setClass(this, MainActivity::class.java)
+        val mainIntent = Intent().setClass(this, StageRegisterServer::class.java)
         startActivity(mainIntent)
         finish()
     }
