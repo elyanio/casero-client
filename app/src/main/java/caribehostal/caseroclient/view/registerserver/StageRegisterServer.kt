@@ -23,6 +23,7 @@ class StageRegisterServer : AppCompatActivity() {
 
 
     // aciones de las ecenas
+
     fun cancelAllScene() {
         val intent = Intent().setClass(this, MainActivity::class.java)
         startActivity(intent)
