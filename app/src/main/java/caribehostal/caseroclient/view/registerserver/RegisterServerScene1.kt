@@ -35,7 +35,7 @@ class RegisterServerScene1(context: Context?) : LinearLayout(context) {
     }
 
     private fun nextAction() {
-
+        stage.nextScene1()
     }
 
     private fun cancelAction() {

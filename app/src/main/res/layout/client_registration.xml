@@ -14,13 +14,13 @@
             android:orientation="vertical">
 
             <android.support.design.widget.TextInputLayout
-                android:id="@+id/input_nombre"
+                android:id="@+id/input_scene_2_name"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="Nombre y apellidos">
 
                 <EditText
-                    android:id="@+id/owner_name"
+                    android:id="@+id/tv_scene_2_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
@@ -29,13 +29,13 @@
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
-                android:id="@+id/input_carnet"
+                android:id="@+id/input_scene2_carnet"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="Carné de identidad">
 
                 <EditText
-                    android:id="@+id/owner_carnet"
+                    android:id="@+id/tv_scene2_carnet"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
@@ -90,13 +90,13 @@
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
-                android:id="@+id/input_address"
+                android:id="@+id/input_scene2_address"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="Dirección particular">
 
                 <EditText
-                    android:id="@+id/owner_address"
+                    android:id="@+id/tv_scene2_address"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
@@ -105,13 +105,13 @@
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
-                android:id="@+id/input_address_description"
+                android:id="@+id/input_scene2_address_description"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="Referencia">
 
                 <EditText
-                    android:id="@+id/owner_address_description"
+                    android:id="@+id/scene2_address_description"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"

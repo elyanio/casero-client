@@ -4,21 +4,21 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.LinearLayout
-import butterknife.BindView
 
 import caribehostal.caseroclient.R
-import android.widget.EditText
 import caribehostal.caseroclient.MainActivity
 
 
 class StageRegisterServer : AppCompatActivity() {
-    var registerDate: RegisterData = RegisterData()
+    var registerData: RegisterData = RegisterData()
+
+    private var containerScene: LinearLayout? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.register_server_stage)
-        var containerScene = findViewById(R.id.rs_stage_container) as LinearLayout
-        containerScene.addView(RegisterServerScene1(this))
+        containerScene = findViewById(R.id.rs_stage_container) as LinearLayout
+        containerScene!!.addView(RegisterServerScene1(this))
     }
 
 
@@ -28,5 +28,10 @@ class StageRegisterServer : AppCompatActivity() {
         val intent = Intent().setClass(this, MainActivity::class.java)
         startActivity(intent)
         finish()
+    }
+
+    fun nextScene1() {
+        containerScene!!.removeAllViews()
+        containerScene!!.addView(RegisterServerScene2(this, registerData))
     }
 }

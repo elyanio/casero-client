@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view_report="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/scene_2_text_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                android:ems="10"
+                android:paddingLeft="5dp"
+                android:text="@string/rs_text1_scene2"
+                android:textColor="@color/white"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/editText2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                android:ems="10"
+                android:paddingLeft="5dp"
+                android:text="@string/rs_text2_scene2"
+                android:textColor="@color/white"
+                android:textSize="20dp" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/input_scene_2_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="Nombre"
+                    android:textColorHint="@color/white"
+                    >
+
+                    <EditText
+                        android:id="@+id/tv_scene_2_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:backgroundTint="@color/white"
+                        android:inputType="textPersonName"
+                        android:textColor="@color/white" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/input_scene2_carnet"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="Número de carnet"
+                    android:textColorHint="@color/white">
+
+                    <EditText
+                        android:id="@+id/tv_scene2_carnet"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:backgroundTint="@color/white"
+                        android:textColor="@color/white"
+                        android:inputType="number" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/input_scene2_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="Dirección"
+                    android:textColorHint="@color/white">
+
+                    <EditText
+                        android:id="@+id/tv_scene2_address"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:backgroundTint="@color/white"
+                        android:textColor="@color/white"
+                        android:inputType="textPostalAddress"/>
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/input_scene2_address_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="Punto de referencia"
+                    android:textColorHint="@color/white"
+                    android:backgroundTint="@color/white" >
+
+                    <EditText
+                        android:id="@+id/scene2_address_description"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:backgroundTint="@color/white"
+                        android:textColor="@color/white"
+                        android:inputType="text"/>
+
+                </android.support.design.widget.TextInputLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:gravity="end"
+        android:orientation="horizontal">
+
+        <android.support.v7.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            card_view_report:cardCornerRadius="10dp">
+
+            <Button
+                android:id="@+id/bt_scene_2_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                android:text="Cancelar"
+                android:textColor="@color/white" />
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            card_view_report:cardCornerRadius="10dp">
+
+            <Button
+                android:id="@+id/bt_scene_2_next"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                android:text="Siguiente"
+                android:textColor="@color/white" />
+        </android.support.v7.widget.CardView>
+    </LinearLayout>
+</RelativeLayout>

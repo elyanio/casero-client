@@ -31,8 +31,10 @@
     <string name="msg_close_app_due_permissions">La aplicación deberá cerrarse por no contar con los permisos necesarios para funcionar correctamente.</string>
     <string name="title_message">Historial de peticiones</string>
     <string name="title_peticiones">Peticiones</string>
-    <string name="main_text_scene1">¡Fantástico!</string>
-    <string name="rs_text2_scene1">Está por usar Casero Móvil</string>
+    <string name="rs_text1_scene1">¡Fantástico!</string>
+    <string name="rs_text2_scene1">Ha instalado Casero Móvil</string>
     <string name="rs_text3_scene1">Iniciemos su inscripción</string>
+    <string name="rs_text1_scene2">Sus datos son confidenciales</string>
+    <string name="rs_text2_scene2">Por favor sea preciso en su dirección</string>
     <string name="nueva_peticion">Nueva petición</string>
 </resources>
