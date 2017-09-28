@@ -15,34 +15,26 @@
             android:orientation="vertical">
 
             <TextView
-                android:layout_width="match_parent"
+                android:id="@+id/scene_1_text_0"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
                 android:background="@color/colorPrimary"
                 android:ems="10"
                 android:paddingLeft="5dp"
-                android:text="@string/scene_2_text_1"
+                android:text="@string/rs_text1_scene3"
                 android:textColor="@color/white"
                 android:textSize="35dp" />
             <TextView
+                android:id="@+id/scene_3_text_1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/colorPrimary"
                 android:ems="10"
                 android:paddingLeft="5dp"
-                android:text="@string/scene_2_text_2"
+                android:text="@string/rs_text2_scene3"
                 android:textColor="@color/white"
                 android:textSize="20dp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/colorPrimary"
-                android:ems="10"
-                android:paddingLeft="5dp"
-                android:text="@string/rs_text2_scene2"
-                android:textColor="@color/white"
-                android:textSize="20dp" />
-
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -50,69 +42,14 @@
                 android:orientation="vertical">
 
                 <android.support.design.widget.TextInputLayout
-                    android:id="@+id/rs_scene_2_input_name"
+                    android:id="@+id/rs_scene_3_input_user"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:hint="Nombre Completo"
+                    android:hint="Usuario en su web"
                     android:textColorHint="@color/white">
 
                     <EditText
-                        android:id="@+id/rs_scene_2_text_name"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:backgroundTint="@color/white"
-                        android:inputType="textPersonName"
-                        android:textColor="@color/white" />
-
-                </android.support.design.widget.TextInputLayout>
-
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/rs_scene_2_input_carnet"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:hint="Número de carnet"
-                    android:textColorHint="@color/white">
-
-                    <EditText
-                        android:id="@+id/rs_scene_2_text_carnet"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:backgroundTint="@color/white"
-                        android:inputType="number"
-                        android:textColor="@color/white" />
-
-                </android.support.design.widget.TextInputLayout>
-
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/rs_scene_2_input_address"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:hint="Dirección"
-                    android:textColorHint="@color/white">
-
-                    <EditText
-                        android:id="@+id/rs_scene_2_text_address"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:backgroundTint="@color/white"
-                        android:inputType="textPostalAddress"
-                        android:textColor="@color/white" />
-
-                </android.support.design.widget.TextInputLayout>
-
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/rs_scene_2_input_address_description"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:backgroundTint="@color/white"
-                    android:hint="Punto de referencia"
-                    android:textColorHint="@color/white">
-
-                    <EditText
-                        android:id="@+id/rs_scene_2_text_description"
+                        android:id="@+id/rs_scene_3_text_user"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
@@ -122,7 +59,56 @@
 
                 </android.support.design.widget.TextInputLayout>
 
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/rs_scene_3_input_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="Contraseña en su web"
+                    android:textColorHint="@color/white">
+
+                    <EditText
+                        android:id="@+id/rs_scene_3_text_password"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:backgroundTint="@color/white"
+                        android:inputType="text"
+                        android:textColor="@color/white" />
+
+                </android.support.design.widget.TextInputLayout>
+
+
             </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:ems="10"
+                android:textColor="@color/white"
+                android:inputType="text"
+                android:text="Ejemplo"
+                android:textAlignment="center" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:textColor="@color/white"
+                android:paddingLeft="5dp"
+                android:inputType="text"
+                android:text="Usuario: S0E30" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:textColor="@color/white"
+                android:paddingLeft="5dp"
+                android:inputType="text"
+                android:text="Contraseña: 901108Die*2015" />
+
+
         </LinearLayout>
     </ScrollView>
 
@@ -137,21 +123,6 @@
         android:gravity="end"
         android:orientation="horizontal">
 
-        <!--<android.support.v7.widget.CardView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_margin="5dp"-->
-            <!--card_view_report:cardCornerRadius="10dp">-->
-
-            <!--<Button-->
-                <!--android:id="@+id/bt_scene_2_cancel"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:background="@color/colorPrimary"-->
-                <!--android:text="Cancelar"-->
-                <!--android:textColor="@color/white" />-->
-        <!--</android.support.v7.widget.CardView>-->
-
         <android.support.v7.widget.CardView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -159,7 +130,7 @@
             card_view_report:cardCornerRadius="10dp">
 
             <Button
-                android:id="@+id/rs_scene_2_bt_back"
+                android:id="@+id/rs_scene_3_bt_back"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@color/colorPrimary"
@@ -174,7 +145,7 @@
             card_view_report:cardCornerRadius="10dp">
 
             <Button
-                android:id="@+id/rs_scene_2_bt_next"
+                android:id="@+id/rs_scene_3_bt_next"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@color/colorPrimary"

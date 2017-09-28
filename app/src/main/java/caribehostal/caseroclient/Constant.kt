@@ -10,3 +10,4 @@ import java.util.concurrent.atomic.AtomicBoolean
 @JvmField val SPLIT_SYMBOL: String = "#"
 @JvmField val SHOULD_UPDATE: AtomicBoolean = AtomicBoolean()
 @JvmField val PREFE_ACTIVATED: String = "activated"
+@JvmField val PREFE_SEND_PETITION: String = "sendPetition"

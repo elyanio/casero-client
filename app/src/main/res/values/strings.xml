@@ -33,8 +33,14 @@
     <string name="title_peticiones">Peticiones</string>
     <string name="rs_text1_scene1">¡Fantástico!</string>
     <string name="rs_text2_scene1">Ha instalado Casero Móvil</string>
-    <string name="rs_text3_scene1">Iniciemos su inscripción</string>
-    <string name="rs_text1_scene2">Sus datos son confidenciales</string>
-    <string name="rs_text2_scene2">Por favor sea preciso en su dirección</string>
+    <string name="rs_text3_scene1">Iniciemos el registro en nuestro sistema</string>
+    <string name="scene_2_text_1">¡Preséntese!</string>
+    <string name="scene_2_text_2">Sus datos son confidenciales</string>
+    <string name="rs_text2_scene2">Precise bien su dirección</string>
     <string name="nueva_peticion">Nueva petición</string>
+    <string name="rs_text2_scene3">Verifique bien sus acredenciales</string>
+    <string name="rs_text1_scene4">Usted se registrará como:</string>
+    <string name="rs_text1_scene3">Servicio Web</string>
+    <string name="rs_text0_scene4">Verificar</string>
+    <string name="title_creator">Desarrolladores</string>
 </resources>

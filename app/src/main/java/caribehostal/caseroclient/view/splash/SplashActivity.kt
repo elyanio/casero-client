@@ -1,6 +1,5 @@
 package caribehostal.caseroclient.view.splash
 
-
 import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
 import android.app.Activity
 import android.content.Intent
@@ -13,7 +12,7 @@ import android.support.v7.app.AlertDialog
 import android.view.Window
 import caribehostal.caseroclient.MainActivity
 import caribehostal.caseroclient.R
-import caribehostal.caseroclient.view.registerserver.RegisterServerScene1
+import caribehostal.caseroclient.settings.Settings
 import caribehostal.caseroclient.view.registerserver.StageRegisterServer
 import caribehostal.caseroclient.view.tray.REQUEST_WRITE_ES
 import java.util.*
@@ -41,7 +40,12 @@ class SplashActivity : Activity() {
     }
 
     private fun init() {
-        val mainIntent = Intent().setClass(this, StageRegisterServer::class.java)
+        val mainIntent: Intent
+        if (Settings.isSendPetition()) {
+            mainIntent = Intent().setClass(this, MainActivity::class.java)
+        } else {
+            mainIntent = Intent().setClass(this, StageRegisterServer::class.java)
+        }
         startActivity(mainIntent)
         finish()
     }

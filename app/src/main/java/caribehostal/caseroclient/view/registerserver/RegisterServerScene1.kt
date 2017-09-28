@@ -6,7 +6,6 @@ import android.view.View
 import android.widget.Button
 import android.widget.LinearLayout
 import caribehostal.caseroclient.R
-import org.jetbrains.anko.onClick
 
 
 class RegisterServerScene1(context: Context?) : LinearLayout(context) {
@@ -24,8 +23,8 @@ class RegisterServerScene1(context: Context?) : LinearLayout(context) {
         val infladorServicio = Context.LAYOUT_INFLATER_SERVICE
         val asioInflador = context.getSystemService(infladorServicio) as LayoutInflater
         asioInflador.inflate(R.layout.register_server_scene_1, this, true)
-        cancel = findViewById(R.id.bt_scene_1_cancel) as Button
-        next = findViewById(R.id.bt_scene_1_next) as Button
+        cancel = findViewById(R.id.scene_1_bt_cancel) as Button
+        next = findViewById(R.id.scene_1_bt_next) as Button
         cancel!!.setOnClickListener(View.OnClickListener {
             cancelAction()
         })
@@ -35,10 +34,10 @@ class RegisterServerScene1(context: Context?) : LinearLayout(context) {
     }
 
     private fun nextAction() {
-        stage.nextScene1()
+        stage.goScene2()
     }
 
     private fun cancelAction() {
-        stage.cancelAllScene()
+        stage.cancelScene1()
     }
 }
