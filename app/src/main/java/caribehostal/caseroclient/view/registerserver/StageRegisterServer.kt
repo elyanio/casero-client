@@ -9,6 +9,7 @@ import caribehostal.caseroclient.MainActivity
 import caribehostal.caseroclient.R
 import caribehostal.caseroclient.settings.Settings
 import caribehostal.caseroclient.settings.Settings.setSendPetition
+import caribehostal.caseroclient.view.registerclient.RegisterServerScene
 
 
 class StageRegisterServer : AppCompatActivity() {
@@ -20,7 +21,20 @@ class StageRegisterServer : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.register_server_stage)
         containerScene = findViewById(R.id.rs_stage_container) as LinearLayout
+        val restore: Restore? = lastCustomNonConfigurationInstance as Restore?
+        if(restore != null){
+            registerData = restore.registerData
+            when (restore.sceneNumber) {
+                1 -> containerScene!!.addView(RegisterServerScene1(this))
+                2 -> containerScene!!.addView(RegisterServerScene2(this,registerData))
+                3 -> containerScene!!.addView(RegisterServerScene3(this,registerData))
+                4 -> containerScene!!.addView(RegisterServerScene4(this,registerData))
+                5 -> containerScene!!.addView(RegisterServerScene5(this,registerData))
+                else -> containerScene!!.addView(RegisterServerScene1(this))
+            }
+        }
         containerScene!!.addView(RegisterServerScene1(this))
+
     }
 
 
@@ -96,7 +110,7 @@ class StageRegisterServer : AppCompatActivity() {
                 .setPositiveButton("Aceptar") { dialog, which -> acept() }.setNegativeButton("Cancelar") { dialog, which -> }.show()
     }
 
-    fun acept(){
+    fun acept() {
         Settings.setSendPetition(true)
         Settings.setActivation(true)
         val mainIntent = Intent().setClass(this, MainActivity::class.java)
@@ -104,4 +118,13 @@ class StageRegisterServer : AppCompatActivity() {
         finish()
     }
 
+    override fun onRetainCustomNonConfigurationInstance(): Any {
+        val scene = containerScene!!.getChildAt(0) as RegisterServerScene
+        return Restore(registerData, scene.getNumberScene())
+    }
+
+    inner class Restore(data: RegisterData, scene: Int) {
+        val registerData: RegisterData = data
+        val sceneNumber: Int = scene
+    }
 }

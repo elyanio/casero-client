@@ -8,10 +8,11 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.LinearLayout
 import caribehostal.caseroclient.R
+import caribehostal.caseroclient.view.registerclient.RegisterServerScene
 import caribehostal.caseroserver.util.ValideString
 
 
-class RegisterServerScene2(context: Context?, registerData: RegisterData) : LinearLayout(context) {
+class RegisterServerScene2(context: Context?, registerData: RegisterData) : LinearLayout(context), RegisterServerScene {
     private var next: Button? = null
     private var back: Button? = null
     private var layoutName: TextInputLayout? = null
@@ -123,5 +124,9 @@ class RegisterServerScene2(context: Context?, registerData: RegisterData) : Line
         layoutCarnet?.isErrorEnabled = false
         layoutAdress?.isErrorEnabled = false
         layoutReferencie?.isErrorEnabled = false
+    }
+
+    override fun getNumberScene(): Int {
+        return 2
     }
 }

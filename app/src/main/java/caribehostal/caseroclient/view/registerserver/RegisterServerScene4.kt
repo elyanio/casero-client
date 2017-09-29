@@ -7,9 +7,10 @@ import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 import caribehostal.caseroclient.R
+import caribehostal.caseroclient.view.registerclient.RegisterServerScene
 
 
-class RegisterServerScene4(context: Context?, registerData: RegisterData) : LinearLayout(context) {
+class RegisterServerScene4(context: Context?, registerData: RegisterData) : LinearLayout(context), RegisterServerScene {
 
     private var name: TextView? = null
     private var carnet: TextView? = null
@@ -72,5 +73,9 @@ class RegisterServerScene4(context: Context?, registerData: RegisterData) : Line
 
     private fun backAction() {
         stage.backScene3()
+    }
+
+    override fun getNumberScene(): Int {
+        return 4
     }
 }

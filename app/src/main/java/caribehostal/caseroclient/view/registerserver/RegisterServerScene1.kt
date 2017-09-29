@@ -6,9 +6,11 @@ import android.view.View
 import android.widget.Button
 import android.widget.LinearLayout
 import caribehostal.caseroclient.R
+import caribehostal.caseroclient.view.registerclient.RegisterServerScene
 
 
-class RegisterServerScene1(context: Context?) : LinearLayout(context) {
+class RegisterServerScene1(context: Context?) : LinearLayout(context), RegisterServerScene{
+
     private var cancel: Button? = null
     private var next: Button? = null
 
@@ -39,5 +41,9 @@ class RegisterServerScene1(context: Context?) : LinearLayout(context) {
 
     private fun cancelAction() {
         stage.cancelScene1()
+    }
+
+    override fun getNumberScene(): Int {
+        return 1
     }
 }

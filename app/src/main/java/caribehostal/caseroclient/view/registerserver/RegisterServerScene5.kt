@@ -6,9 +6,10 @@ import android.view.View
 import android.widget.Button
 import android.widget.LinearLayout
 import caribehostal.caseroclient.R
+import caribehostal.caseroclient.view.registerclient.RegisterServerScene
 
 
-class RegisterServerScene5(context: Context?, registerData: RegisterData) : LinearLayout(context) {
+class RegisterServerScene5(context: Context?, registerData: RegisterData) : LinearLayout(context), RegisterServerScene {
     private var entendido: Button? = null
 
     private var stage: StageRegisterServer
@@ -42,5 +43,7 @@ class RegisterServerScene5(context: Context?, registerData: RegisterData) : Line
         stage.outRegister()
     }
 
-
+    override fun getNumberScene(): Int {
+        return 5
+    }
 }
