@@ -29,7 +29,7 @@
             android:label="@string/app_name" />
         <activity
             android:name=".view.tray.TrayActivity"
-            android:label="@string/title_message"></activity>
+            android:label="@string/title_message" />
         <activity
             android:name=".view.splash.SplashActivity"
             android:label="@string/app_name"
@@ -43,8 +43,9 @@
         <activity
             android:name=".view.about.AboutActivity"
             android:label="@string/title_activity_about"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".view.registerserver.StageRegisterServer"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".view.registerserver.StageRegisterServer" />
+        <activity android:name=".view.about.PayMethod"></activity>
     </application>
 
 </manifest>

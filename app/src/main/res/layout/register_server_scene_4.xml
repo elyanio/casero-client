@@ -27,7 +27,7 @@
                 android:textSize="35dp" />
 
             <TextView
-                android:id="@+id/scene_4_text_0"
+                android:id="@+id/pay_text_1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/colorPrimary"

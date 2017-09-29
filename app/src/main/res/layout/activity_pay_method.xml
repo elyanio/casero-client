@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view_report="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/pay_text_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:background="@color/colorPrimary"
+                android:ems="10"
+                android:paddingLeft="5dp"
+                android:text="¡Enhorabuena!"
+                android:textColor="@color/white"
+                android:textSize="35dp" />
+
+            <TextView
+                android:id="@+id/pay_text_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/pay_text_1"
+                android:layout_marginBottom="20dp"
+                android:background="@color/colorPrimary"
+                android:ems="10"
+                android:paddingLeft="5dp"
+                android:text="Ya puede reportar sus primeros clientes"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/pay_text_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/pay_text_2"
+                android:background="@color/colorPrimary"
+                android:ems="10"
+                android:paddingLeft="5dp"
+                android:text="Visión"
+                android:textColor="@color/white"
+                android:textSize="25dp" />
+
+            <TextView
+                android:id="@+id/pay_text_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/pay_text_3"
+                android:layout_marginBottom="20dp"
+                android:background="@color/colorPrimary"
+                android:ems="10"
+                android:paddingLeft="5dp"
+                android:text="Crear la comunidad Casero Móvil, con tecnología suficiente para simplificar al máximo su trabajo, incrementar sus ingresos y calidad de su negocio. Todo en un solo sitio “Su Teléfono”."
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/pay_text_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/pay_text_4"
+                android:background="@color/colorPrimary"
+                android:ems="10"
+                android:paddingLeft="5dp"
+                android:text="Método de pago"
+                android:textColor="@color/white"
+                android:textSize="25dp" />
+
+            <TextView
+                android:id="@+id/pay_text_6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/pay_text_5"
+                android:layout_marginBottom="5dp"
+                android:background="@color/colorPrimary"
+                android:ems="10"
+                android:paddingLeft="5dp"
+                android:text="Se cobra un monto fijo por reportes enviados, independientemente del número de clientes que se desea reportar."
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/pay_text_7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/pay_text_6"
+                android:background="@color/colorPrimary"
+                android:ems="10"
+                android:paddingLeft="5dp"
+                android:text="Tanto el método de pago, como la tarifa pueden cambiar, usted siempre será avisado con antelación."
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/pay_text_8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/pay_text_7"
+                android:layout_marginBottom="20dp"
+                android:background="@color/colorPrimary"
+                android:ems="10"
+                android:paddingLeft="5dp"
+                android:text="Tarifa"
+                android:textColor="@color/white" />
+
+        </RelativeLayout>
+    </ScrollView>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:gravity="end"
+        card_view_report:cardCornerRadius="10dp">
+
+        <Button
+            android:id="@+id/bt_scene_4_register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:text="Entendido"
+            android:textColor="@color/white" />
+    </android.support.v7.widget.CardView>
+
+</RelativeLayout>
+
