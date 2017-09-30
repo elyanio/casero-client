@@ -40,7 +40,7 @@ class RegisterServerScene5(context: Context?, registerData: RegisterData) : Line
     }
 
     private fun entendidoAction() {
-        stage.outRegister()
+        stage.finishRegister()
     }
 
     override fun getNumberScene(): Int {

@@ -6,9 +6,10 @@ import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.widget.LinearLayout
 import caribehostal.caseroclient.MainActivity
+import caribehostal.caseroclient.PREFE_PRICE
 import caribehostal.caseroclient.R
 import caribehostal.caseroclient.settings.Settings
-import caribehostal.caseroclient.settings.Settings.setSendPetition
+import caribehostal.caseroclient.view.about.ActivatedMenssage
 import caribehostal.caseroclient.view.registerclient.RegisterServerScene
 
 
@@ -39,10 +40,6 @@ class StageRegisterServer : AppCompatActivity() {
 
 
     // aciones de las scene
-
-    fun cancelAllScene() {
-        outRegister()
-    }
 
     fun backScene1() {
         containerScene!!.removeAllViews()
@@ -86,23 +83,13 @@ class StageRegisterServer : AppCompatActivity() {
 
     fun goScene5() {
         sendREgisterSMS()
-        saveConfigurations()
+        Settings.setSendRegister(true)
         containerScene!!.removeAllViews()
         containerScene!!.addView(RegisterServerScene5(this, registerData))
     }
 
-    private fun saveConfigurations() {
-        setSendPetition(true)
-    }
-
     private fun sendREgisterSMS() {
 
-    }
-
-    fun outRegister() {
-        val mainIntent = Intent().setClass(this, MainActivity::class.java)
-        startActivity(mainIntent)
-        finish()
     }
 
     fun cancelScene1() {
@@ -111,9 +98,10 @@ class StageRegisterServer : AppCompatActivity() {
     }
 
     fun acept() {
-        Settings.setSendPetition(true)
         Settings.setActivation(true)
-        val mainIntent = Intent().setClass(this, MainActivity::class.java)
+        Settings.setSendRegister(true)
+        val mainIntent = Intent().setClass(this, ActivatedMenssage::class.java)
+        mainIntent.putExtra(PREFE_PRICE,Settings.getPrice())
         startActivity(mainIntent)
         finish()
     }
@@ -126,5 +114,10 @@ class StageRegisterServer : AppCompatActivity() {
     inner class Restore(data: RegisterData, scene: Int) {
         val registerData: RegisterData = data
         val sceneNumber: Int = scene
+    }
+
+    fun finishRegister() {
+        startActivity(Intent(this, MainActivity::class.java))
+        finish()
     }
 }

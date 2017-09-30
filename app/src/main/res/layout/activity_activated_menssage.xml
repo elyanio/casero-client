@@ -73,7 +73,7 @@
                 android:background="@color/colorPrimary"
                 android:ems="10"
                 android:paddingLeft="5dp"
-                android:text="Crear la comunidad Casero Móvil, con tecnología suficiente para simplificar al máximo su trabajo, incrementar sus ingresos y calidad de su negocio. Todo en un solo sitio “Su Teléfono”."
+                android:text="Crear la comunidad Casero Móvil, con tecnología suficiente para simplificar al máximo su trabajo, incrementar sus ingresos y calidad de su negocio. Todo desde “Su Teléfono”."
                 android:textColor="@color/white" />
 
             <TextView
@@ -154,7 +154,7 @@
         card_view_report:cardCornerRadius="10dp">
 
         <Button
-            android:id="@+id/bt_scene_4_register"
+            android:id="@+id/pay_method_bt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary"

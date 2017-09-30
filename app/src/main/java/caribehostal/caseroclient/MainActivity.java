@@ -39,9 +39,7 @@ public class MainActivity extends AppCompatActivity {
         if (Settings.isActivated()) {
             startActivity(new Intent(this, TrayActivity.class));
         } else {
-            if (Settings.isSendPetition()) {
                 Toast.makeText(this, "Por favor espere respuesta de nuestro servidor", Toast.LENGTH_SHORT).show();
-            }
         }
     }
 
@@ -50,9 +48,7 @@ public class MainActivity extends AppCompatActivity {
         if (Settings.isActivated()) {
             startActivity(new Intent(this, RegisterClientController.class));
         } else {
-            if (Settings.isSendPetition()) {
                 Toast.makeText(this, "Por favor espere respuesta de nuestro servidor", Toast.LENGTH_SHORT).show();
-            }
         }
     }
 

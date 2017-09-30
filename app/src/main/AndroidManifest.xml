@@ -45,7 +45,7 @@
             android:label="@string/title_activity_about"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".view.registerserver.StageRegisterServer" />
-        <activity android:name=".view.about.PayMethod"></activity>
+        <activity android:name=".view.about.ActivatedMenssage"></activity>
     </application>
 
 </manifest>

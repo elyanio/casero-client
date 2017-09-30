@@ -11,8 +11,10 @@ import android.support.v4.content.ContextCompat
 import android.support.v7.app.AlertDialog
 import android.view.Window
 import caribehostal.caseroclient.MainActivity
+import caribehostal.caseroclient.PREFE_PRICE
 import caribehostal.caseroclient.R
 import caribehostal.caseroclient.settings.Settings
+import caribehostal.caseroclient.view.about.ActivatedMenssage
 import caribehostal.caseroclient.view.registerserver.StageRegisterServer
 import caribehostal.caseroclient.view.tray.REQUEST_WRITE_ES
 import java.util.*
@@ -41,10 +43,20 @@ class SplashActivity : Activity() {
 
     private fun init() {
         val mainIntent: Intent
-        if (Settings.isSendPetition()) {
-            mainIntent = Intent().setClass(this, MainActivity::class.java)
+        if (Settings.isActivated()) {
+            if (Settings.isPayMethodAcepted()) {
+                mainIntent = Intent().setClass(this, MainActivity::class.java)
+            } else {
+                mainIntent = Intent().setClass(this, ActivatedMenssage::class.java)
+                mainIntent.putExtra(PREFE_PRICE,Settings.getPrice())
+            }
         } else {
-            mainIntent = Intent().setClass(this, StageRegisterServer::class.java)
+            if (Settings.isSendRegister()) {
+                mainIntent = Intent().setClass(this, MainActivity::class.java)
+            } else {
+                mainIntent = Intent().setClass(this, StageRegisterServer::class.java)
+            }
+
         }
         startActivity(mainIntent)
         finish()
