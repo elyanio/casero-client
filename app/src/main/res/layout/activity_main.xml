@@ -43,7 +43,7 @@
                     android:layout_below="@+id/image_view_action"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="2dp"
-                    android:text="@string/title_peticiones"/>
+                    android:text="@string/title_menssage"/>
 
             </RelativeLayout>
 
@@ -80,7 +80,7 @@
                     android:layout_below="@+id/image_view_owner"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="2dp"
-                    android:text="@string/nueva_peticion"/>
+                    android:text="@string/new_register"/>
             </RelativeLayout>
         </android.support.v7.widget.CardView>
 
@@ -157,7 +157,7 @@
                     android:layout_below="@+id/image_view_settings"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="2dp"
-                    android:text="Contactos"/>
+                    android:text="Forma de pago"/>
             </RelativeLayout>
         </android.support.v7.widget.CardView>
 
@@ -166,38 +166,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
-        <android.support.v7.widget.CardView
-            android:id="@+id/card_view_register"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:layout_weight="1"
-            card_view_report:cardCornerRadius="10dp"
-            >
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="10dp">
-
-                <ImageView
-                    android:id="@+id/image_view_register"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    />
-
-                <TextView
-                    android:id="@+id/text_view_settings"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/image_view_register"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="2dp"
-                    android:text="Configuración"/>
-            </RelativeLayout>
-        </android.support.v7.widget.CardView>
 
     </LinearLayout>
 

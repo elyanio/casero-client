@@ -30,14 +30,14 @@
     <string name="text_action_finished">Confirmada</string>
     <string name="msg_close_app_due_permissions">La aplicación deberá cerrarse por no contar con los permisos necesarios para funcionar correctamente.</string>
     <string name="title_message">Historial de registros</string>
-    <string name="title_peticiones">Peticiones</string>
+    <string name="title_menssage">Mensajes</string>
     <string name="rs_text1_scene1">¡Fantástico!</string>
     <string name="rs_text2_scene1">Ha instalado Casero Móvil</string>
     <string name="rs_text3_scene1">Iniciemos el registro en nuestro sistema</string>
     <string name="scene_2_text_1">¡Preséntese!</string>
     <string name="scene_2_text_2">Sus datos son confidenciales</string>
     <string name="rs_text2_scene2">Precise bien su dirección</string>
-    <string name="nueva_peticion">Nueva petición</string>
+    <string name="new_register">Registrar</string>
     <string name="rs_text2_scene3">Verifique bien sus acredenciales</string>
     <string name="rs_text1_scene4">Usted se registrará como:</string>
     <string name="rs_text1_scene3">Servicio Web</string>
