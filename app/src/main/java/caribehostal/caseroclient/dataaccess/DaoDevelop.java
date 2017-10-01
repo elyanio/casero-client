@@ -12,10 +12,10 @@ import io.requery.sql.EntityDataStore;
  * Created by asio on 8/17/2017.
  */
 
-public class DaoDevelops {
+public class DaoDevelop {
     private EntityDataStore<Persistable> dataStore;
 
-    public DaoDevelops() {
+    public DaoDevelop() {
         dataStore = DataStoreHolder.INSTANCE.getDataStore();
     }
 

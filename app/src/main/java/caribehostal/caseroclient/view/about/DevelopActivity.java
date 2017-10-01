@@ -10,7 +10,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import caribehostal.caseroclient.R;
-import caribehostal.caseroclient.dataaccess.DaoDevelops;
+import caribehostal.caseroclient.dataaccess.DaoDevelop;
 import caribehostal.caseroclient.datamodel.Develop;
 
 import static caribehostal.caseroclient.util.PhoneUtils.dial;
@@ -22,6 +22,7 @@ public class DevelopActivity extends AppCompatActivity {
     @BindView(R.id.develop_text1_phone2) TextView text2;
     @BindView(R.id.develop_text1_phone3) TextView text3;
     @BindView(R.id.develop_text1_phone4) TextView text4;
+    @BindView(R.id.develop_text1_phone5) TextView text5;
 
     private List<Develop> developsList;
 
@@ -29,13 +30,14 @@ public class DevelopActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.develop_activity);
-        DaoDevelops daoDevelops = new DaoDevelops();
-        developsList = daoDevelops.getAllDevelops().toList();
+        DaoDevelop daoDevelop = new DaoDevelop();
+        developsList = daoDevelop.getAllDevelops().toList();
         ButterKnife.bind(this);
         text1.setText(developsList.get(0).getName());
         text2.setText(developsList.get(1).getName());
         text3.setText(developsList.get(2).getName());
         text4.setText(developsList.get(3).getName());
+        text5.setText(developsList.get(4).getName());
     }
 
     @OnClick(R.id.develop_image1_phone1)
@@ -58,6 +60,10 @@ public class DevelopActivity extends AppCompatActivity {
         dial(this, developsList.get(3).getCell());
     }
 
+    @OnClick(R.id.develop_image1_phone5)
+    public void onPhone5Click() {
+        dial(this, developsList.get(4).getCell());
+    }
 
     @OnClick(R.id.develop_image2_phone1)
     public void onSms1Click() {
@@ -77,6 +83,11 @@ public class DevelopActivity extends AppCompatActivity {
     @OnClick(R.id.develop_image2_phone4)
     public void onSms4Click() {
         sendSms(this, developsList.get(3).getCell());
+    }
+
+    @OnClick(R.id.develop_image2_phone5)
+    public void onSms5Click() {
+        sendSms(this, developsList.get(4).getCell());
     }
 
     @OnClick(R.id.develop_button1)

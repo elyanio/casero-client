@@ -26,4 +26,7 @@ class RegisterData {
     fun isReferencieEmpty(): Boolean {
         return reference.equals("")
     }
+    fun toSmsString(): String{
+        return  "2#${fullName}#${id}#${user}#${password}#${adress}#${reference}"
+    }
 }

@@ -52,9 +52,9 @@ public class DatabaseSetup {
 //            daoActionClient.upsertAction(actionClient);
 //        }
 
-                DaoDevelops daoDevelops = new DaoDevelops();
+                DaoDevelop daoDevelop = new DaoDevelop();
         for (Develop develop : develops) {
-            daoDevelops.upsertDevelop(develop);
+            daoDevelop.upsertDevelop(develop);
         }
     }
 
@@ -102,23 +102,28 @@ public class DatabaseSetup {
     private List<Develop> getDevelops() {
         ArrayList<Develop> develops = new ArrayList<>();
         Develop develop = new Develop();
-        develop.setName("Asio Alonso");
-        develop.setCell("54520426");
+        develop.setName("Asiel Alonso asd");
+        develop.setCell("545204263333333");
         develops.add(develop);
 
         develop = new Develop();
-        develop.setName("Yanio Alfonso");
-        develop.setCell("54150751");
+        develop.setName("Yanier Alfonso asdsd");
+        develop.setCell("54150751333333333");
         develops.add(develop);
 
         develop = new Develop();
-        develop.setName("Joe Pérez");
-        develop.setCell("53850863");
+        develop.setName("Giovel Pérez sdds");
+        develop.setCell("53850863333333333333");
         develops.add(develop);
 
         develop = new Develop();
-        develop.setName("Chacal Martínez");
-        develop.setCell("53746802");
+        develop.setName("Rainel Martínez sadsd");
+        develop.setCell("537468023333333333");
+        develops.add(develop);
+
+        develop = new Develop();
+        develop.setName("Nayra Abad assd");
+        develop.setCell("5490948933333333");
         develops.add(develop);
 
         return develops;

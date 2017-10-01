@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.support.v4.app.TaskStackBuilder;
 import android.support.v7.app.NotificationCompat;
 
+import caribehostal.caseroclient.datamodel.Action;
 import caribehostal.caseroclient.view.tray.TrayActivity;
 
 /**
@@ -16,7 +17,7 @@ import caribehostal.caseroclient.view.tray.TrayActivity;
  */
 public class NotificationBar {
 
-    public void createNotification(Context context_emisor, int id_notification, String title, String text, String bigText) {
+    public void createNotification(Context context_emisor, int id_notification, String title, String text, String bigText, Class goal) {
 
         long[] pattern = new long[]{0, 2000, 0};
         Uri defaultSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
@@ -30,9 +31,9 @@ public class NotificationBar {
                 .setStyle(new NotificationCompat.BigTextStyle().bigText(bigText))
                 .setVibrate(pattern);
 
-        Intent resultIntent = new Intent(context_emisor, TrayActivity.class);
+        Intent resultIntent = new Intent(context_emisor, goal);
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(context_emisor);
-        stackBuilder.addParentStack(TrayActivity.class);
+        stackBuilder.addParentStack(goal);
         stackBuilder.addNextIntent(resultIntent);
         PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
         mBuilder.setContentIntent(resultPendingIntent);
@@ -40,4 +41,9 @@ public class NotificationBar {
 
         mNotificationManager.notify(id_notification, mBuilder.build());
     }
+
+//    private void notifyAction(Action action, Context context) {
+//        NotificationBar notificationBar = new NotificationBar();
+//        notificationBar.createNotification(context, action.getId(), "Registro completado", "", action.makeBigTextNotification())
+//    }
 }
