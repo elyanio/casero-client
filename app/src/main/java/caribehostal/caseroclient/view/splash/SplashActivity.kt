@@ -11,7 +11,6 @@ import android.support.v4.content.ContextCompat
 import android.support.v7.app.AlertDialog
 import android.view.Window
 import caribehostal.caseroclient.MainActivity
-import caribehostal.caseroclient.PREFE_PRICE
 import caribehostal.caseroclient.R
 import caribehostal.caseroclient.settings.Settings
 import caribehostal.caseroclient.view.about.ActivatedMenssage

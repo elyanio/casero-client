@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import caribehostal.caseroclient.MainActivity
-import caribehostal.caseroclient.PREFE_PRICE
 
 import caribehostal.caseroclient.R
 import caribehostal.caseroclient.settings.Settings

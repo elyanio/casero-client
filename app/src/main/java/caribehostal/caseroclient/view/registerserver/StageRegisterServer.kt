@@ -4,13 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import android.widget.LinearLayout
 import caribehostal.caseroclient.MainActivity
-import caribehostal.caseroclient.PREFE_PRICE
 import caribehostal.caseroclient.R
-import caribehostal.caseroclient.SPLIT_SYMBOL
-import caribehostal.caseroclient.notifications.NotificationBar
 import caribehostal.caseroclient.settings.Settings
 import caribehostal.caseroclient.view.about.ActivatedMenssage
 import caribehostal.caseroclient.view.registerclient.RegisterServerScene
