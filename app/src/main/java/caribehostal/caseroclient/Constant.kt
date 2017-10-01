@@ -10,6 +10,6 @@ import java.util.concurrent.atomic.AtomicBoolean
 @JvmField val SPLIT_SYMBOL: String = "#"
 @JvmField val SHOULD_UPDATE: AtomicBoolean = AtomicBoolean()
 @JvmField val PREFE_APK_ACTIVATED: String = "PREFE_APK_ACTIVATED"
-@JvmField val PREFE_PAY_AND_VISION_ACEPTED: String = "PREFE_PAY_AND_VISION_ACEPTED"
+@JvmField val PREFE_TERMINUS_ACEPTED: String = "PREFE_TERMINUS_ACEPTED"
 @JvmField val PREFE_SEND_SMS_REGISTER: String = "PREFE_SEND_SMS_REGISTER"
 @JvmField val PREFE_PRICE_CURRENT: String = "PREFE_PRICE_CURRENT"

@@ -10,11 +10,11 @@ import caribehostal.caseroclient.MainActivity
 import caribehostal.caseroclient.R
 import caribehostal.caseroclient.settings.Settings
 
-class ActivatedMenssage : AppCompatActivity() {
+class TerminusActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_activated_menssage)
+        setContentView(R.layout.terminus_ativity)
         var priceText = findViewById(R.id.pay_text_8) as TextView
         val intent = intent
         val price = Settings.getCurrentPrice()
