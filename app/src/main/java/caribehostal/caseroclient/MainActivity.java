@@ -10,8 +10,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import caribehostal.caseroclient.controllers.RegisterClientController;
+import caribehostal.caseroclient.dataaccess.DatabaseSetup;
 import caribehostal.caseroclient.settings.Settings;
 import caribehostal.caseroclient.view.about.AboutActivity;
+import caribehostal.caseroclient.view.about.DevelopActivity;
 import caribehostal.caseroclient.view.tray.TrayActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -30,8 +32,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-//        DatabaseSetup databaseSetup = new DatabaseSetup();
-//        databaseSetup.mockDatabase();
+        DatabaseSetup databaseSetup = new DatabaseSetup();
+        databaseSetup.mockDatabase();
     }
 
     @OnClick(R.id.card_view_show_message)
@@ -54,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
 
     @OnClick(R.id.card_view_show_pay_contacts)
     void showCreatorView() {
-
+        startActivity(new Intent(this, DevelopActivity.class));
     }
 
     @OnClick(R.id.card_view_contacts)

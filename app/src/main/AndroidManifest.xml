@@ -31,6 +31,9 @@
             android:name=".view.tray.TrayActivity"
             android:label="@string/title_message" />
         <activity
+            android:name=".view.about.DevelopActivity"
+            android:label="@string/title_develop" />
+        <activity
             android:name=".view.splash.SplashActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">

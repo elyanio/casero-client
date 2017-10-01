@@ -29,7 +29,7 @@
     <string name="text_action_pending">Pendiente</string>
     <string name="text_action_finished">Confirmada</string>
     <string name="msg_close_app_due_permissions">La aplicación deberá cerrarse por no contar con los permisos necesarios para funcionar correctamente.</string>
-    <string name="title_message">Historial de peticiones</string>
+    <string name="title_message">Historial de registros</string>
     <string name="title_peticiones">Peticiones</string>
     <string name="rs_text1_scene1">¡Fantástico!</string>
     <string name="rs_text2_scene1">Ha instalado Casero Móvil</string>
@@ -43,4 +43,5 @@
     <string name="rs_text1_scene3">Servicio Web</string>
     <string name="rs_text0_scene4">Verificar</string>
     <string name="title_creator">Desarrolladores</string>
+    <string name="title_develop">Desarrolladores</string>
 </resources>

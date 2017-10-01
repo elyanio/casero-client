@@ -12,6 +12,7 @@ import caribehostal.caseroclient.datamodel.ActionClient;
 import caribehostal.caseroclient.datamodel.ActionState;
 import caribehostal.caseroclient.datamodel.ActionType;
 import caribehostal.caseroclient.datamodel.Client;
+import caribehostal.caseroclient.datamodel.Develop;
 
 /* This class is automatically generated. Do not modify it. */
 public class DatabaseSetup {
@@ -32,22 +33,28 @@ public class DatabaseSetup {
 
     public void mockDatabase() {
         cleanDatabase();
+        List<Develop> develops = getDevelops();
 //        List<Owner> owners = getOwners();
-        List<Client> clients = getClients();
-        List<Action> actions = getActions();
-        List<ActionClient> actionClients = getActionClients(actions, clients);
+//        List<Client> clients = getClients();
+//        List<Action> actions = getActions();
+//        List<ActionClient> actionClients = getActionClients(actions, clients);
 
-        DaoClient daoClient = new DaoClient();
-        for (Client client : clients) {
-            daoClient.upsertClient(client);
-        }
-        DaoAction daoAction = new DaoAction();
-        for (Action action : actions) {
-            daoAction.upsertAction(action);
-        }
-        DaoActionClient daoActionClient = new DaoActionClient();
-        for (ActionClient actionClient : actionClients) {
-            daoActionClient.upsertAction(actionClient);
+//        DaoClient daoClient = new DaoClient();
+//        for (Client client : clients) {
+//            daoClient.upsertClient(client);
+//        }
+//        DaoAction daoAction = new DaoAction();
+//        for (Action action : actions) {
+//            daoAction.upsertAction(action);
+//        }
+//        DaoActionClient daoActionClient = new DaoActionClient();
+//        for (ActionClient actionClient : actionClients) {
+//            daoActionClient.upsertAction(actionClient);
+//        }
+
+                DaoDevelops daoDevelops = new DaoDevelops();
+        for (Develop develop : develops) {
+            daoDevelops.upsertDevelop(develop);
         }
     }
 
@@ -90,5 +97,30 @@ public class DatabaseSetup {
             }
         }
         return actionClients;
+    }
+
+    private List<Develop> getDevelops() {
+        ArrayList<Develop> develops = new ArrayList<>();
+        Develop develop = new Develop();
+        develop.setName("Asio Alonso");
+        develop.setCell("54520426");
+        develops.add(develop);
+
+        develop = new Develop();
+        develop.setName("Yanio Alfonso");
+        develop.setCell("54150751");
+        develops.add(develop);
+
+        develop = new Develop();
+        develop.setName("Joe Pérez");
+        develop.setCell("53850863");
+        develops.add(develop);
+
+        develop = new Develop();
+        develop.setName("Chacal Martínez");
+        develop.setCell("53746802");
+        develops.add(develop);
+
+        return develops;
     }
 }

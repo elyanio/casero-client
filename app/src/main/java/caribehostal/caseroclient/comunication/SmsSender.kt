@@ -19,4 +19,8 @@ class SmsSender {
     fun sendSms(action: Action) {
         enviarMensaje(NUMBER_CELL, action.toSmsString())
     }
+
+//    fun sendSms() {
+//        smsManager.sendMultipartTextMessage()
+//    }
 }
