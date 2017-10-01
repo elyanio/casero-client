@@ -149,6 +149,7 @@ class SmsReceiver : BroadcastReceiver() {
     private fun processSmsRegisterServerFail(messageBody: String, context: Context?) {
         Settings.setRegisterServerSend(false)
         Settings.setApkActivation(false)
+        Settings.setPayAndVisionAcepted(false)
         val notificationBar = NotificationBar()
         notificationBar.createNotification(context, -1, "Error en registrarse", "", createSmsRegisterFail(messageBody), StageRegisterServer::class.java)
     }

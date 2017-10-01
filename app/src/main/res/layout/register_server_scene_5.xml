@@ -35,7 +35,7 @@
                 android:layout_marginBottom="20dp"
                 android:ems="10"
                 android:paddingLeft="5dp"
-                android:text="En unos minutos un sms le informará cuando puede comenzar con el servicio y cual es el método de pago actual"
+                android:text="En unos minutos un sms le informará cuando puede comenzar con el servicio y cual es la forma de pago actual"
                 android:textColor="@color/white"
                 android:textSize="15dp" />
 

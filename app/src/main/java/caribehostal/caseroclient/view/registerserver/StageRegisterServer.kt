@@ -82,7 +82,7 @@ class StageRegisterServer : AppCompatActivity() {
     }
 
     fun goScene5() {
-//        sendREgisterSMS()
+        sendREgisterSMS()
         Settings.setRegisterServerSend(true)
         containerScene!!.removeAllViews()
         containerScene!!.addView(RegisterServerScene5(this, registerData))
