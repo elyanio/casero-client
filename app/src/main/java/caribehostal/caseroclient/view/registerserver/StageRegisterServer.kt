@@ -106,7 +106,6 @@ class StageRegisterServer : AppCompatActivity() {
         Settings.setActivation(true)
         Settings.setSendRegister(true)
         val mainIntent = Intent().setClass(this, ActivatedMenssage::class.java)
-        mainIntent.putExtra(PREFE_PRICE,Settings.getPrice())
         startActivity(mainIntent)
         finish()
     }

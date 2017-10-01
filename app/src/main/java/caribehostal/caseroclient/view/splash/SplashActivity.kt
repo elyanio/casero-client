@@ -48,7 +48,6 @@ class SplashActivity : Activity() {
                 mainIntent = Intent().setClass(this, MainActivity::class.java)
             } else {
                 mainIntent = Intent().setClass(this, ActivatedMenssage::class.java)
-                mainIntent.putExtra(PREFE_PRICE,Settings.getPrice())
             }
         } else {
             if (Settings.isSendRegister()) {
