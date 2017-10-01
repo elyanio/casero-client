@@ -5,7 +5,7 @@ import caribehostal.caseroclient.dataaccess.DaoActionClient
 fun Action.toSmsString(): String {
 //    codigopeticion#tipoaction#pasapoes#checkin#checkout
     val daoActionClient = DaoActionClient()
-    var sms: String  =  "${this.id}#${ActionTypeConverter().convertToPersisted(this.actionType)}"
+    var sms: String  =  "1#${this.id}#${ActionTypeConverter().convertToPersisted(this.actionType)}"
     for (client in daoActionClient.getClients(this)) {
         sms = "$sms#${client.passport}"
 //        Log.e("kkkkkkkkk   ", client.passport)
