@@ -83,7 +83,7 @@ class StageRegisterServer : AppCompatActivity() {
 
     fun goScene5() {
 //        sendREgisterSMS()
-        Settings.setSendRegister(true)
+        Settings.setRegisterServerSend(true)
         containerScene!!.removeAllViews()
         containerScene!!.addView(RegisterServerScene5(this, registerData))
     }
@@ -99,8 +99,8 @@ class StageRegisterServer : AppCompatActivity() {
     }
 
     fun acept() {
-        Settings.setActivation(true)
-        Settings.setSendRegister(true)
+        Settings.setApkActivation(true)
+        Settings.setRegisterServerSend(true)
         val mainIntent = Intent().setClass(this, ActivatedMenssage::class.java)
         startActivity(mainIntent)
         finish()

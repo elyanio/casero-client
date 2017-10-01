@@ -42,14 +42,14 @@ class SplashActivity : Activity() {
 
     private fun init() {
         val mainIntent: Intent
-        if (Settings.isActivated()) {
-            if (Settings.isPayMethodAcepted()) {
+        if (Settings.isApkActivated()) {
+            if (Settings.isPayAndVisionAcepted()) {
                 mainIntent = Intent().setClass(this, MainActivity::class.java)
             } else {
                 mainIntent = Intent().setClass(this, ActivatedMenssage::class.java)
             }
         } else {
-            if (Settings.isSendRegister()) {
+            if (Settings.isRegisterServerSend()) {
                 mainIntent = Intent().setClass(this, MainActivity::class.java)
             } else {
                 mainIntent = Intent().setClass(this, StageRegisterServer::class.java)

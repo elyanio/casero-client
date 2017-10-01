@@ -17,7 +17,7 @@ class ActivatedMenssage : AppCompatActivity() {
         setContentView(R.layout.activity_activated_menssage)
         var priceText = findViewById(R.id.pay_text_8) as TextView
         val intent = intent
-        val price = Settings.getPrice()
+        val price = Settings.getCurrentPrice()
         if(price.equals("-1")){
             priceText.text = "Usted debe conocer la tarifa actual si ya estaba registrado"
         }else{
@@ -26,7 +26,7 @@ class ActivatedMenssage : AppCompatActivity() {
 
         var entendido = findViewById(R.id.pay_method_bt) as Button
         entendido.setOnClickListener {
-            Settings.setPayMethodAcepted(true)
+            Settings.setPayAndVisionAcepted(true)
             startActivity(Intent(this, MainActivity::class.java))
         }
     }

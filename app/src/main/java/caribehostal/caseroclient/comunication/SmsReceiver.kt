@@ -1,6 +1,5 @@
 package caribehostal.caseroclient.comunication
 
-import android.app.ActivityManager
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
@@ -131,14 +130,14 @@ class SmsReceiver : BroadcastReceiver() {
     private fun processSmsRegisterServerOK(messageBody: String, context: Context?) {
         val daoDevelop = DaoDevelop()
         val fields = messageBody.split(SPLIT_SYMBOL)
-        Settings.setPrice(fields.get(1))
+        Settings.setCurrentPrice(fields.get(1))
         var index = 2
         daoDevelop.removeAllDevelop(daoDevelop.allDevelops.toList())
         while (index < fields.size) {
             daoDevelop.upsertDevelop(Develop().setCell(fields.get(index)).setName(fields.get(index)))
             index++
         }
-        Settings.setActivation(true)
+        Settings.setApkActivation(true)
         notifyRegiserServerOk(context)
     }
 
@@ -148,8 +147,8 @@ class SmsReceiver : BroadcastReceiver() {
     }
 
     private fun processSmsRegisterServerFail(messageBody: String, context: Context?) {
-        Settings.setSendRegister(false)
-        Settings.setActivation(false)
+        Settings.setRegisterServerSend(false)
+        Settings.setApkActivation(false)
         val notificationBar = NotificationBar()
         notificationBar.createNotification(context, -1, "Error en registrarse", "", createSmsRegisterFail(messageBody), StageRegisterServer::class.java)
     }

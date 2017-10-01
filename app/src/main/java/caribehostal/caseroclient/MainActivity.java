@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
     @OnClick(R.id.card_view_show_message)
     void showOwnerView() {
-        if (Settings.isActivated()) {
+        if (Settings.isApkActivated()) {
             startActivity(new Intent(this, TrayActivity.class));
         } else {
                 Toast.makeText(this, "Por favor espere respuesta de nuestro servidor", Toast.LENGTH_SHORT).show();
@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
     @OnClick(R.id.card_view_new_petitions)
     void showRegisterView() {
-        if (Settings.isActivated()) {
+        if (Settings.isApkActivated()) {
             startActivity(new Intent(this, RegisterClientController.class));
         } else {
                 Toast.makeText(this, "Por favor espere respuesta de nuestro servidor", Toast.LENGTH_SHORT).show();
