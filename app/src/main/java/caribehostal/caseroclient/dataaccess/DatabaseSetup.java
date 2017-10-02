@@ -32,7 +32,7 @@ public class DatabaseSetup {
     }
 
     public void mockDatabase() {
-        cleanDatabase();
+//        cleanDatabase();
         List<Develop> develops = getDevelops();
 //        List<Owner> owners = getOwners();
 //        List<Client> clients = getClients();

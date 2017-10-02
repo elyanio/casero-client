@@ -15,7 +15,7 @@ class TerminusActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.terminus_ativity)
-        var priceText = findViewById(R.id.pay_text_8) as TextView
+        var priceText = findViewById(R.id.pay_text_9) as TextView
         val intent = intent
         val price = Settings.getCurrentPrice()
         if(price.equals("-1")){
