@@ -10,6 +10,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import caribehostal.caseroclient.controllers.RegisterClientController;
+import caribehostal.caseroclient.dataaccess.DaoDevelop;
 import caribehostal.caseroclient.dataaccess.DatabaseSetup;
 import caribehostal.caseroclient.settings.Settings;
 import caribehostal.caseroclient.view.about.AboutActivity;

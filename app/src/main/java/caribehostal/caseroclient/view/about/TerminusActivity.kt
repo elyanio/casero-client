@@ -30,4 +30,6 @@ class TerminusActivity : AppCompatActivity() {
             startActivity(Intent(this, MainActivity::class.java))
         }
     }
+
+
 }

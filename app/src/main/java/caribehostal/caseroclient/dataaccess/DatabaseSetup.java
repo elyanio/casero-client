@@ -33,7 +33,14 @@ public class DatabaseSetup {
 
     public void mockDatabase() {
 //        cleanDatabase();
-        List<Develop> develops = getDevelops();
+        DaoDevelop daoDevelop = new DaoDevelop();
+
+        if (daoDevelop.getAllDevelops().toList().isEmpty()) {
+            List<Develop> develops = getDevelops();
+            for (Develop develop : develops) {
+                daoDevelop.upsertDevelop(develop);
+            }
+        }
 //        List<Owner> owners = getOwners();
 //        List<Client> clients = getClients();
 //        List<Action> actions = getActions();
@@ -52,10 +59,6 @@ public class DatabaseSetup {
 //            daoActionClient.upsertAction(actionClient);
 //        }
 
-                DaoDevelop daoDevelop = new DaoDevelop();
-        for (Develop develop : develops) {
-            daoDevelop.upsertDevelop(develop);
-        }
     }
 
 
