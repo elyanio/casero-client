@@ -10,7 +10,7 @@ import caribehostal.caseroclient.MainActivity
 import caribehostal.caseroclient.R
 import caribehostal.caseroclient.settings.Settings
 
-class TerminusActivity : AppCompatActivity() {
+class TermsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,7 +26,7 @@ class TerminusActivity : AppCompatActivity() {
 
         var entendido = findViewById(R.id.pay_method_bt) as Button
         entendido.setOnClickListener {
-            Settings.setPayAndVisionAcepted(true)
+            Settings.setTermsAcepted(true)
             startActivity(Intent(this, MainActivity::class.java))
         }
     }

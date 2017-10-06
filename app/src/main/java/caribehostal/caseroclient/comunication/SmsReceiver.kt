@@ -13,7 +13,7 @@ import caribehostal.caseroclient.dataaccess.DaoDevelop
 import caribehostal.caseroclient.datamodel.*
 import caribehostal.caseroclient.notifications.NotificationBar
 import caribehostal.caseroclient.settings.Settings
-import caribehostal.caseroclient.view.about.TerminusActivity
+import caribehostal.caseroclient.view.about.TermsActivity
 import caribehostal.caseroclient.view.registerserver.StageRegisterServer
 import caribehostal.caseroclient.view.tray.TrayActivity
 import org.threeten.bp.LocalDateTime
@@ -143,13 +143,13 @@ class SmsReceiver : BroadcastReceiver() {
 
     private fun notifyRegiserServerOk(context: Context?) {
         val notificationBar = NotificationBar()
-        notificationBar.createNotification(context, -1, "¡Enhorabuena!", "", "Ya puede comenzar a usar nuestros servicios", TerminusActivity::class.java)
+        notificationBar.createNotification(context, -1, "¡Enhorabuena!", "", "Ya puede comenzar a usar nuestros servicios", TermsActivity::class.java)
     }
 
     private fun processSmsRegisterServerFail(messageBody: String, context: Context?) {
         Settings.setRegisterServerSend(false)
         Settings.setApkActivation(false)
-        Settings.setPayAndVisionAcepted(false)
+        Settings.setTermsAcepted(false)
         val notificationBar = NotificationBar()
         notificationBar.createNotification(context, -1, "Error en registrarse", "", createSmsRegisterFail(messageBody), StageRegisterServer::class.java)
     }

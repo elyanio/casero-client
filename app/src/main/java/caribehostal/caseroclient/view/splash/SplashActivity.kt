@@ -13,7 +13,7 @@ import android.view.Window
 import caribehostal.caseroclient.MainActivity
 import caribehostal.caseroclient.R
 import caribehostal.caseroclient.settings.Settings
-import caribehostal.caseroclient.view.about.TerminusActivity
+import caribehostal.caseroclient.view.about.TermsActivity
 import caribehostal.caseroclient.view.registerserver.StageRegisterServer
 import caribehostal.caseroclient.view.tray.REQUEST_WRITE_ES
 import java.util.*
@@ -43,10 +43,10 @@ class SplashActivity : Activity() {
     private fun init() {
         val mainIntent: Intent
         if (Settings.isApkActivated()) {
-            if (Settings.isPayAndVisionAcepted()) {
+            if (Settings.isTermsAcepted()) {
                 mainIntent = Intent().setClass(this, MainActivity::class.java)
             } else {
-                mainIntent = Intent().setClass(this, TerminusActivity::class.java)
+                mainIntent = Intent().setClass(this, TermsActivity::class.java)
             }
         } else {
             if (Settings.isRegisterServerSend()) {

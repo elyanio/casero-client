@@ -8,7 +8,7 @@ import android.widget.LinearLayout
 import caribehostal.caseroclient.MainActivity
 import caribehostal.caseroclient.R
 import caribehostal.caseroclient.settings.Settings
-import caribehostal.caseroclient.view.about.TerminusActivity
+import caribehostal.caseroclient.view.about.TermsActivity
 import caribehostal.caseroclient.view.registerclient.RegisterServerScene
 import caribehostal.caseroserver.comunication.SmsSender
 
@@ -101,7 +101,7 @@ class StageRegisterServer : AppCompatActivity() {
     fun acept() {
         Settings.setApkActivation(true)
         Settings.setRegisterServerSend(true)
-        val mainIntent = Intent().setClass(this, TerminusActivity::class.java)
+        val mainIntent = Intent().setClass(this, TermsActivity::class.java)
         startActivity(mainIntent)
         finish()
     }

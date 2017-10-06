@@ -10,11 +10,11 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import caribehostal.caseroclient.controllers.RegisterClientController;
-import caribehostal.caseroclient.dataaccess.DaoDevelop;
 import caribehostal.caseroclient.dataaccess.DatabaseSetup;
 import caribehostal.caseroclient.settings.Settings;
 import caribehostal.caseroclient.view.about.AboutActivity;
 import caribehostal.caseroclient.view.about.DevelopActivity;
+import caribehostal.caseroclient.view.about.TermsActivity;
 import caribehostal.caseroclient.view.tray.TrayActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -40,18 +40,26 @@ public class MainActivity extends AppCompatActivity {
     @OnClick(R.id.card_view_show_message)
     void showOwnerView() {
         if (Settings.isApkActivated()) {
-            startActivity(new Intent(this, TrayActivity.class));
+            if (Settings.isTermsAcepted()) {
+                startActivity(new Intent(this, TrayActivity.class));
+            } else {
+                startActivity(new Intent(this, TermsActivity.class));
+            }
         } else {
-                Toast.makeText(this, "Por favor espere respuesta de nuestro servidor", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Por favor espere respuesta de nuestro servidor", Toast.LENGTH_SHORT).show();
         }
     }
 
     @OnClick(R.id.card_view_new_petitions)
     void showRegisterView() {
         if (Settings.isApkActivated()) {
-            startActivity(new Intent(this, RegisterClientController.class));
+            if (Settings.isTermsAcepted()) {
+                startActivity(new Intent(this, RegisterClientController.class));
+            } else {
+                startActivity(new Intent(this, TermsActivity.class));
+            }
         } else {
-                Toast.makeText(this, "Por favor espere respuesta de nuestro servidor", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Por favor espere respuesta de nuestro servidor", Toast.LENGTH_SHORT).show();
         }
     }
 
