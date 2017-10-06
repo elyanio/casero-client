@@ -22,7 +22,7 @@
                 android:background="@color/colorPrimary"
                 android:ems="10"
                 android:paddingLeft="5dp"
-                android:text="Desarrolado por"
+                android:text="Desarrollado por"
                 android:textColor="@color/white"
                 android:textSize="35dp" />
 
