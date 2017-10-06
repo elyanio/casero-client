@@ -28,6 +28,7 @@ class TermsActivity : AppCompatActivity() {
         entendido.setOnClickListener {
             Settings.setTermsAcepted(true)
             startActivity(Intent(this, MainActivity::class.java))
+            finish()
         }
     }
 

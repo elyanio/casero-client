@@ -15,6 +15,7 @@ import caribehostal.caseroclient.settings.Settings;
 import caribehostal.caseroclient.view.about.AboutActivity;
 import caribehostal.caseroclient.view.about.DevelopActivity;
 import caribehostal.caseroclient.view.about.TermsActivity;
+import caribehostal.caseroclient.view.registerserver.StageRegisterServer;
 import caribehostal.caseroclient.view.tray.TrayActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -44,9 +45,15 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(this, TrayActivity.class));
             } else {
                 startActivity(new Intent(this, TermsActivity.class));
+                finish();
             }
         } else {
-            Toast.makeText(this, "Por favor espere respuesta de nuestro servidor", Toast.LENGTH_SHORT).show();
+            if (Settings.isRegisterServerSend()) {
+                Toast.makeText(this, "Por favor espere respuesta de nuestro servidor", Toast.LENGTH_SHORT).show();
+            } else {
+                startActivity(new Intent(this, StageRegisterServer.class));
+                finish();
+            }
         }
     }
 
@@ -57,9 +64,15 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(this, RegisterClientController.class));
             } else {
                 startActivity(new Intent(this, TermsActivity.class));
+                finish();
             }
         } else {
-            Toast.makeText(this, "Por favor espere respuesta de nuestro servidor", Toast.LENGTH_SHORT).show();
+            if (Settings.isRegisterServerSend()) {
+                Toast.makeText(this, "Por favor espere respuesta de nuestro servidor", Toast.LENGTH_SHORT).show();
+            } else {
+                startActivity(new Intent(this, StageRegisterServer.class));
+                finish();
+            }
         }
     }
 

@@ -101,8 +101,7 @@ class StageRegisterServer : AppCompatActivity() {
     fun acept() {
         Settings.setApkActivation(true)
         Settings.setRegisterServerSend(true)
-        val mainIntent = Intent().setClass(this, TermsActivity::class.java)
-        startActivity(mainIntent)
+        startActivity(Intent().setClass(this, TermsActivity::class.java))
         finish()
     }
 
