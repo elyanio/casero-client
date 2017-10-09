@@ -118,7 +118,9 @@ class SmsReceiver : BroadcastReceiver() {
         val daoAction = DaoAction()
         daoAction.updateResponseTime(id, dateProceced)
         daoAction.updateState(id, ActionState.FINISH)
-        daoAction.updateUnread(id, true)
+//        daoAction.updateUnread(id, true)
+        // yo detecto los nuevos mensajes en el smsReceiver por eso pongo false
+        daoAction.updateUnread(id, false)
         return daoAction.getAction(id)
     }
 

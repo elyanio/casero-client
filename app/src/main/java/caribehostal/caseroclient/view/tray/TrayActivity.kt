@@ -95,6 +95,12 @@ class TrayActivity : AppCompatActivity(), AdapterCallbacks {
         // fin yanio
         super.onResume()
     }
+    //codigo yanio
+    override fun onPause() {
+        super.onPause()
+        Settings.resetDontSeeMessage()
+    }
+    // fin yanio
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == CREATE_ACTION_REQUEST && resultCode == RESULT_OK && data != null) {
