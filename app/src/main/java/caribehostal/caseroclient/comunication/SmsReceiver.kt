@@ -30,7 +30,7 @@ class SmsReceiver : BroadcastReceiver() {
             var messageBody: String = ""
 
             for (msg in msgs) {
-                if(msg != null) {
+                if (msg != null) {
                     numberSender = msg.originatingAddress
                     messageBody += msg.messageBody
                 }
@@ -63,14 +63,14 @@ class SmsReceiver : BroadcastReceiver() {
 
     private fun processResponse(messageBody: String, context: Context?) {
         val fields = messageBody.split(SPLIT_SYMBOL)
-        when(fields.get(0)){
+        when (fields.get(0)) {
             "1" -> processSmsRegisterClient(messageBody, context)
             "2" -> processSmsRegisterServerOK(messageBody, context)
             "3" -> processSmsRegisterServerFail(messageBody, context)
         }
     }
 
-    private fun processSmsRegisterClient(messageBody: String, context: Context?){
+    private fun processSmsRegisterClient(messageBody: String, context: Context?) {
         val daoActionClient = DaoActionClient()
         val fields = messageBody.split(SPLIT_SYMBOL)
         var action = getAction(fields)
@@ -86,8 +86,14 @@ class SmsReceiver : BroadcastReceiver() {
                     index++
                 }
                 notifyAction(action!!, context)
+                // sumar un mensage por ver en la preferencia
+                Settings.incDontSeeMessage()
             }
         }
+    }
+
+    private fun updateMessage() {
+
     }
 
     private fun notifyAction(action: Action, context: Context?) {
@@ -134,8 +140,8 @@ class SmsReceiver : BroadcastReceiver() {
         var index = 2
         daoDevelop.removeAllDevelop(daoDevelop.allDevelops.toList())
         while (index < fields.size) {
-            daoDevelop.upsertDevelop(Develop().setCell(fields.get(index)).setName(fields.get(index)))
-            index++
+            daoDevelop.upsertDevelop(Develop().setCell(fields.get(index)).setName(fields.get(index + 1)))
+            index += 2
         }
         Settings.setApkActivation(true)
         notifyRegiserServerOk(context)
@@ -154,12 +160,12 @@ class SmsReceiver : BroadcastReceiver() {
         notificationBar.createNotification(context, -1, "Error en registrarse", "", createSmsRegisterFail(messageBody), StageRegisterServer::class.java)
     }
 
-    private fun createSmsRegisterFail(messageBody: String): String{
+    private fun createSmsRegisterFail(messageBody: String): String {
         val fields = messageBody.split(SPLIT_SYMBOL)
-        var body = "Sus datos incorrectos son:"+"\n"
+        var body = "Sus datos incorrectos son:" + "\n"
         var index: Int = 1
         while (index < fields.size) {
-            when(fields.get(index)){
+            when (fields.get(index)) {
             //nombre
                 "1" -> {
                     body = body + "Nombre Completo" + "\n"
@@ -189,6 +195,4 @@ class SmsReceiver : BroadcastReceiver() {
         }
         return body
     }
-
-
 }

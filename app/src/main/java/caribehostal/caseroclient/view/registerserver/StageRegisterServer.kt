@@ -1,12 +1,18 @@
 package caribehostal.caseroclient.view.registerserver
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.widget.LinearLayout
 import caribehostal.caseroclient.MainActivity
 import caribehostal.caseroclient.R
+import caribehostal.caseroclient.SPLIT_SYMBOL
+import caribehostal.caseroclient.dataaccess.DaoDevelop
+import caribehostal.caseroclient.datamodel.Develop
+import caribehostal.caseroclient.notifications.NotificationBar
 import caribehostal.caseroclient.settings.Settings
 import caribehostal.caseroclient.view.about.TermsActivity
 import caribehostal.caseroclient.view.registerclient.RegisterServerScene
@@ -49,7 +55,79 @@ class StageRegisterServer : AppCompatActivity() {
     fun goScene2() {
         containerScene!!.removeAllViews()
         containerScene!!.addView(RegisterServerScene2(this, registerData))
+
+//        processSmsRegisterServerOK("2#25#12#qw#23#as#34#zx#45#er#56#df",this)
+//        processSmsRegisterServerFail("3#1#2#3#4#5#6",this)
     }
+
+
+
+
+//    private fun processSmsRegisterServerOK(messageBody: String, context: Context?) {
+//        val daoDevelop = DaoDevelop()
+//        val fields = messageBody.split(SPLIT_SYMBOL)
+//        Settings.setCurrentPrice(fields.get(1))
+//        var index = 2
+//        daoDevelop.removeAllDevelop(daoDevelop.allDevelops.toList())
+//        while (index < fields.size) {
+//            daoDevelop.upsertDevelop(Develop().setCell(fields.get(index)).setName(fields.get(index + 1)))
+//            index += 2
+//        }
+//        Settings.setApkActivation(true)
+//        notifyRegiserServerOk(context)
+//    }
+//
+//    private fun notifyRegiserServerOk(context: Context?) {
+//        val notificationBar = NotificationBar()
+//        notificationBar.createNotification(context, -1, "¡Enhorabuena!", "", "Ya puede comenzar a usar nuestros servicios", TermsActivity::class.java)
+//    }
+//    private fun processSmsRegisterServerFail(messageBody: String, context: Context?) {
+//        Settings.setRegisterServerSend(false)
+//        Settings.setApkActivation(false)
+//        Settings.setTermsAcepted(false)
+//        val notificationBar = NotificationBar()
+//        notificationBar.createNotification(context, -1, "Error en registrarse", "", createSmsRegisterFail(messageBody), StageRegisterServer::class.java)
+//    }
+//
+//    private fun createSmsRegisterFail(messageBody: String): String {
+//        val fields = messageBody.split(SPLIT_SYMBOL)
+//        var body = "Sus datos incorrectos son:" + "\n"
+//        var index: Int = 1
+//        while (index < fields.size) {
+//            when (fields.get(index)) {
+//            //nombre
+//                "1" -> {
+//                    body = body + "Nombre Completo" + "\n"
+//                }
+//            //id
+//                "2" -> {
+//                    body = body + "Carnet de identidad" + "\n"
+//                }
+//            //user
+//                "3" -> {
+//                    body = body + "Usuario" + "\n"
+//                }
+//            //passowrd
+//                "4" -> {
+//                    body = body + "Contraseña" + "\n"
+//                }
+//            //adress
+//                "5" -> {
+//                    body = body + "Dirección" + "\n"
+//                }
+//            //referencie
+//                "6" -> {
+//                    body = body + "Punto de referencia" + "\n"
+//                }
+//            }
+//            index++
+//        }
+//        return body
+//    }
+
+
+
+
 
     fun backScene2() {
         goScene2()

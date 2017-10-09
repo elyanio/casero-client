@@ -13,3 +13,4 @@ import java.util.concurrent.atomic.AtomicBoolean
 @JvmField val PREFE_TERMINUS_ACEPTED: String = "PREFE_TERMINUS_ACEPTED"
 @JvmField val PREFE_SEND_SMS_REGISTER: String = "PREFE_SEND_SMS_REGISTER"
 @JvmField val PREFE_PRICE_CURRENT: String = "PREFE_PRICE_CURRENT"
+@JvmField val PREFE_DONT_SEE_MESSAGE: String = "PREFE_DONT_SEE_MESSAGE"

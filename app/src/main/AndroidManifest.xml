@@ -48,7 +48,10 @@
             android:label="@string/title_activity_about"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".view.registerserver.StageRegisterServer" />
-        <activity android:name=".view.about.TermsActivity"></activity>
+        <activity android:name=".view.about.TermsActivity"
+            android:label="Términos"></activity>
+        <activity android:name=".view.about.TermsShowActivity"
+            android:label="Términos"></activity>
     </application>
 
 </manifest>

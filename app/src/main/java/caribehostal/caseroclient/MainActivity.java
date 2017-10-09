@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import butterknife.BindView;
@@ -15,6 +16,7 @@ import caribehostal.caseroclient.settings.Settings;
 import caribehostal.caseroclient.view.about.AboutActivity;
 import caribehostal.caseroclient.view.about.DevelopActivity;
 import caribehostal.caseroclient.view.about.TermsActivity;
+import caribehostal.caseroclient.view.about.TermsShowActivity;
 import caribehostal.caseroclient.view.registerserver.StageRegisterServer;
 import caribehostal.caseroclient.view.tray.TrayActivity;
 
@@ -28,11 +30,13 @@ public class MainActivity extends AppCompatActivity {
     ImageView imageMenssage;
     @BindView(R.id.image_view_owner)
     ImageView imageNewPetition;
+    private TextView message;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        message = (TextView) findViewById(R.id.count_message);
         ButterKnife.bind(this);
         DatabaseSetup databaseSetup = new DatabaseSetup();
         databaseSetup.mockDatabase();
@@ -56,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
 
     @OnClick(R.id.card_view_new_petitions)
     void showRegisterView() {
@@ -83,7 +88,12 @@ public class MainActivity extends AppCompatActivity {
 
     @OnClick(R.id.card_view_contacts)
     void showSettingsView() {
-        startActivity(new Intent(this, AboutActivity.class));
+        startActivity(new Intent(this, TermsShowActivity.class));
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        message.setText(Settings.getDontSeeMessage() + "");
+    }
 }

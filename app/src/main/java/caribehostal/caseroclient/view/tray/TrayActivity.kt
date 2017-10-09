@@ -15,6 +15,7 @@ import caribehostal.caseroclient.dataaccess.DaoAction
 import caribehostal.caseroclient.datamodel.ActionState.FINISH
 import caribehostal.caseroclient.datamodel.ActionState.PENDING
 import caribehostal.caseroclient.datamodel.FullAction
+import caribehostal.caseroclient.settings.Settings
 import caribehostal.caseroclient.view.about.AboutActivity
 import kotlinx.android.synthetic.main.activity_tray.*
 import org.jetbrains.anko.ctx
@@ -89,6 +90,9 @@ class TrayActivity : AppCompatActivity(), AdapterCallbacks {
             allActions = dao.loadAllActions()
         }
         updateController()
+        //codigo yanio
+        Settings.resetDontSeeMessage()
+        // fin yanio
         super.onResume()
     }
 
