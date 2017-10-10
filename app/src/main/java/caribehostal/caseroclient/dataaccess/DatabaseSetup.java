@@ -105,28 +105,28 @@ public class DatabaseSetup {
     private List<Develop> getDevelops() {
         ArrayList<Develop> develops = new ArrayList<>();
         Develop develop = new Develop();
-        develop.setName("Asiel Alonso asd");
-        develop.setCell("545204263333333");
+        develop.setName("Asiel Alonso");
+        develop.setCell("54520426");
         develops.add(develop);
 
         develop = new Develop();
-        develop.setName("Yanier Alfonso asdsd");
-        develop.setCell("54150751333333333");
+        develop.setName("Yanier Alfonso");
+        develop.setCell("54150751");
         develops.add(develop);
 
         develop = new Develop();
-        develop.setName("Giovel Pérez sdds");
-        develop.setCell("53850863333333333333");
+        develop.setName("Giovel Pérez");
+        develop.setCell("53850863");
         develops.add(develop);
 
         develop = new Develop();
-        develop.setName("Rainel Martínez sadsd");
-        develop.setCell("537468023333333333");
+        develop.setName("Rainel Martínez");
+        develop.setCell("53746802");
         develops.add(develop);
 
         develop = new Develop();
-        develop.setName("Nayra Abad assd");
-        develop.setCell("5490948933333333");
+        develop.setName("Nayra Abad");
+        develop.setCell("54909489");
         develops.add(develop);
 
         return develops;
