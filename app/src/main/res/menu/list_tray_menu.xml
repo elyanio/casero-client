@@ -7,7 +7,7 @@
         android:title="Registrar clientes"
         app:showAsAction="always"/>
     <item
-        android:id="@+id/action_about"
-        android:title="Información de contacto"
+        android:id="@+id/action_terms"
+        android:title="Términos"
         app:showAsAction="never"/>
 </menu>

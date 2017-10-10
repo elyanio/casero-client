@@ -17,6 +17,7 @@ import caribehostal.caseroclient.datamodel.ActionState.PENDING
 import caribehostal.caseroclient.datamodel.FullAction
 import caribehostal.caseroclient.settings.Settings
 import caribehostal.caseroclient.view.about.AboutActivity
+import caribehostal.caseroclient.view.about.TermsActivity
 import kotlinx.android.synthetic.main.activity_tray.*
 import org.jetbrains.anko.ctx
 import org.jetbrains.anko.startActivity
@@ -121,7 +122,7 @@ class TrayActivity : AppCompatActivity(), AdapterCallbacks {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_add_action -> startActivityForResult<RegisterClientController>(CREATE_ACTION_REQUEST)
-            R.id.action_about -> startActivity<AboutActivity>()
+            R.id.action_terms -> startActivity<TermsActivity>()
         }
         return super.onOptionsItemSelected(item)
     }
