@@ -4,15 +4,26 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/text_register_check_panel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
+        android:id="@+id/rg_title_panel_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:ems="10"
+        android:paddingLeft="5dp"
+        android:text="Entrada----Salida"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        android:textAlignment="center"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
     <com.squareup.timessquare.CalendarPickerView
         android:id="@+id/datePicker_check"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        />
+        android:layout_below="@+id/rg_title_panel_date" />
 
 
 </RelativeLayout>

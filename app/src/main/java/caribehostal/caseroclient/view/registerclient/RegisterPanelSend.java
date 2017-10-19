@@ -1,9 +1,7 @@
 package caribehostal.caseroclient.view.registerclient;
 
 import android.content.Context;
-import android.support.design.widget.FloatingActionButton;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -23,8 +21,6 @@ public class RegisterPanelSend extends LinearLayout implements RegisterPanel {
     private final RegisterClientController context;
     @BindView(R.id.text_message)
     TextView text;
-    @BindView(R.id.button_send_client)
-    FloatingActionButton btSendAction;
 
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("y-MM-dd");
 
@@ -33,13 +29,7 @@ public class RegisterPanelSend extends LinearLayout implements RegisterPanel {
         this.context = (RegisterClientController) context;
         bindXML();
         ButterKnife.bind(this);
-        btSendAction.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sendAction();
-            }
-        });
-        updateText();
+//        updateText();
     }
 
     private void sendAction() {
@@ -55,15 +45,15 @@ public class RegisterPanelSend extends LinearLayout implements RegisterPanel {
     private String makeText() {
         if (context.getClients().isEmpty()) {
             text.setTextColor(getResources().getColor(R.color.colorerror));
-            btSendAction.setVisibility(INVISIBLE);
+            context.setEnableButtonSend(false);
             return "La petición no contiene pasaportes";
         }
         if (context.getRegisterPanelDate().getCheckin().compareTo(context.getRegisterPanelDate().getCheckout()) >= 0) {
             text.setTextColor(getResources().getColor(R.color.colorerror));
-            btSendAction.setVisibility(INVISIBLE);
+            context.setEnableButtonSend(false);
             return "La fecha de llegada no puede ser superior o igual a la fecha de salida";
         }
-        btSendAction.setVisibility(VISIBLE);
+        context.setEnableButtonSend(true);
         text.setTextColor(getResources().getColor(R.color.correcttext));
         return correctText();
     }

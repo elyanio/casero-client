@@ -8,7 +8,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_above="@+id/cardView">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -164,7 +165,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:gravity="end"
-        card_view_report:cardCornerRadius="10dp">
+        card_view_report:cardCornerRadius="10dp"
+        android:id="@+id/cardView">
 
         <Button
             android:id="@+id/pay_method_bt"

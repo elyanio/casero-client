@@ -125,7 +125,7 @@ public class DatabaseSetup {
         develops.add(develop);
 
         develop = new Develop();
-        develop.setName("Nayra Abad");
+        develop.setName("Nayra Gonzalez");
         develop.setCell("54909489");
         develops.add(develop);
 

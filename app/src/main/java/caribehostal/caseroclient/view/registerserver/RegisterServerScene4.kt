@@ -7,7 +7,6 @@ import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 import caribehostal.caseroclient.R
-import caribehostal.caseroclient.view.registerclient.RegisterServerScene
 
 
 class RegisterServerScene4(context: Context?, registerData: RegisterData) : LinearLayout(context), RegisterServerScene {

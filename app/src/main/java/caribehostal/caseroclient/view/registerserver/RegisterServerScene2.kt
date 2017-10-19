@@ -8,7 +8,6 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.LinearLayout
 import caribehostal.caseroclient.R
-import caribehostal.caseroclient.view.registerclient.RegisterServerScene
 import caribehostal.caseroserver.util.ValideString
 
 

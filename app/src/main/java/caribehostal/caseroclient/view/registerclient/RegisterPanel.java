@@ -6,4 +6,5 @@ package caribehostal.caseroclient.view.registerclient;
 
 public interface RegisterPanel {
     public void outPanel();
+
 }

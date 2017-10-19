@@ -8,6 +8,8 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
@@ -43,35 +45,10 @@ import static caribehostal.caseroclient.view.tray.TrayActivityKt.NEW_ACTION_ID;
 public class RegisterClientController extends AppCompatActivity {
     @BindView(R.id.register_content)
     FrameLayout content;
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            = new BottomNavigationView.OnNavigationItemSelectedListener() {
-
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            switch (item.getItemId()) {
-                case R.id.navigation_dates:
-                    if (!(currentPanelSelect instanceof RegisterPanelDate)) {
-                        currentPanelSelect.outPanel();
-                        showCheckinPanelAction();
-                    }
-                    return true;
-                case R.id.navigation_client:
-                    if (!(currentPanelSelect instanceof RegisterPanelAdd)) {
-                        currentPanelSelect.outPanel();
-                        showClientPanelAction();
-                    }
-                    return true;
-                case R.id.navigation_ok:
-                    if (!(currentPanelSelect instanceof RegisterPanelSend)) {
-                        currentPanelSelect.outPanel();
-                        showSendPanelAction();
-                    }
-                    return true;
-            }
-            return false;
-        }
-
-    };
+    @BindView(R.id.bt_1_register)
+    Button back;
+    @BindView(R.id.bt_2_register)
+    Button next;
     private RegisterPanel currentPanelSelect;
 
     private RegisterPanelDate registerPanelDate;
@@ -89,18 +66,76 @@ public class RegisterClientController extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register_client_activity);
         ButterKnife.bind(this);
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         init();
+        event();  // siempre despues de init()
+    }
+
+    private void event() {
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                actionBack();
+            }
+        });
+        next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                actionNext();
+            }
+        });
+
+    }
+
+    private void actionNext() {
+        if (currentPanelSelect instanceof RegisterPanelDate) {
+            currentPanelSelect.outPanel();
+            next.setText("Siguiente");
+            back.setText("Atrás");
+            showClientPanelAction();
+            return;
+        }
+        if (currentPanelSelect instanceof RegisterPanelAdd) {
+            currentPanelSelect.outPanel();
+            next.setText("Enviar");
+            back.setText("Atrás");
+            showSendPanelAction();
+            return;
+        }
+        if (currentPanelSelect instanceof RegisterPanelSend) {
+            currentPanelSelect.outPanel();
+            sendAction();
+            finish();
+            return;
+        }
+}
+
+    private void actionBack() {
+        if (currentPanelSelect instanceof RegisterPanelDate) {
+            currentPanelSelect.outPanel();
+            finish();
+            return;
+        }
+        if (currentPanelSelect instanceof RegisterPanelAdd) {
+            currentPanelSelect.outPanel();
+            back.setText("Salir");
+            next.setText("Siguiente");
+            showCheckinPanelAction();
+            return;
+        }
+        if (currentPanelSelect instanceof RegisterPanelSend) {
+            currentPanelSelect.outPanel();
+            back.setText("Atrás");
+            next.setText("Siguiente");
+            showClientPanelAction();
+            return;
+        }
     }
 
     private void init() {
         clients = new ArrayList<>(10);
-
         registerPanelDate = new RegisterPanelDate(this);
         registerAddPanel = new RegisterPanelAdd(this);
         registerSendPanel = new RegisterPanelSend(this);
-
         showCheckinPanelAction();
         currentPanelSelect = registerPanelDate;
     }
@@ -155,6 +190,7 @@ public class RegisterClientController extends AppCompatActivity {
 
     public void outSendPanelAction() {
         content.removeAllViews();
+        setEnableButtonSend(true);
     }
 
     public void showAddClientDialogAction() {
@@ -173,6 +209,9 @@ public class RegisterClientController extends AppCompatActivity {
 
     }
 
+    public void setEnableButtonSend(boolean b){
+        next.setEnabled(b);
+    }
     public void sendAction() {
         if (clients.isEmpty()) {
             return;
@@ -183,7 +222,7 @@ public class RegisterClientController extends AppCompatActivity {
 
         if (ContextCompat.checkSelfPermission(this, SEND_SMS) == PERMISSION_GRANTED) {
             Action action = saveDates();
-            new SmsSender().sendSms(action);
+//            new SmsSender().sendSms(action);
 
             Intent result = new Intent();
             result.putExtra(NEW_ACTION_ID, action.getId());
