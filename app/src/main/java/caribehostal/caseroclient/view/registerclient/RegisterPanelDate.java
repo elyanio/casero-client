@@ -3,12 +3,10 @@ package caribehostal.caseroclient.view.registerclient;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.squareup.timessquare.CalendarPickerView;
 
 import org.threeten.bp.LocalDate;
-import org.threeten.bp.LocalDateTime;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -29,8 +27,6 @@ import static com.squareup.timessquare.CalendarPickerView.SelectionMode.RANGE;
 
 public class RegisterPanelDate extends RelativeLayout implements RegisterPanel {
     private final RegisterClientController context;
-    @BindView(R.id.text_register_check_panel)
-    TextView text;
 
     @BindView(R.id.datePicker_check)
     CalendarPickerView datePicker;
@@ -40,7 +36,6 @@ public class RegisterPanelDate extends RelativeLayout implements RegisterPanel {
         this.context = (RegisterClientController) context;
         bindXML();
         ButterKnife.bind(this);
-        this.text.setText("Fecha de llegada");
         initDatePicker();
     }
 
@@ -56,17 +51,25 @@ public class RegisterPanelDate extends RelativeLayout implements RegisterPanel {
         ArrayList<Date> range = new ArrayList<>();
         range.add(toDate(LocalDate.now()));
         range.add(toDate(LocalDate.now()));
-        datePicker.init(dateInit, dateFin).inMode(RANGE)
-                .withSelectedDates(range);
+        datePicker.init(dateInit, dateFin).inMode(RANGE);
+//                .withSelectedDates(range);
     }
 
     public LocalDate getCheckin() {
-        return toLocalDate(datePicker.getSelectedDates().get(0));
+        try {
+            return toLocalDate(datePicker.getSelectedDates().get(0));
+        }catch (IndexOutOfBoundsException e){
+            return LocalDate.now();
+        }
     }
 
     public LocalDate getCheckout() {
-        List<Date> selectedDates = datePicker.getSelectedDates();
-        return toLocalDate(selectedDates.get(selectedDates.size() - 1));
+        try {
+            List<Date> selectedDates = datePicker.getSelectedDates();
+            return toLocalDate(selectedDates.get(selectedDates.size() - 1));
+        }catch (IndexOutOfBoundsException e){
+            return LocalDate.now();
+        }
     }
 
     @Override
