@@ -107,7 +107,7 @@ public class RegisterClientController extends AppCompatActivity {
             finish();
             return;
         }
-}
+    }
 
     private void actionBack() {
         if (currentPanelSelect instanceof RegisterPanelDate) {
@@ -209,9 +209,10 @@ public class RegisterClientController extends AppCompatActivity {
 
     }
 
-    public void setEnableButtonSend(boolean b){
+    public void setEnableButtonSend(boolean b) {
         next.setEnabled(b);
     }
+
     public void sendAction() {
         if (clients.isEmpty()) {
             return;
