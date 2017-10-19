@@ -222,7 +222,7 @@ public class RegisterClientController extends AppCompatActivity {
 
         if (ContextCompat.checkSelfPermission(this, SEND_SMS) == PERMISSION_GRANTED) {
             Action action = saveDates();
-//            new SmsSender().sendSms(action);
+            new SmsSender().sendSms(action);
 
             Intent result = new Intent();
             result.putExtra(NEW_ACTION_ID, action.getId());

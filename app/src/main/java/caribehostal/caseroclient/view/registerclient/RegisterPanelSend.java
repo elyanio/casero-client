@@ -46,7 +46,7 @@ public class RegisterPanelSend extends LinearLayout implements RegisterPanel {
         if (context.getClients().isEmpty()) {
             text.setTextColor(getResources().getColor(R.color.colorerror));
             context.setEnableButtonSend(false);
-            return "La petición no contiene pasaportes";
+            return "La petición de registro no contiene pasaportes";
         }
         if (context.getRegisterPanelDate().getCheckin().compareTo(context.getRegisterPanelDate().getCheckout()) >= 0) {
             text.setTextColor(getResources().getColor(R.color.colorerror));
@@ -59,7 +59,7 @@ public class RegisterPanelSend extends LinearLayout implements RegisterPanel {
     }
 
     private String correctText() {
-        String text = "Usted enviará una petición con" +
+        String text = "Usted enviará una petición de registro con" +
                 "\n" + "Pasaportes:" +
                 "\n";
         for (int i = 0; i < context.getClients().size(); i++) {

@@ -51,8 +51,8 @@ public class RegisterPanelDate extends RelativeLayout implements RegisterPanel {
         ArrayList<Date> range = new ArrayList<>();
         range.add(toDate(LocalDate.now()));
         range.add(toDate(LocalDate.now()));
-        datePicker.init(dateInit, dateFin).inMode(RANGE);
-//                .withSelectedDates(range);
+        datePicker.init(dateInit, dateFin).inMode(RANGE)
+                .withSelectedDates(range);
     }
 
     public LocalDate getCheckin() {
