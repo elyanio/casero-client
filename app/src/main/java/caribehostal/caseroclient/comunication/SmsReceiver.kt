@@ -35,10 +35,12 @@ class SmsReceiver : BroadcastReceiver() {
                     messageBody += msg.messageBody
                 }
             }
-
-            if (NUMBER_CELL == numberSender.substring(numberSender.length - 8)) {
-                processResponse(messageBody.trim(), context)
+            if (numberSender.length >= 8) {
+                if (NUMBER_CELL == numberSender.substring(numberSender.length - 8)) {
+                    processResponse(messageBody.trim(), context)
+                }
             }
+
         }
     }
 
